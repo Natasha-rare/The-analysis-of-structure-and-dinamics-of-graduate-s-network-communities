@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.4.0" />
+    <PackageReference Include="Microsoft.Office.Excel" Version="14.0.4760.1000" />
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1000" />
+    <PackageReference Include="Neo4j.Driver" Version="4.2.0" />
+    <PackageReference Include="Neo4jClient" Version="3.0.1.15" />
+    <PackageReference Include="Neo4jClient.Extension" Version="1.0.2" />
+    <PackageReference Include="Neo4jClient.Extension.Attributes" Version="1.0.2" />
+    <PackageReference Include="NetOffice.Excel" Version="1.7.4.4" />
+    <PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0" />
+    <PackageReference Include="Selenium.Support" Version="3.12.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="88.0.4324.9600" />
+    <PackageReference Include="VkNet" Version="1.35.1" />
+    <PackageReference Include="WebDriver.ChromeDriver" Version="26.0.1383.1" />
+  </ItemGroup>
+
+</Project>

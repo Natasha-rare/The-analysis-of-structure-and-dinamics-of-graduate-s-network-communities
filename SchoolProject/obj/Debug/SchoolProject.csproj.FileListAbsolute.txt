@@ -1,0 +1,10 @@
+C:\Users\nattt\project\SchoolProject\bin\Debug\SchoolProject.exe.config
+C:\Users\nattt\project\SchoolProject\bin\Debug\SchoolProject.exe
+C:\Users\nattt\project\SchoolProject\bin\Debug\SchoolProject.pdb
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.csprojAssemblyReference.cache
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.Form1.resources
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.Properties.Resources.resources
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.csproj.GenerateResource.cache
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.csproj.CoreCompileInputs.cache
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.exe
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.pdb

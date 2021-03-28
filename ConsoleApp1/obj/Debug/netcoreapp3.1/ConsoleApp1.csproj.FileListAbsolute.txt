@@ -1,0 +1,15 @@
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.exe
+C:\Users\nattt\source\repos\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csprojAssemblyReference.cache
+C:\Users\nattt\source\repos\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\nattt\source\repos\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfo.cs
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\WebDriver.dll
+C:\Users\nattt\source\repos\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CopyComplete
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\VkNet.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Neo4j.Driver.dll
+C:\Users\nattt\source\repos\ConsoleApp1\bin\Debug\netcoreapp3.1\Neo4jClient.dll
+C:\Users\nattt\source\repos\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CoreCompileInputs.cache
