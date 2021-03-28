@@ -888,8 +888,8 @@ namespace ConsoleApp1
 
                 static refresher()
                 {
-                    string login = "natasha_ea5@mail.ru";
-                    string password = "bykvah-3vyxfe-kutmYw";
+                    string login = "natasha_ea51@mail.ru";
+                    string password = "bykvah-3vyxfe-kutmYw1";
                     driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver_win32");
                     driver.Navigate().GoToUrl("https://www.facebook.com/");
                     driver.FindElement(By.Id("email")).SendKeys(login);
@@ -925,8 +925,8 @@ namespace ConsoleApp1
                 }
                 static friends_searcher()
                 {
-                    string login = "natasha_ea5@mail.ru";//"89161742573";
-                    string password = "bykvah-3vyxfe-kutmYw";//"281292";
+                    string login = "natasha_ea51@mail.ru";//"89161742573";
+                    string password = "bykvah-3vyxfe-kutmYw1";//"281292";
                     driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver_win32");
                     driver.Navigate().GoToUrl("https://www.facebook.com/");
                     driver.FindElement(By.Id("email")).SendKeys(login);
