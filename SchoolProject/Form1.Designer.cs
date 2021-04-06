@@ -93,13 +93,18 @@ namespace SchoolProject
             this.reload = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.share = new System.Windows.Forms.Button();
+            this.info = new System.Windows.Forms.Label();
+            this.fb_l = new System.Windows.Forms.Label();
+            this.vk_l = new System.Windows.Forms.Label();
+            this.inst_l = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 50);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.graduation,
             this.occupationToolStripMenuItem,
@@ -537,12 +542,12 @@ namespace SchoolProject
             this.search.AccessibleName = "search";
             this.search.BackColor = System.Drawing.Color.Transparent;
             this.search.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.search.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search.Image = ((System.Drawing.Image)(resources.GetObject("search.Image")));
+            this.search.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search.Location = new System.Drawing.Point(944, 0);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(58, 41);
             this.search.TabIndex = 1;
+            this.search.Text = "🔍";
             this.search.UseVisualStyleBackColor = false;
             this.search.Click += new System.EventHandler(this.search_Click);
             // 
@@ -551,12 +556,12 @@ namespace SchoolProject
             this.reload.AccessibleName = "reload";
             this.reload.BackColor = System.Drawing.Color.Transparent;
             this.reload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.reload.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reload.Image = ((System.Drawing.Image)(resources.GetObject("reload.Image")));
+            this.reload.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reload.Location = new System.Drawing.Point(1053, 0);
             this.reload.Name = "reload";
             this.reload.Size = new System.Drawing.Size(58, 41);
             this.reload.TabIndex = 1;
+            this.reload.Text = "🔃";
             this.reload.UseVisualStyleBackColor = false;
             // 
             // clear
@@ -565,11 +570,11 @@ namespace SchoolProject
             this.clear.BackColor = System.Drawing.Color.Transparent;
             this.clear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.clear.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clear.Image = ((System.Drawing.Image)(resources.GetObject("clear.Image")));
             this.clear.Location = new System.Drawing.Point(1170, 0);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(58, 41);
             this.clear.TabIndex = 1;
+            this.clear.Text = "☒";
             this.clear.UseVisualStyleBackColor = false;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
@@ -586,11 +591,67 @@ namespace SchoolProject
             this.share.TabIndex = 2;
             this.share.UseVisualStyleBackColor = false;
             // 
+            // info
+            // 
+            this.info.AllowDrop = true;
+            this.info.AutoEllipsis = true;
+            this.info.AutoSize = true;
+            this.info.BackColor = System.Drawing.Color.LemonChiffon;
+            this.info.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.info.Location = new System.Drawing.Point(12, 655);
+            this.info.MaximumSize = new System.Drawing.Size(400, 0);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(0, 27);
+            this.info.TabIndex = 3;
+            // 
+            // fb_l
+            // 
+            this.fb_l.AccessibleName = "fb_label";
+            this.fb_l.AutoSize = true;
+            this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fb_l.ForeColor = System.Drawing.Color.Blue;
+            this.fb_l.Location = new System.Drawing.Point(1049, 53);
+            this.fb_l.Name = "fb_l";
+            this.fb_l.Size = new System.Drawing.Size(179, 27);
+            this.fb_l.TabIndex = 4;
+            this.fb_l.Text = "FB connections";
+            this.fb_l.Visible = false;
+            // 
+            // vk_l
+            // 
+            this.vk_l.AutoSize = true;
+            this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.vk_l.Location = new System.Drawing.Point(1049, 95);
+            this.vk_l.Name = "vk_l";
+            this.vk_l.Size = new System.Drawing.Size(179, 27);
+            this.vk_l.TabIndex = 5;
+            this.vk_l.Text = "VK connections";
+            this.vk_l.Visible = false;
+            // 
+            // inst_l
+            // 
+            this.inst_l.AllowDrop = true;
+            this.inst_l.AutoSize = true;
+            this.inst_l.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inst_l.ForeColor = System.Drawing.Color.Red;
+            this.inst_l.Location = new System.Drawing.Point(1049, 134);
+            this.inst_l.MaximumSize = new System.Drawing.Size(179, 0);
+            this.inst_l.Name = "inst_l";
+            this.inst_l.Size = new System.Drawing.Size(175, 24);
+            this.inst_l.TabIndex = 6;
+            this.inst_l.Text = "INST connections";
+            this.inst_l.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1700, 964);
+            this.Controls.Add(this.inst_l);
+            this.Controls.Add(this.vk_l);
+            this.Controls.Add(this.fb_l);
+            this.Controls.Add(this.info);
             this.Controls.Add(this.share);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.reload);
@@ -599,6 +660,11 @@ namespace SchoolProject
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint_1);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -671,6 +737,10 @@ namespace SchoolProject
         private System.Windows.Forms.ToolStripMenuItem financeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem marketingToolStripMenuItem;
         private System.Windows.Forms.Button share;
+        private System.Windows.Forms.Label info;
+        private System.Windows.Forms.Label fb_l;
+        private System.Windows.Forms.Label vk_l;
+        private System.Windows.Forms.Label inst_l;
     }
 }
 

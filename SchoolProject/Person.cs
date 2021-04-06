@@ -48,3 +48,4 @@ namespace SchoolProject
         [JsonProperty("Inst_id")]
         public string Inst_id { get; set; }
     }
+}
