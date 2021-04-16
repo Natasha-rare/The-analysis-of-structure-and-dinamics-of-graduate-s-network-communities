@@ -1,29 +1,23 @@
-﻿using System;
+﻿using Neo4jClient;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Neo4jClient;
-using ShapeClass;
 
 namespace SchoolProject
 {
     public partial class Form1 : Form
     {
         //поля: которые меняет пользователь
-        public int Year = 0;
-        public string Occupation, Clan, Education;
+        public string Occupation, Education;
+        public string Clan, Year;
         public List<Person> people = new List<Person>();
         List<Shape> shapes = new List<Shape>();
         db a = new db("12345");
         public List<List<int>> fb_lines = new List<List<int>>();
         public List<List<int>> inst_lines = new List<List<int>>();
         public List<List<int>> vk_lines = new List<List<int>>();
+        Person_Info Form_Info = null;
         //запрос
         public string query;
         public Form1()
@@ -41,14 +35,14 @@ namespace SchoolProject
             int x = 100;
             int y = 100;
             
-            var results = a.GetPeople();
+            var results = a.GetPeople(Clan, Occupation, Education, Year);
             foreach (Person person in results)
             {
                 if (!people.Contains(person))
                 {
                     x = r.Next(50, 600);
                     y = r.Next(50, 500);
-                    shapes.Add(new Circle(x, y));
+                    shapes.Add(new Circle(x, y, person.Name));
                     people.Add(person);
                 }
             }
@@ -135,9 +129,151 @@ namespace SchoolProject
                 }
             }
 
-            public IEnumerable<Person> GetPeople()
+            public IEnumerable<Person> GetPeople(string Clan, string Occupation, string Education, string Year)
             {
-                var results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == "IT").Return(per => per.As<Person>()).Results;
+                IEnumerable<Person> results;
+                if (Clan != null)
+                {
+                    if (Education != null)
+                    {
+                        if (Occupation != null)
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per)=> per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                        else
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Occupation != null)
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                        else
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Education != null)
+                    {
+                        if (Occupation != null)
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)")
+                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Education.Contains(Education))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                        else
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Education.Contains(Education))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Education.Contains(Education))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Occupation != null)
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)")
+                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)")
+                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                        else
+                        {
+                            if (Year != null)
+                            {
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Graduation == Year)
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                            else
+                            {
+                                results = client.Cypher.Match("(per:Person)")
+                                    .Return(per => per.As<Person>()).Results;
+                            }
+                        }
+                    }
+                }
                 return results;
             }
 
@@ -180,19 +316,19 @@ namespace SchoolProject
             private void first_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string name = e.ClickedItem.Text;
-            Year = Convert.ToInt32(e.ClickedItem.Text);
+            Year = e.ClickedItem.Text;
         }
 
         private void second_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string name = e.ClickedItem.Text;
-            Year = Convert.ToInt32(e.ClickedItem.Text);
+            Year = e.ClickedItem.Text;
         }
 
         private void third_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string name = e.ClickedItem.Text;
-            Year = Convert.ToInt32(e.ClickedItem.Text);
+            Year = e.ClickedItem.Text;
         }
 
         private void clanToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -203,7 +339,7 @@ namespace SchoolProject
 
         private void educationToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            string education = e.ClickedItem.Text;
+            string education = e.ClickedItem.Text.ToString();
             switch (education)
             {
                 case ("МГУ"):
@@ -229,12 +365,6 @@ namespace SchoolProject
         private void Form1_Paint_1(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            
-            
-            foreach (Shape shape in shapes)
-            {
-                shape.Draw(g);
-            }
 
             foreach (List<int> line in fb_lines)
             {
@@ -249,6 +379,12 @@ namespace SchoolProject
             foreach (List<int> line in inst_lines)
             {
                 g.DrawLine(new Pen(Color.Red), line[0], line[1], line[2], line[3]);
+            }
+
+
+            foreach (Shape shape in shapes)
+            {
+                shape.Draw(g);
             }
         }
 
@@ -284,10 +420,14 @@ namespace SchoolProject
                     shapes[i].D_Y = e.Y - shapes[i].Y;
                     ShowInfo(i);
                 }
+                else
+                {
+                    shapes[i].FillC = Color.LightPink;
+                }
             }
-            if (!flag_checked)
+            if (!flag_checked && Form_Info != null)
             {
-                this.info.Text = "";
+                Form_Info.Close();
             }
             Refresh_Connections();
             Refresh();
@@ -296,25 +436,18 @@ namespace SchoolProject
         //info about person
         private void ShowInfo(int n)
         {
-            Person person = people[n];
-            string text = $"Name: {person.Name}\n" +
-                $"Group: {person.Group} Graduation: {person.Graduation}\n" +
-                $"Clan: {person.Clan} Project: {person.Project}\n Occupation:";
-            if (Occupation != null)
-            foreach (string i in person.Occupation)
-            {
-                text += " " + i;
-            }
-            if (Education != null)
-            {
-                text += "\nEducation: ";
-                foreach (string i in person.Education)
-                {
-                    text += " " + i;
-                }
-            }
             
-            this.info.Text = text;
+            if (Form_Info == null || Form_Info.IsDisposed)
+            {
+
+            }
+            else
+            {
+                Form_Info.Close();
+            }
+            shapes[n].FillC = Color.LightCyan;
+            Form_Info = new Person_Info(people[n]);
+            Form_Info.Show();
             Refresh();
         }
 

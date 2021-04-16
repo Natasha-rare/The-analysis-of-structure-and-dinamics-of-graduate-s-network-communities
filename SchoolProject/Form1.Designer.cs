@@ -112,7 +112,7 @@ namespace SchoolProject
             this.clanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1700, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1539, 41);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,7 +124,7 @@ namespace SchoolProject
             this.third});
             this.graduation.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.graduation.Name = "graduation";
-            this.graduation.Size = new System.Drawing.Size(179, 44);
+            this.graduation.Size = new System.Drawing.Size(179, 37);
             this.graduation.Text = "Graduation";
             // 
             // first
@@ -344,7 +344,7 @@ namespace SchoolProject
             // 
             this.occupationToolStripMenuItem.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.occupationToolStripMenuItem.Name = "occupationToolStripMenuItem";
-            this.occupationToolStripMenuItem.Size = new System.Drawing.Size(183, 44);
+            this.occupationToolStripMenuItem.Size = new System.Drawing.Size(183, 37);
             this.occupationToolStripMenuItem.Text = "Occupation";
             // 
             // educationToolStripMenuItem
@@ -365,7 +365,7 @@ namespace SchoolProject
             this.мИРЭАToolStripMenuItem});
             this.educationToolStripMenuItem.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.educationToolStripMenuItem.Name = "educationToolStripMenuItem";
-            this.educationToolStripMenuItem.Size = new System.Drawing.Size(164, 44);
+            this.educationToolStripMenuItem.Size = new System.Drawing.Size(164, 37);
             this.educationToolStripMenuItem.Text = "Education";
             this.educationToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.educationToolStripMenuItem_DropDownItemClicked);
             // 
@@ -491,7 +491,7 @@ namespace SchoolProject
             this.marketingToolStripMenuItem});
             this.clanToolStripMenuItem.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clanToolStripMenuItem.Name = "clanToolStripMenuItem";
-            this.clanToolStripMenuItem.Size = new System.Drawing.Size(95, 44);
+            this.clanToolStripMenuItem.Size = new System.Drawing.Size(95, 37);
             this.clanToolStripMenuItem.Text = "Clan";
             this.clanToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.clanToolStripMenuItem_DropDownItemClicked);
             // 
@@ -598,7 +598,7 @@ namespace SchoolProject
             this.info.AutoSize = true;
             this.info.BackColor = System.Drawing.Color.LemonChiffon;
             this.info.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.info.Location = new System.Drawing.Point(12, 655);
+            this.info.Location = new System.Drawing.Point(12, 735);
             this.info.MaximumSize = new System.Drawing.Size(400, 0);
             this.info.Name = "info";
             this.info.Size = new System.Drawing.Size(0, 27);
@@ -608,9 +608,10 @@ namespace SchoolProject
             // 
             this.fb_l.AccessibleName = "fb_label";
             this.fb_l.AutoSize = true;
+            this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(1049, 53);
+            this.fb_l.Location = new System.Drawing.Point(0, 41);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -620,9 +621,10 @@ namespace SchoolProject
             // vk_l
             // 
             this.vk_l.AutoSize = true;
+            this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(1049, 95);
+            this.vk_l.Location = new System.Drawing.Point(179, 41);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;
@@ -633,9 +635,10 @@ namespace SchoolProject
             // 
             this.inst_l.AllowDrop = true;
             this.inst_l.AutoSize = true;
+            this.inst_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.inst_l.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inst_l.ForeColor = System.Drawing.Color.Red;
-            this.inst_l.Location = new System.Drawing.Point(1049, 134);
+            this.inst_l.Location = new System.Drawing.Point(358, 41);
             this.inst_l.MaximumSize = new System.Drawing.Size(179, 0);
             this.inst_l.Name = "inst_l";
             this.inst_l.Size = new System.Drawing.Size(175, 24);
@@ -647,7 +650,7 @@ namespace SchoolProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1700, 964);
+            this.ClientSize = new System.Drawing.Size(1539, 854);
             this.Controls.Add(this.inst_l);
             this.Controls.Add(this.vk_l);
             this.Controls.Add(this.fb_l);
@@ -659,7 +662,7 @@ namespace SchoolProject
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "School Project";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint_1);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);

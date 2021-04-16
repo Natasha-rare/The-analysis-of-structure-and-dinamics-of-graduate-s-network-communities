@@ -13,8 +13,6 @@ C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.dll
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.Extension.Attributes.dll
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.Extension.dll
 C:\Users\nattt\project\SchoolProject\bin\Debug\Newtonsoft.Json.dll
-C:\Users\nattt\project\SchoolProject\bin\Debug\Shape.dll
-C:\Users\nattt\project\SchoolProject\bin\Debug\ShapeClass.dll
 C:\Users\nattt\project\SchoolProject\bin\Debug\System.ValueTuple.dll
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4j.Driver.xml
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.pdb
@@ -22,7 +20,6 @@ C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.xml
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.Extension.pdb
 C:\Users\nattt\project\SchoolProject\bin\Debug\Neo4jClient.Extension.Attributes.pdb
 C:\Users\nattt\project\SchoolProject\bin\Debug\Newtonsoft.Json.xml
-C:\Users\nattt\project\SchoolProject\bin\Debug\Shape.pdb
-C:\Users\nattt\project\SchoolProject\bin\Debug\ShapeClass.pdb
 C:\Users\nattt\project\SchoolProject\bin\Debug\System.ValueTuple.xml
 C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.csproj.CopyComplete
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.Person_Info.resources
