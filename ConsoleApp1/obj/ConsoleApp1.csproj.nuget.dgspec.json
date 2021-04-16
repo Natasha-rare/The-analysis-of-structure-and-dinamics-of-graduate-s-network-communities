@@ -40,6 +40,10 @@
         "netcoreapp2.1": {
           "targetAlias": "netcoreapp2.1",
           "dependencies": {
+            "Bundle.Microsoft.Office.Interop": {
+              "target": "Package",
+              "version": "[15.0.4569, )"
+            },
             "ExcelDataReader.DataSet": {
               "target": "Package",
               "version": "[3.4.0, )"
