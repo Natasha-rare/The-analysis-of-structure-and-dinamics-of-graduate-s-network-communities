@@ -132,7 +132,8 @@ namespace SchoolProject
 
             public void Update(Person person)
             {
-                client.Cypher.Match("(per:Person)").Set("per.Clan = {Clan}").WithParam("Clan", person.Clan)
+                client.Cypher.Match("(per:Person)").Where((Person per) => per.Name == person.Name)
+                    .Set("per.Clan = {Clan}").WithParam("Clan", person.Clan)
                     .Set("per.Current_surname = {surname}").WithParam("surname", person.Current_surname)
                     .Set("per.Education = {education}").WithParam("education", person.Education)
                     .Set("per.Occupation = {occupation}").WithParam("occupation", person.Occupation)
@@ -142,7 +143,7 @@ namespace SchoolProject
                     .Set("per.Group = {group}").WithParam("group", person.Group)
                     .Set("per.Graduation = {grad}").WithParam("grad", person.Graduation)
                     .Set("per.Project = {project}").WithParam("project", person.Project)
-                    .ExecuteWithoutResultsAsync();
+                    .ExecuteWithoutResults();
             }
             public IEnumerable<Person> GetPeople(string Clan, string Occupation, string Education, string Year)
             {

@@ -15,6 +15,7 @@ namespace SchoolProject
         public Person person;
         public bool is_admin = true;
         public bool form_changed = false;
+        LoginForm LoginForm = null;
         public Person_Info(Person person)
         {
             InitializeComponent();
@@ -51,8 +52,30 @@ namespace SchoolProject
             Education.Text = text.Length > 0 ? text.Substring(0, text.Length - 2) : "-";
         }
 
+        private void Login()
+        {
+            if (LoginForm == null || LoginForm.IsDisposed)
+            {
+
+            }
+            else
+            {
+                LoginForm.Close();
+            }
+            LoginForm = new LoginForm();
+            LoginForm.Show();
+            Refresh();
+
+        }
+
         private void editBtn_Click(object sender, EventArgs e)
         {
+            Login();
+            Console.WriteLine($"login {LoginForm.login} password {LoginForm.password}");
+            if (LoginForm.login == "admin" && LoginForm.password == "Iamadm1n")
+            {
+                is_admin = true;
+            }
             if (is_admin)
             {
                 Current_surname.ReadOnly = false;
@@ -64,10 +87,9 @@ namespace SchoolProject
                 Graduation.ReadOnly = false;
                 Project.ReadOnly = false;
                 Clan.Enabled = true;
-                //Clan.ReadOnly = false;
                 Education.ReadOnly = false;
+                form_changed = true;
             }
-            form_changed = true;
         }
 
         private void Current_surname_TextChanged(object sender, EventArgs e)
