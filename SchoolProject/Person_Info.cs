@@ -13,7 +13,7 @@ namespace SchoolProject
     public partial class Person_Info : Form
     {
         public Person person;
-        public bool is_admin = true;
+        public bool is_admin = false;
         public bool form_changed = false;
         LoginForm LoginForm = null;
         public Person_Info(Person person)
@@ -54,28 +54,30 @@ namespace SchoolProject
 
         private void Login()
         {
-            if (LoginForm == null || LoginForm.IsDisposed)
+            /*if (LoginForm == null || LoginForm.IsDisposed)
             {
 
             }
             else
             {
                 LoginForm.Close();
-            }
+            }*/
             LoginForm = new LoginForm();
-            LoginForm.Show();
-            Refresh();
-
+            LoginForm.ShowDialog();
+            if (LoginForm.DialogResult == DialogResult.OK)
+            {
+                Console.WriteLine($"login {LoginForm.Login} password {LoginForm.Password}");
+                if (LoginForm.Login == "admin" && LoginForm.Password == "Iamadm1n")
+                {
+                    is_admin = true;
+                }
+                LoginForm.Close();
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
             Login();
-            Console.WriteLine($"login {LoginForm.login} password {LoginForm.password}");
-            if (LoginForm.login == "admin" && LoginForm.password == "Iamadm1n")
-            {
-                is_admin = true;
-            }
             if (is_admin)
             {
                 Current_surname.ReadOnly = false;

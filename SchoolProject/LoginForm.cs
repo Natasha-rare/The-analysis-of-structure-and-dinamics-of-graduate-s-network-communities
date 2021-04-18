@@ -12,7 +12,8 @@ namespace SchoolProject
 {
     public partial class LoginForm : Form
     {
-        public string login, password;
+        private string login, password;
+        public bool clicked = false;
 
         private void LoginTB_TextChanged(object sender, EventArgs e)
         {
@@ -24,13 +25,21 @@ namespace SchoolProject
             
         }
 
+        public string Login
+        {
+            get { return this.login; }
+        }
+
+        public string Password
+        {
+            get { return this.password; }
+        }
+
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             login = LoginTB.Text;
             password = PasswordTB.Text;
-            Console.WriteLine($"login {login} password {password}");
-            Refresh();
-            //Close();
+            this.DialogResult = DialogResult.OK;
         }
 
         public LoginForm()
