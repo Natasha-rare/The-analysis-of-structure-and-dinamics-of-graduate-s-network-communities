@@ -116,6 +116,7 @@ namespace SchoolProject
                 full_list = new Dictionary<string, string>();
 
             }
+
             public void connect()
             {
                 try
@@ -129,6 +130,20 @@ namespace SchoolProject
                 }
             }
 
+            public void Update(Person person)
+            {
+                client.Cypher.Match("(per:Person)").Set("per.Clan = {Clan}").WithParam("Clan", person.Clan)
+                    .Set("per.Current_surname = {surname}").WithParam("surname", person.Current_surname)
+                    .Set("per.Education = {education}").WithParam("education", person.Education)
+                    .Set("per.Occupation = {occupation}").WithParam("occupation", person.Occupation)
+                    .Set("per.FieldOfEducation = {edu}").WithParam("edu", person.FieldOfEducation)
+                    .Set("per.Fb_name = {fb_name}").WithParam("fb_name", person.Fb_name)
+                    .Set("per.Vk_name = {vk_name}").WithParam("vk_name", person.Vk_name)
+                    .Set("per.Group = {group}").WithParam("group", person.Group)
+                    .Set("per.Graduation = {grad}").WithParam("grad", person.Graduation)
+                    .Set("per.Project = {project}").WithParam("project", person.Project)
+                    .ExecuteWithoutResultsAsync();
+            }
             public IEnumerable<Person> GetPeople(string Clan, string Occupation, string Education, string Year)
             {
                 IEnumerable<Person> results;
@@ -385,6 +400,14 @@ namespace SchoolProject
             foreach (Shape shape in shapes)
             {
                 shape.Draw(g);
+            }
+
+            if (Form_Info != null)
+            {
+                if (Form_Info.form_changed)
+                {
+                    a.Update(Form_Info.person);
+                }
             }
         }
 

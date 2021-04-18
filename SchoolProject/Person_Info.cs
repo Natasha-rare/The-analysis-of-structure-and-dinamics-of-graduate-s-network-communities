@@ -13,6 +13,8 @@ namespace SchoolProject
     public partial class Person_Info : Form
     {
         public Person person;
+        public bool is_admin = true;
+        public bool form_changed = false;
         public Person_Info(Person person)
         {
             InitializeComponent();
@@ -47,6 +49,75 @@ namespace SchoolProject
                 foreach (string edu in person.Education)
                     text += edu + ", ";
             Education.Text = text.Length > 0 ? text.Substring(0, text.Length - 2) : "-";
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (is_admin)
+            {
+                Current_surname.ReadOnly = false;
+                Occupation.ReadOnly = false;
+                fieldOfEducation.ReadOnly = false;
+                Fb_name.ReadOnly = false;
+                Vk_name.ReadOnly = false;
+                Group.ReadOnly = false;
+                Graduation.ReadOnly = false;
+                Project.ReadOnly = false;
+                Clan.Enabled = true;
+                //Clan.ReadOnly = false;
+                Education.ReadOnly = false;
+            }
+            form_changed = true;
+        }
+
+        private void Current_surname_TextChanged(object sender, EventArgs e)
+        {
+            person.Current_surname = Current_surname.Text;
+        }
+
+        private void Occupation_TextChanged(object sender, EventArgs e)
+        {
+            person.Occupation = Occupation.Text.Split(',').ToList<string>();
+        }
+
+        private void Fb_name_TextChanged(object sender, EventArgs e)
+        {
+            person.Fb_name = Fb_name.Text;
+        }
+
+        private void Vk_name_TextChanged(object sender, EventArgs e)
+        {
+            person.Vk_name = Vk_name.Text;
+        }
+
+        private void Group_TextChanged(object sender, EventArgs e)
+        {
+            person.Group = Group.Text;
+        }
+
+        private void Graduation_TextChanged(object sender, EventArgs e)
+        {
+            person.Graduation = Graduation.Text;
+        }
+
+        private void Project_TextChanged(object sender, EventArgs e)
+        {
+            person.Project = Project.Text;
+        }
+
+        private void Education_TextChanged(object sender, EventArgs e)
+        {
+            person.Education = Education.Text.Split(',').ToList<string>();
+        }
+
+        private void fieldOfEducation_TextChanged(object sender, EventArgs e)
+        {
+            person.FieldOfEducation = fieldOfEducation.Text.Split(',').ToList<string>();
+        }
+
+        private void Clan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            person.Clan = Clan.Text;
         }
     }
 }

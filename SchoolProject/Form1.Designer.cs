@@ -112,7 +112,7 @@ namespace SchoolProject
             this.clanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1539, 41);
+            this.menuStrip1.Size = new System.Drawing.Size(1539, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -611,7 +611,7 @@ namespace SchoolProject
             this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(0, 41);
+            this.fb_l.Location = new System.Drawing.Point(0, 42);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -624,7 +624,7 @@ namespace SchoolProject
             this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(179, 41);
+            this.vk_l.Location = new System.Drawing.Point(179, 42);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;
@@ -638,7 +638,7 @@ namespace SchoolProject
             this.inst_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.inst_l.Font = new System.Drawing.Font("Arial", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inst_l.ForeColor = System.Drawing.Color.Red;
-            this.inst_l.Location = new System.Drawing.Point(358, 41);
+            this.inst_l.Location = new System.Drawing.Point(358, 42);
             this.inst_l.MaximumSize = new System.Drawing.Size(179, 0);
             this.inst_l.Name = "inst_l";
             this.inst_l.Size = new System.Drawing.Size(175, 24);
