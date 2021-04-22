@@ -2,27 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "Bundle.Microsoft.Office.Interop/15.0.4569": {
-        "type": "package",
-        "compile": {
-          "lib/Microsoft.Office.Interop.Excel.dll": {},
-          "lib/Microsoft.Office.Interop.Outlook.dll": {},
-          "lib/Microsoft.Office.Interop.PowerPoint.dll": {},
-          "lib/Microsoft.Office.Interop.Word.dll": {},
-          "lib/Microsoft.Vbe.Interop.Forms.dll": {},
-          "lib/Microsoft.Vbe.Interop.dll": {},
-          "lib/OFFICE.DLL": {}
-        },
-        "runtime": {
-          "lib/Microsoft.Office.Interop.Excel.dll": {},
-          "lib/Microsoft.Office.Interop.Outlook.dll": {},
-          "lib/Microsoft.Office.Interop.PowerPoint.dll": {},
-          "lib/Microsoft.Office.Interop.Word.dll": {},
-          "lib/Microsoft.Vbe.Interop.Forms.dll": {},
-          "lib/Microsoft.Vbe.Interop.dll": {},
-          "lib/OFFICE.DLL": {}
-        }
-      },
       "ExcelDataReader/3.4.0": {
         "type": "package",
         "compile": {
@@ -1678,31 +1657,12 @@
           "lib/netstandard2.0/VkNet.dll": {}
         }
       },
-      "WebDriver.ChromeDriver/26.0.1383.1": {
+      "WebDriver.ChromeDriver/26.14.313457.1": {
         "type": "package"
       }
     }
   },
   "libraries": {
-    "Bundle.Microsoft.Office.Interop/15.0.4569": {
-      "sha512": "JIsilq/2YjYdcct2e4rfrDhro48RIB6v3I2QKoPg31R1n82o9NPquNTEjiiOuX6KHeTxOzCpoqnl+Ib4lwM25A==",
-      "type": "package",
-      "path": "bundle.microsoft.office.interop/15.0.4569",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "bundle.microsoft.office.interop.15.0.4569.nupkg.sha512",
-        "bundle.microsoft.office.interop.nuspec",
-        "lib/Microsoft.Office.Interop.Excel.dll",
-        "lib/Microsoft.Office.Interop.Outlook.dll",
-        "lib/Microsoft.Office.Interop.PowerPoint.dll",
-        "lib/Microsoft.Office.Interop.Word.dll",
-        "lib/Microsoft.Vbe.Interop.Forms.dll",
-        "lib/Microsoft.Vbe.Interop.dll",
-        "lib/OFFICE.DLL",
-        "microsoft.office.interop.all.15.0.4569.nupkg.sha512"
-      ]
-    },
     "ExcelDataReader/3.4.0": {
       "sha512": "sBDS0csMdok65kEttJbhx2Uu2l8PEEO0SqmuPfPWBMgrM5f9+XyC0C8knkrUcEHAX8jEr11TXWsUfyqZu0NZ5g==",
       "type": "package",
@@ -5791,23 +5751,22 @@
         "vknet.nuspec"
       ]
     },
-    "WebDriver.ChromeDriver/26.0.1383.1": {
-      "sha512": "laOKhp1ubzA+FQh/zfubIxk3KujLOeLR31pMyB/AEe5r1FLkeOf+r5+jjKhpnPBHY8dKvbTMlDe3EeXJby1kUg==",
+    "WebDriver.ChromeDriver/26.14.313457.1": {
+      "sha512": "/d6N/cxrAUaApPE9kp4km/ivMowlg7TSmgmYJL9fcUFa+Hq6pgCDlxO8aDlczW1cwdQG7lbDsQpnXduyUQbJqw==",
       "type": "package",
-      "path": "webdriver.chromedriver/26.0.1383.1",
+      "path": "webdriver.chromedriver/26.14.313457.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "tools/ChromeDriver.exe",
-        "webdriver.chromedriver.26.0.1383.1.nupkg.sha512",
+        "webdriver.chromedriver.26.14.313457.1.nupkg.sha512",
         "webdriver.chromedriver.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Bundle.Microsoft.Office.Interop >= 15.0.4569",
       "ExcelDataReader.DataSet >= 3.4.0",
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.Office.Excel >= 14.0.4760.1000",
@@ -5822,7 +5781,7 @@
       "Selenium.WebDriver >= 3.12.1",
       "Selenium.WebDriver.ChromeDriver >= 88.0.4324.9600",
       "VkNet >= 1.35.1",
-      "WebDriver.ChromeDriver >= 26.0.1383.1"
+      "WebDriver.ChromeDriver >= 26.14.313457.1"
     ]
   },
   "packageFolders": {
@@ -5831,11 +5790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
       "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectPath": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
       "packagesPath": "C:\\Users\\nattt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\nattt\\project\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nattt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5864,10 +5823,6 @@
       "netcoreapp2.1": {
         "targetAlias": "netcoreapp2.1",
         "dependencies": {
-          "Bundle.Microsoft.Office.Interop": {
-            "target": "Package",
-            "version": "[15.0.4569, )"
-          },
           "ExcelDataReader.DataSet": {
             "target": "Package",
             "version": "[3.4.0, )"
@@ -5928,7 +5883,7 @@
           },
           "WebDriver.ChromeDriver": {
             "target": "Package",
-            "version": "[26.0.1383.1, )"
+            "version": "[26.14.313457.1, )"
           }
         },
         "imports": [
@@ -5946,16 +5901,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Bundle.Microsoft.Office.Interop 15.0.4569' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Bundle.Microsoft.Office.Interop",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

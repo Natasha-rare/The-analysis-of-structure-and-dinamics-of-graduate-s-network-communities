@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v2.1": {
       "ConsoleApp1/1.0.0": {
         "dependencies": {
-          "Bundle.Microsoft.Office.Interop": "15.0.4569",
           "ExcelDataReader.DataSet": "3.4.0",
           "Microsoft.Office.Excel": "14.0.4760.1000",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
@@ -22,38 +21,10 @@
           "Selenium.WebDriver": "3.12.1",
           "Selenium.WebDriver.ChromeDriver": "88.0.4324.9600",
           "VkNet": "1.35.1",
-          "WebDriver.ChromeDriver": "26.0.1383.1"
+          "WebDriver.ChromeDriver": "26.14.313457.1"
         },
         "runtime": {
           "ConsoleApp1.dll": {}
-        }
-      },
-      "Bundle.Microsoft.Office.Interop/15.0.4569": {
-        "runtime": {
-          "lib/Microsoft.Office.Interop.Outlook.dll": {
-            "assemblyVersion": "14.0.0.0",
-            "fileVersion": "14.0.4760.1000"
-          },
-          "lib/Microsoft.Office.Interop.PowerPoint.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4649.1000"
-          },
-          "lib/Microsoft.Office.Interop.Word.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4613.1000"
-          },
-          "lib/Microsoft.Vbe.Interop.Forms.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "15.0.4569.1506"
-          },
-          "lib/Microsoft.Vbe.Interop.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4561.1000"
-          },
-          "lib/OFFICE.DLL": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4659.1001"
-          }
         }
       },
       "ExcelDataReader/3.4.0": {
@@ -861,7 +832,7 @@
           }
         }
       },
-      "WebDriver.ChromeDriver/26.0.1383.1": {}
+      "WebDriver.ChromeDriver/26.14.313457.1": {}
     }
   },
   "libraries": {
@@ -869,13 +840,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Bundle.Microsoft.Office.Interop/15.0.4569": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JIsilq/2YjYdcct2e4rfrDhro48RIB6v3I2QKoPg31R1n82o9NPquNTEjiiOuX6KHeTxOzCpoqnl+Ib4lwM25A==",
-      "path": "bundle.microsoft.office.interop/15.0.4569",
-      "hashPath": "bundle.microsoft.office.interop.15.0.4569.nupkg.sha512"
     },
     "ExcelDataReader/3.4.0": {
       "type": "package",
@@ -1549,12 +1513,12 @@
       "path": "vknet/1.35.1",
       "hashPath": "vknet.1.35.1.nupkg.sha512"
     },
-    "WebDriver.ChromeDriver/26.0.1383.1": {
+    "WebDriver.ChromeDriver/26.14.313457.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-laOKhp1ubzA+FQh/zfubIxk3KujLOeLR31pMyB/AEe5r1FLkeOf+r5+jjKhpnPBHY8dKvbTMlDe3EeXJby1kUg==",
-      "path": "webdriver.chromedriver/26.0.1383.1",
-      "hashPath": "webdriver.chromedriver.26.0.1383.1.nupkg.sha512"
+      "sha512": "sha512-/d6N/cxrAUaApPE9kp4km/ivMowlg7TSmgmYJL9fcUFa+Hq6pgCDlxO8aDlczW1cwdQG7lbDsQpnXduyUQbJqw==",
+      "path": "webdriver.chromedriver/26.14.313457.1",
+      "hashPath": "webdriver.chromedriver.26.14.313457.1.nupkg.sha512"
     }
   }
 }

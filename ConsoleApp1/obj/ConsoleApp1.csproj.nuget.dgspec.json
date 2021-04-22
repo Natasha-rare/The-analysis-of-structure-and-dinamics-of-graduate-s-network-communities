@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\nattt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\nattt\\project\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nattt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,10 +40,6 @@
         "netcoreapp2.1": {
           "targetAlias": "netcoreapp2.1",
           "dependencies": {
-            "Bundle.Microsoft.Office.Interop": {
-              "target": "Package",
-              "version": "[15.0.4569, )"
-            },
             "ExcelDataReader.DataSet": {
               "target": "Package",
               "version": "[3.4.0, )"
@@ -104,7 +100,7 @@
             },
             "WebDriver.ChromeDriver": {
               "target": "Package",
-              "version": "[26.0.1383.1, )"
+              "version": "[26.14.313457.1, )"
             }
           },
           "imports": [

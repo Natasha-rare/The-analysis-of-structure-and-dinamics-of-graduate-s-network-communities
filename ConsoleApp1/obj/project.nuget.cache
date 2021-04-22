@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "SR3R6YHwcnXe3hP6eVgOowMa6W+CK/FRl3Bm/ke01VaflQGHAIC0mtEoGsQONcsTW2wIjVYSWYCI4yfzDuvawQ==",
+  "dgSpecHash": "7eIUuGCaOFsyQk4DPawlVbatG0DsNPIgMEDYcXgMbdwoGoSwXB1W4M76KRDlR/AxAry0f1HqxA0kWPXeFTokgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nattt\\project\\schoolproject2020-2021\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nattt\\.nuget\\packages\\bundle.microsoft.office.interop\\15.0.4569\\bundle.microsoft.office.interop.15.0.4569.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\exceldatareader\\3.4.0\\exceldatareader.3.4.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\exceldatareader.dataset\\3.4.0\\exceldatareader.dataset.3.4.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\htmlagilitypack\\1.8.4\\htmlagilitypack.1.8.4.nupkg.sha512",
@@ -108,19 +107,9 @@
     "C:\\Users\\nattt\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\vknet\\1.35.1\\vknet.1.35.1.nupkg.sha512",
-    "C:\\Users\\nattt\\.nuget\\packages\\webdriver.chromedriver\\26.0.1383.1\\webdriver.chromedriver.26.0.1383.1.nupkg.sha512"
+    "C:\\Users\\nattt\\.nuget\\packages\\webdriver.chromedriver\\26.14.313457.1\\webdriver.chromedriver.26.14.313457.1.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Bundle.Microsoft.Office.Interop 15.0.4569' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Bundle.Microsoft.Office.Interop",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

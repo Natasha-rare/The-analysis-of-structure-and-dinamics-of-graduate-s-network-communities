@@ -19,7 +19,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.netcore.app\2.1.0\build\netcoreapp2.1\Microsoft.NETCore.App.props" Condition="Exists('$(NuGetPackageRoot)microsoft.netcore.app\2.1.0\build\netcoreapp2.1\Microsoft.NETCore.App.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgWebDriver_ChromeDriver Condition=" '$(PkgWebDriver_ChromeDriver)' == '' ">C:\Users\nattt\.nuget\packages\webdriver.chromedriver\26.0.1383.1</PkgWebDriver_ChromeDriver>
+    <PkgWebDriver_ChromeDriver Condition=" '$(PkgWebDriver_ChromeDriver)' == '' ">C:\Users\nattt\.nuget\packages\webdriver.chromedriver\26.14.313457.1</PkgWebDriver_ChromeDriver>
     <PkgSonarAnalyzer_CSharp Condition=" '$(PkgSonarAnalyzer_CSharp)' == '' ">C:\Users\nattt\.nuget\packages\sonaranalyzer.csharp\7.1.0.5212</PkgSonarAnalyzer_CSharp>
     <PkgNetOffice_Core Condition=" '$(PkgNetOffice_Core)' == '' ">C:\Users\nattt\.nuget\packages\netoffice.core\1.7.4.4</PkgNetOffice_Core>
     <PkgNetOffice_Excel Condition=" '$(PkgNetOffice_Excel)' == '' ">C:\Users\nattt\.nuget\packages\netoffice.excel\1.7.4.4</PkgNetOffice_Excel>
