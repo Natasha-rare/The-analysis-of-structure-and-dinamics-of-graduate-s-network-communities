@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7eIUuGCaOFsyQk4DPawlVbatG0DsNPIgMEDYcXgMbdwoGoSwXB1W4M76KRDlR/AxAry0f1HqxA0kWPXeFTokgw==",
+  "dgSpecHash": "XOkqKkxz1r1nRQYar0xfT3i8CJlY9oABAN8WJz18BFZ38QE2CtigAi4ZOjgc+majw3nXnLw6RFTK/33hfeo5mg==",
   "success": true,
   "projectFilePath": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
@@ -51,7 +51,7 @@
     "C:\\Users\\nattt\\.nuget\\packages\\selenium.chrome.webdriver\\85.0.0\\selenium.chrome.webdriver.85.0.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\selenium.support\\3.12.0\\selenium.support.3.12.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\selenium.webdriver\\3.12.1\\selenium.webdriver.3.12.1.nupkg.sha512",
-    "C:\\Users\\nattt\\.nuget\\packages\\selenium.webdriver.chromedriver\\88.0.4324.9600\\selenium.webdriver.chromedriver.88.0.4324.9600.nupkg.sha512",
+    "C:\\Users\\nattt\\.nuget\\packages\\selenium.webdriver.chromedriver\\90.0.4430.2400\\selenium.webdriver.chromedriver.90.0.4430.2400.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\simpleinjector\\4.3.0\\simpleinjector.4.3.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\sonaranalyzer.csharp\\7.1.0.5212\\sonaranalyzer.csharp.7.1.0.5212.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

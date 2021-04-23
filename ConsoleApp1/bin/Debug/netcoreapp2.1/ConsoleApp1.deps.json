@@ -19,7 +19,7 @@
           "Selenium.Chrome.WebDriver": "85.0.0",
           "Selenium.Support": "3.12.0",
           "Selenium.WebDriver": "3.12.1",
-          "Selenium.WebDriver.ChromeDriver": "88.0.4324.9600",
+          "Selenium.WebDriver.ChromeDriver": "90.0.4430.2400",
           "VkNet": "1.35.1",
           "WebDriver.ChromeDriver": "26.14.313457.1"
         },
@@ -282,7 +282,7 @@
           }
         }
       },
-      "Selenium.WebDriver.ChromeDriver/88.0.4324.9600": {},
+      "Selenium.WebDriver.ChromeDriver/90.0.4430.2400": {},
       "SimpleInjector/4.3.0": {
         "dependencies": {
           "System.ComponentModel": "4.0.1"
@@ -1121,12 +1121,12 @@
       "path": "selenium.webdriver/3.12.1",
       "hashPath": "selenium.webdriver.3.12.1.nupkg.sha512"
     },
-    "Selenium.WebDriver.ChromeDriver/88.0.4324.9600": {
+    "Selenium.WebDriver.ChromeDriver/90.0.4430.2400": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tFYi/cACBE+lq+aQMMCFDCZChkq7jQHm3yNh040r2WeuI+WBg3MDna9o+8x6d+inxdbCXDABnifqKb4CynRQLQ==",
-      "path": "selenium.webdriver.chromedriver/88.0.4324.9600",
-      "hashPath": "selenium.webdriver.chromedriver.88.0.4324.9600.nupkg.sha512"
+      "sha512": "sha512-poYw2JgVJ8obMYUSnfuucxQMrMusQiA3H2dXhw3bOaFm/bweTEAvhK8RVq+5zfjmTaj7COMYfIjhWJU0rPUabQ==",
+      "path": "selenium.webdriver.chromedriver/90.0.4430.2400",
+      "hashPath": "selenium.webdriver.chromedriver.90.0.4430.2400.nupkg.sha512"
     },
     "SimpleInjector/4.3.0": {
       "type": "package",

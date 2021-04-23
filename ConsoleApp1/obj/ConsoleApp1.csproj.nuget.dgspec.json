@@ -92,7 +92,7 @@
             },
             "Selenium.WebDriver.ChromeDriver": {
               "target": "Package",
-              "version": "[88.0.4324.9600, )"
+              "version": "[90.0.4430.2400, )"
             },
             "VkNet": {
               "target": "Package",

@@ -13,6 +13,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using Excel = Microsoft.Office.Interop.Excel;
 using OpenQA.Selenium.IE;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -20,8 +21,9 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            db a = new db("");
+            db a = new db("12345");
             a.connect();
+
             a.add_from_fb_group();
             Console.WriteLine("Working");
         }
@@ -45,8 +47,8 @@ namespace ConsoleApp1
             {
                 int index = original.IndexOf(" ");
                 string name = original.Substring(0, index);
-                original.Remove(0, index);
-                original += name;
+                original = original.Remove(0, index + 1);
+                original += " " + name;
                 return original;
             }
             static void Add_Names()
@@ -177,7 +179,8 @@ namespace ConsoleApp1
             }
             static public string change(string name)
             {
-                int index1, index2;
+            name = Regex.Replace(name, @"\s+", " ");
+            int index1, index2;
                 if (name.Contains("("))
                 {
                     index1 = name.IndexOf("(");
@@ -462,7 +465,7 @@ namespace ConsoleApp1
                 Dictionary<string, string> full_list;
                 public db(string password)
                 {
-                    client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", password);
+                    client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "12345");
                     full_list = new Dictionary<string, string>();
 
                 }
@@ -759,7 +762,7 @@ namespace ConsoleApp1
                     string name = "";
                     foreach (Person x in people)
                     {
-                        if (x.Name != "0")
+                        if (x.Name != "0" && x.Name != null)
                         {
                             try
                             {
@@ -793,50 +796,62 @@ namespace ConsoleApp1
                 //var page = facebook_parser.driver.PageSource;
                 var elements = facebook_parser.driver.FindElements(By.CssSelector("div[class='b20td4e0 muag1w35']"));
                 var index = elements[elements.Count() - 1];
-                var student = index.FindElement(By.ClassName("nc684nl6"));
-                var student1 = student.FindElements(By.TagName("a"))[0];
-                string link = student1.GetAttribute("href");
-                string id = Convert.ToString(link.Split('/')[link.Split('/').Count() - 2]);
-                string name = student1.GetAttribute("aria-label");
-                Console.WriteLine(name);
+                var student = index.FindElements(By.ClassName("nc684nl6"));
                 add_list();
-                Console.WriteLine("added");
-                var people = client.Cypher.Match("(per:Person)")
-.Where((Person per) => per.Fb_name == name).Return(per => per.As<Person>()).Results;
-                if (people.Count() == 0)
+                for (int i = 0; i < student.Count(); i++)
                 {
-                        var people2 = client.Cypher.Match("(per:Person)")
-.Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
-                        if (people2.Count() == 0)
+                    var t = student[i].FindElements(By.TagName("a"));
+                    try
+                    {
+                        var student1 = student[i].FindElements(By.TagName("a"))[0];
+                        string link = student1.GetAttribute("href");
+                        string id = Convert.ToString(link.Split('/')[link.Split('/').Count() - 2]);
+                        string name = student1.GetAttribute("aria-label");
+                        Console.WriteLine(name);
+
+                        Console.WriteLine("added");
+                        var people = client.Cypher.Match("(per:Person)")
+        .Where((Person per) => per.Fb_name == name).Return(per => per.As<Person>()).Results;
+                        if (people.Count() == 0)
                         {
-                            string name2 = Change_of_View.change(name);
-                            name2 = Change_of_View.reverse(name2);
-                            if (full_list.ContainsKey(name2))
+                            var people2 = client.Cypher.Match("(per:Person)")
+    .Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
+                            if (people2.Count() == 0)
                             {
-                                client.Cypher.Match("(per:Person)")
-        .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_name = {name}").WithParam("name", name).ExecuteWithoutResultsAsync()
-                        .Wait();
-                                client.Cypher.Match("(per:Person)")
-        .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync()
-                        .Wait();
-                                Console.WriteLine("+" + name2);
+                                string name2 = Change_of_View.change(name);
+                                name2 = Change_of_View.reverse(name2);
+                                if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2)) // not working
+                                {
+                                    client.Cypher.Match("(per:Person)")
+            .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_name = {name}").WithParam("name", name).ExecuteWithoutResultsAsync()
+                            .Wait();
+                                    client.Cypher.Match("(per:Person)")
+            .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync()
+                            .Wait();
+                                    Console.WriteLine("+" + name2);
+                                }
+                                else
+                                {
+                                    /* Person person = new Person { Name = "0", Fb_name = name, Graduation = "0", Project = "0", Fb_id = id, Group = "0" };
+                                     client.Cypher.Create("(per:Person {person})").WithParam("person", person).ExecuteWithoutResults();*/
+                                    Console.WriteLine("-" + name2);
+                                    Console.WriteLine("new was created");
+                                }
+                                friends_searcher a = new friends_searcher(id, client);
+                                a.Friends_Searh_two();
+                                add_works_for_new();
+                                /*var people1 = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
+                                foreach (Person x in people1) add_work(x);*/
                             }
-                            else
-                            {
-                               /* Person person = new Person { Name = "0", Fb_name = name, Graduation = "0", Project = "0", Fb_id = id, Group = "0" };
-                                client.Cypher.Create("(per:Person {person})").WithParam("person", person).ExecuteWithoutResults();*/
-                                Console.WriteLine("-" + name2);
-                                Console.WriteLine("new was created");
-                            }
-                            friends_searcher a = new friends_searcher(id, client);
-                            a.Friends_Searh_two();
-                            add_works_for_new();
-                            /*var people1 = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
-                            foreach (Person x in people1) add_work(x);*/
                         }
+                        //separate_names();
                     }
-                //separate_names();
+                    catch { continue; }
+
+                }
+
             }
+                
             }
 
             class refresher
@@ -1242,9 +1257,10 @@ namespace ConsoleApp1
                 {
                     login = "natasha_ea5@mail.ru";//"89161742573";
                     password = "bykvah-3vyxfe-kutmYw";//"281292";
-                    driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver_win32");
-                //driver = new FirefoxDriver(@"C:\Users\nattt\Downloads\geckodriver");
-                driver.Navigate().GoToUrl("https://www.facebook.com/");
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddArguments("--disable-notifications");
+                    driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver", options);
+                    driver.Navigate().GoToUrl("https://www.facebook.com/");
                     driver.FindElement(By.Id("email")).SendKeys(login);
                     driver.FindElement(By.Id("pass")).SendKeys(password);
                     driver.FindElement(By.Name("login")).Click();
