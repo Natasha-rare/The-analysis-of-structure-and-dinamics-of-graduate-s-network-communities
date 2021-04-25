@@ -202,7 +202,7 @@ namespace ConsoleApp1
                     Change_of_View a = new Change_of_View(s);
                     s = a.Result;
                     a = new Change_of_View(b);
-                    b = a.Result;
+                    b = Regex.Replace(a.Result, @"\s+", "");
                     return s + " " + b;
                 }
                 return "";
@@ -798,7 +798,7 @@ namespace ConsoleApp1
                 var index = elements[elements.Count() - 1];
                 var student = index.FindElements(By.ClassName("nc684nl6"));
                 add_list();
-                for (int i = 0; i < student.Count(); i++)
+                for (int i = 0; i < student.Count(); i+=3)
                 {
                     var t = student[i].FindElements(By.TagName("a"));
                     try
@@ -820,14 +820,19 @@ namespace ConsoleApp1
                             {
                                 string name2 = Change_of_View.change(name);
                                 name2 = Change_of_View.reverse(name2);
-                                if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2)) // not working
+                                if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2))
                                 {
+                                    string p_name = full_list[name2];
+                                    Console.WriteLine(full_list[name2]);
+                                    var person = client.Cypher.Match("(per:Person)")
+                                    .Where((Person per) => per.Name == p_name).Return(per=> per.As<Person>()).Results;
+
                                     client.Cypher.Match("(per:Person)")
-            .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_name = {name}").WithParam("name", name).ExecuteWithoutResultsAsync()
-                            .Wait();
+                                    .Where((Person per) => per.Name == p_name)
+                                    .Set("per.Fb_name = {name}").WithParam("name", name).ExecuteWithoutResults();
                                     client.Cypher.Match("(per:Person)")
-            .Where((Person per) => per.Name == full_list[name2]).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync()
-                            .Wait();
+            .Where((Person per) => per.Name == p_name).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResults();
+          
                                     Console.WriteLine("+" + name2);
                                 }
                                 else
@@ -941,7 +946,7 @@ namespace ConsoleApp1
                 {
                     // Thread.Sleep(10);
                     driver.Navigate().GoToUrl(URL_friends);
-                    page_Source = driver.PageSource;
+                    page_Source = driver.PageSource; // change!!!!
                     var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
                     foreach (Person x in people)
                     {
