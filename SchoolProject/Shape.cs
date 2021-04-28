@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject
 {
-    abstract class Shape
+    class Shape
     {
         public static int R = 25;
         protected int x, y;
@@ -20,7 +20,7 @@ namespace SchoolProject
 
         public Shape(int x, int y) { this.x = x; this.y = y; }
 
-
+        public Shape(int x, int y, string text){ this.text = text; this.x = x; this.y = y; }
 
         public int X
         {
@@ -45,44 +45,25 @@ namespace SchoolProject
             set { this.d_y = value; }
         }
 
-        public abstract void Draw(Graphics e);
-
-        public abstract bool IsInside(int x, int y);
-
-        public Color FillC
-        {
-            get { return this.fillC; }
-            set { this.fillC = value; }
-        }
-    }
-
-    class Circle : Shape
-    {
-        // public Circle() : base() { }
-
-        public Circle(int x, int y) : base(x, y) { }
-
-        public Circle(int x, int y, string text) : base(x, y) { this.text = text; }
-
-        public override void Draw(Graphics e)
+        public void Draw(Graphics e)
         {
             e.FillEllipse(new SolidBrush(fillC), x - R, y - R, 2 * R, 2 * R);
             e.DrawEllipse(new Pen(lineC), x - R, y - R, 2 * R, 2 * R);
             Font drawFont = new Font("Arial", 6);
             SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
             StringFormat drawFormat = new StringFormat();
-            e.DrawString(text, drawFont, drawBrush, new Rectangle(x - 2 * R/3, y - 2 * R/3, 3 *R/2, 3 * R / 2), drawFormat);
+            e.DrawString(text, drawFont, drawBrush, new Rectangle(x - 2 * R / 3, y - 2 * R / 3, 3 * R / 2, 3 * R / 2), drawFormat);
+        }
+
+        public bool IsInside(int x, int y)
+        {
+            return (((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) <= R * R);
         }
 
         public Color FillC
         {
             get { return this.fillC; }
             set { this.fillC = value; }
-        }
-
-        public override bool IsInside(int x, int y)
-        {
-            return (((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) <= R * R);
         }
     }
 }

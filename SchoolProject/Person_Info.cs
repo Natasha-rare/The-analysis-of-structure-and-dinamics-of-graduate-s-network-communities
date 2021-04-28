@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace SchoolProject
 {
@@ -38,13 +40,15 @@ namespace SchoolProject
                 foreach (string occup in person.Occupation)
                     text += occup + ", ";
             Occupation.Text = text.Length > 0? text.Substring(0, text.Length - 2): "-";
-            fieldOfEducation.Text = person.FieldOfEducation.Count() > 0? String.Join(",", person.FieldOfEducation):"";
-            Fb_name.Text = person.Fb_name;
-            Vk_name.Text = person.Vk_name;
+            fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0"? String.Join(",", person.FieldOfEducation):"-";
+            Fb_name.Text = person.Fb_name.Count() > 1 ? person.Fb_name : "-";
+            Vk_name.Text = person.Vk_name.Count() > 1 ? person.Vk_name : "-";
             Group.Text = person.Group;
-            Graduation.Text = person.Graduation;
+            Graduation.Text = person.Graduation.Count() > 1? person.Graduation: "-";
             Project.Text = person.Project;
             Clan.Text = person.Clan;
+            if (person.Other != null)
+                Phone.Text = ((string)person.Other).Any(char.IsDigit) ? person.Other : "-";
             text = "";
             if (person.Education.Count() > 0)
                 foreach (string edu in person.Education)
@@ -54,14 +58,6 @@ namespace SchoolProject
 
         private void Login()
         {
-            /*if (LoginForm == null || LoginForm.IsDisposed)
-            {
-
-            }
-            else
-            {
-                LoginForm.Close();
-            }*/
             LoginForm = new LoginForm();
             LoginForm.ShowDialog();
             if (LoginForm.DialogResult == DialogResult.OK)
@@ -91,6 +87,14 @@ namespace SchoolProject
                 Clan.Enabled = true;
                 Education.ReadOnly = false;
                 form_changed = true;
+                LinkedIn_name.ReadOnly = false;
+                Inst_name.ReadOnly = false;
+                Telegram.ReadOnly = false;
+                Phone.ReadOnly = false;
+                email.ReadOnly = false;
+                position.ReadOnly = false;
+                hobbies.Enabled = true;
+                this.saveBtn.Visible = true;
             }
         }
 
@@ -142,6 +146,65 @@ namespace SchoolProject
         private void Clan_SelectedIndexChanged(object sender, EventArgs e)
         {
             person.Clan = Clan.Text;
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            Current_surname.ReadOnly = true;
+            Occupation.ReadOnly = true;
+            fieldOfEducation.ReadOnly = true;
+            Fb_name.ReadOnly = true;
+            Vk_name.ReadOnly = true;
+            Group.ReadOnly = true;
+            Graduation.ReadOnly = true;
+            Project.ReadOnly = true;
+            Clan.Enabled = false;
+            Education.ReadOnly = true;
+            form_changed = false;
+            LinkedIn_name.ReadOnly = true;
+            Inst_name.ReadOnly = true;
+            Telegram.ReadOnly = true;
+            Phone.ReadOnly = true;
+            email.ReadOnly = true;
+            position.ReadOnly = true;
+            hobbies.Enabled = false;
+            Thread.Sleep(100);
+            this.saveBtn.Visible = false;
+        }
+
+        private void LinkedIn_name_TextChanged(object sender, EventArgs e)
+        {
+            person.LinkedIn_name = LinkedIn_name.Text;
+        }
+
+        private void Inst_name_TextChanged(object sender, EventArgs e)
+        {
+            person.Inst_name = Inst_name.Text;
+        }
+
+        private void Telegram_TextChanged(object sender, EventArgs e)
+        {
+            person.Telegram = Telegram.Text;
+        }
+
+        private void Phone_TextChanged(object sender, EventArgs e)
+        {
+            person.Phone = Phone.Text;
+        }
+
+        private void email_TextChanged(object sender, EventArgs e)
+        {
+            person.Email = email.Text;
+        }
+
+        private void position_TextChanged(object sender, EventArgs e)
+        {
+            person.Position = position.Text.Split(',').ToList<string>();
+        }
+
+        private void hobbies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            person.Other = hobbies.Text;
         }
     }
 }

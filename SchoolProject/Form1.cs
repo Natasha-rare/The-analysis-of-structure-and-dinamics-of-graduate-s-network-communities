@@ -42,7 +42,7 @@ namespace SchoolProject
                 {
                     x = r.Next(50, 600);
                     y = r.Next(50, 500);
-                    shapes.Add(new Circle(x, y, person.Name));
+                    shapes.Add(new Shape(x, y, person.Name));
                     people.Add(person);
                 }
             }
@@ -331,30 +331,32 @@ namespace SchoolProject
         }
             private void first_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            string name = e.ClickedItem.Text;
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Year = e.ClickedItem.Text;
         }
 
         private void second_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            string name = e.ClickedItem.Text;
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Year = e.ClickedItem.Text;
         }
 
         private void third_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            string name = e.ClickedItem.Text;
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Year = e.ClickedItem.Text;
         }
 
         private void clanToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Clan = e.ClickedItem.Text;
         }
 
 
         private void educationToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             string education = e.ClickedItem.Text.ToString();
             switch (education)
             {
@@ -370,11 +372,13 @@ namespace SchoolProject
 
         private void toolStripMenuItem32_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Education = e.ClickedItem.Text;
         }
 
         private void нИУВШЭToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
             Education = e.ClickedItem.Text;
         }
 
@@ -495,6 +499,11 @@ namespace SchoolProject
             this.Invalidate();
         }
 
+        private void graduation_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void search_Click(object sender, EventArgs e)
         {
             Console.WriteLine(Education);
@@ -504,7 +513,6 @@ namespace SchoolProject
             query += " RETURN (a)";
             this.fb_l.Visible = true;
             this.vk_l.Visible = true;
-            this.inst_l.Visible = true;
             Console.WriteLine(query);
             Draw_People();
             Refresh();
@@ -513,9 +521,32 @@ namespace SchoolProject
         private void clear_Click(object sender, EventArgs e)
         {
             query = "";
+            people.Clear();
+            shapes.Clear();
+            fb_lines.Clear();
+            vk_lines.Clear();
+            inst_lines.Clear();
+            foreach (ToolStripMenuItem item in clanToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            foreach (ToolStripMenuItem item in educationToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            foreach (ToolStripMenuItem item in first.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            foreach (ToolStripMenuItem item in second.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            foreach (ToolStripMenuItem item in third.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            Refresh();
         }
-
-        
-
     }
 }
