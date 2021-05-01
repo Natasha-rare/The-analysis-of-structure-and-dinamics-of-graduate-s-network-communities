@@ -124,10 +124,32 @@ class App:
         result = tx.run(query, name=name, education=prev_education)
         return result
 
+    def add_phone(self, name, phone):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.add_phone_to_person, name, phone)
+
+    @staticmethod
+    def add_phone_to_person(tx, name, phone):
+        query = "MATCH (p:Person) WHERE p.Name = $name SET p.Phone = $phone"
+        result = tx.run(query, name=name, phone=phone)
+        return result
+
+    def add_email(self, name, email):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.add_email_to_person, name, email)
+
+    @staticmethod
+    def add_email_to_person(tx, name, email):
+        query = "MATCH (p:Person) WHERE p.Name = $name SET p.Email = $email"
+        result = tx.run(query, name=name, email=email)
+        return result
+
+
     def add_education(self, name, education):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_education_to_person, name, education)
             #print(result)
+
 
     @staticmethod
     def add_education_to_person(tx, name, education, new=False):
@@ -243,15 +265,21 @@ class App:
         return result
 
 
-    def find_person(self, person_name):
+    def find_person(self, person_name, withpatr):
         with self.driver.session() as session:
-            result = session.read_transaction(self._find_and_return_person, person_name)
+            result = session.read_transaction(self._find_and_return_person, person_name, withpatr)
             for record in result:
                 # print(record)
                 return record
 
     @staticmethod
-    def _find_and_return_person(tx, person_name):
+    def _find_and_return_person(tx, person_name, withpatr):
+        if not withpatr:
+            sur = person_name.split()[0]
+            na = person_name.split()[-1]
+            query = "MATCH (p:Person) WHERE p.Current_surname=$surname AND p.First_name=$name RETURN p.Name AS Name"
+            result = tx.run(query, surname=sur, name=na)
+            return [record["Name"] for record in result]
         query = (
             "MATCH (p:Person) "
             "WHERE p.Name = $person_name "
@@ -268,8 +296,8 @@ user = "neo4j"
 password = "12345"
 app = App(url, user, password)
 
-workbook = load_workbook(filename="C:\\Users\\nattt\\project\\Материалы для НА апрель 2021\\Для базы_200321.xlsx")
-sheet = workbook.worksheets[7]
+workbook = load_workbook(filename="C:\\Users\\nattt\\project\\Материалы для НА апрель 2021\\Сырье для базы\\Регистрация выпускников (Ответы).xlsx")
+sheet = workbook.worksheets[0]
 print(sheet.title)
 
 # neo2orkbook = load_workbook(filename="C:\\Users\\nattt\\Downloads\\export.xlsx")
@@ -278,19 +306,25 @@ print(sheet.title)
 # for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row - 1, values_only=True):
 #     names.append(row[0])
 
-country_book = workbook.worksheets[10]
-print(country_book.title)
+# country_book = workbook.worksheets[10]
+# print(country_book.title)
 Countries = {}
-for row in country_book.iter_rows(min_row=4, max_row=country_book.max_row - 1, values_only=True):
-    Countries[row[3]] = row[1]
+# for row in country_book.iter_rows(min_row=4, max_row=country_book.max_row - 1, values_only=True):
+#     Countries[row[3]] = row[1]
 
 
-for row in sheet.iter_rows(min_row=3, max_row=sheet.max_row, values_only=True):
-    if app.find_person(row[1]):
-        # app.add_linkedin(row[1], row[4], row[7])
-        pass
-    else:
-        print(row[1], row[4], row[7])
+for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row, values_only=True):
+    withpatr = False
+    name = row[1].strip() + " " + row[2].strip() + ' '
+    if row[3] is not None:
+        name += row[3]
+        withpatr = True
+    name = name.strip()
+    if app.find_person(name, withpatr):
+        name = app.find_person(name, withpatr)
+        print(name)
+        app.add_phone(name, row[7])
+        app.add_email(name, row[6])
 
 app.close()
 workbook.close()
