@@ -6,7 +6,6 @@ Clans = {"Разработка ПО": "IT", "Финансы и страхова�
          "Образование": "Education", "ИТ-консалтинг": "IT-consulting", "Исследования": "Research", None:""}
 
 class App:
-
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
@@ -158,6 +157,21 @@ class App:
         return result
 
 
+    def add_linkedin(self, name, linkedin_name, country):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.add_linkedin_to_person, name, linkedin_name, country)
+
+    @staticmethod
+    def add_linkedin_to_person(tx, name, linkedin_name, country):
+        for c in Countries.keys():
+            if country in c.split(' / '):
+                country = Countries[c]
+                break
+        print(country)
+        query = "MATCH (p:Person) WHERE p.Name = $name SET p.LinkedIn_name=$linkedin_name SET p.Country=$country"
+        result = tx.run(query, name=name, linkedin_name=linkedin_name, country=country)
+        return result
+
     def add_occupation(self, name, occupation):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_occupation_to_person, name, occupation)
@@ -255,22 +269,28 @@ password = "12345"
 app = App(url, user, password)
 
 workbook = load_workbook(filename="C:\\Users\\nattt\\project\\Материалы для НА апрель 2021\\Для базы_200321.xlsx")
-sheet = workbook.worksheets[0]
+sheet = workbook.worksheets[7]
 print(sheet.title)
-for row in sheet.iter_rows(min_row=25, max_row=sheet.max_row - 1, values_only=True):
-    # print(row)
-    # break
-    name = app.find_person(row[0])
-    if name != "" and name is not None:
-        # app.add_occupation(row[1], "SAP")
-        # app.add_position(row[1], row[10])
-        # app.add_note(row[0], row[10])
-        # app.add_other(row[0], row[11])
-        # app.add_extra_education(row[0], row[7])
-        app.add_clan(name, row[9])
+
+# neo2orkbook = load_workbook(filename="C:\\Users\\nattt\\Downloads\\export.xlsx")
+# neosheet = neo2orkbook.worksheets[0]
+# names = []
+# for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row - 1, values_only=True):
+#     names.append(row[0])
+
+country_book = workbook.worksheets[10]
+print(country_book.title)
+Countries = {}
+for row in country_book.iter_rows(min_row=4, max_row=country_book.max_row - 1, values_only=True):
+    Countries[row[3]] = row[1]
+
+
+for row in sheet.iter_rows(min_row=3, max_row=sheet.max_row, values_only=True):
+    if app.find_person(row[1]):
+        # app.add_linkedin(row[1], row[4], row[7])
+        pass
     else:
-        app.create_person(name=row[0], group=row[1], graduation=row[2], education=row[6], exta_education=row[7],
-                          position=row[8], occupation=row[8], clan=row[9], notes=row[10], other=row[11])
-        # break
+        print(row[1], row[4], row[7])
+
 app.close()
 workbook.close()
