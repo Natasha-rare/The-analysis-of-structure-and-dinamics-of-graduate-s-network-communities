@@ -63,6 +63,35 @@ namespace SchoolProject
             this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem31 = new System.Windows.Forms.ToolStripMenuItem();
             this.HobbyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.альпинизмToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.альпинизмToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.бегToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.боевыеИскусстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.велосипедToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.командныеИгрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.горныеЛыжиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.дайвингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.домашниеПитомцыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.йогаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.каякингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.коллекционированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.кулинарияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.моделизмToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.музеиИВыставкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.музыкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.парашютныйСпортToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.плаваниеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.путешествияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.равнинныеЛыжиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.рукоделиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.садToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.танцыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.театрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тренажеркаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фотографияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.шахматыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.яхтингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фитнессToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.educationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem32 = new System.Windows.Forms.ToolStripMenuItem();
             this.вМКToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,35 +139,6 @@ namespace SchoolProject
             this.info = new System.Windows.Forms.Label();
             this.fb_l = new System.Windows.Forms.Label();
             this.vk_l = new System.Windows.Forms.Label();
-            this.альпинизмToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.альпинизмToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.бегToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.боевыеИскусстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.велосипедToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.командныеИгрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.горныеЛыжиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.дайвингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.домашниеПитомцыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.йогаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.каякингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.коллекционированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.кулинарияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.моделизмToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.музеиИВыставкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.музыкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.парашютныйСпортToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.плаваниеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.путешествияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.равнинныеЛыжиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.рукоделиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.садToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.танцыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.театрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.тренажеркаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.фотографияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.шахматыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.яхтингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.фитнессToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +154,7 @@ namespace SchoolProject
             this.clanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1471, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1471, 41);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -166,7 +166,7 @@ namespace SchoolProject
             this.third});
             this.graduation.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.graduation.Name = "graduation";
-            this.graduation.Size = new System.Drawing.Size(179, 38);
+            this.graduation.Size = new System.Drawing.Size(179, 37);
             this.graduation.Text = "Graduation";
             this.graduation.Click += new System.EventHandler(this.graduation_Click);
             // 
@@ -420,6 +420,180 @@ namespace SchoolProject
             this.HobbyToolStripMenuItem.Size = new System.Drawing.Size(117, 37);
             this.HobbyToolStripMenuItem.Text = "Hobby";
             // 
+            // альпинизмToolStripMenuItem
+            // 
+            this.альпинизмToolStripMenuItem.Name = "альпинизмToolStripMenuItem";
+            this.альпинизмToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.альпинизмToolStripMenuItem.Text = "Альпинизм";
+            // 
+            // альпинизмToolStripMenuItem1
+            // 
+            this.альпинизмToolStripMenuItem1.Name = "альпинизмToolStripMenuItem1";
+            this.альпинизмToolStripMenuItem1.Size = new System.Drawing.Size(436, 44);
+            this.альпинизмToolStripMenuItem1.Text = "Астрономия";
+            // 
+            // бегToolStripMenuItem
+            // 
+            this.бегToolStripMenuItem.Name = "бегToolStripMenuItem";
+            this.бегToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.бегToolStripMenuItem.Text = "Бег";
+            // 
+            // боевыеИскусстваToolStripMenuItem
+            // 
+            this.боевыеИскусстваToolStripMenuItem.Name = "боевыеИскусстваToolStripMenuItem";
+            this.боевыеИскусстваToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.боевыеИскусстваToolStripMenuItem.Text = "Боевые искусства";
+            // 
+            // велосипедToolStripMenuItem
+            // 
+            this.велосипедToolStripMenuItem.Name = "велосипедToolStripMenuItem";
+            this.велосипедToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.велосипедToolStripMenuItem.Text = "Велосипед";
+            // 
+            // командныеИгрыToolStripMenuItem
+            // 
+            this.командныеИгрыToolStripMenuItem.Name = "командныеИгрыToolStripMenuItem";
+            this.командныеИгрыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.командныеИгрыToolStripMenuItem.Text = "Командные игры";
+            // 
+            // горныеЛыжиToolStripMenuItem
+            // 
+            this.горныеЛыжиToolStripMenuItem.Name = "горныеЛыжиToolStripMenuItem";
+            this.горныеЛыжиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.горныеЛыжиToolStripMenuItem.Text = "Горные лыжи";
+            // 
+            // дайвингToolStripMenuItem
+            // 
+            this.дайвингToolStripMenuItem.Name = "дайвингToolStripMenuItem";
+            this.дайвингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.дайвингToolStripMenuItem.Text = "Дайвинг";
+            // 
+            // домашниеПитомцыToolStripMenuItem
+            // 
+            this.домашниеПитомцыToolStripMenuItem.Name = "домашниеПитомцыToolStripMenuItem";
+            this.домашниеПитомцыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.домашниеПитомцыToolStripMenuItem.Text = "Домашние питомцы";
+            // 
+            // йогаToolStripMenuItem
+            // 
+            this.йогаToolStripMenuItem.Name = "йогаToolStripMenuItem";
+            this.йогаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.йогаToolStripMenuItem.Text = "Йога";
+            // 
+            // каякингToolStripMenuItem
+            // 
+            this.каякингToolStripMenuItem.Name = "каякингToolStripMenuItem";
+            this.каякингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.каякингToolStripMenuItem.Text = "Каякинг";
+            // 
+            // коллекционированиеToolStripMenuItem
+            // 
+            this.коллекционированиеToolStripMenuItem.Name = "коллекционированиеToolStripMenuItem";
+            this.коллекционированиеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.коллекционированиеToolStripMenuItem.Text = "Коллекционирование";
+            // 
+            // кулинарияToolStripMenuItem
+            // 
+            this.кулинарияToolStripMenuItem.Name = "кулинарияToolStripMenuItem";
+            this.кулинарияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.кулинарияToolStripMenuItem.Text = "Кулинария";
+            // 
+            // моделизмToolStripMenuItem
+            // 
+            this.моделизмToolStripMenuItem.Name = "моделизмToolStripMenuItem";
+            this.моделизмToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.моделизмToolStripMenuItem.Text = "Моделизм";
+            // 
+            // музеиИВыставкиToolStripMenuItem
+            // 
+            this.музеиИВыставкиToolStripMenuItem.Name = "музеиИВыставкиToolStripMenuItem";
+            this.музеиИВыставкиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.музеиИВыставкиToolStripMenuItem.Text = "Музеи и выставки";
+            // 
+            // музыкаToolStripMenuItem
+            // 
+            this.музыкаToolStripMenuItem.Name = "музыкаToolStripMenuItem";
+            this.музыкаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.музыкаToolStripMenuItem.Text = "Музыка";
+            // 
+            // парашютныйСпортToolStripMenuItem
+            // 
+            this.парашютныйСпортToolStripMenuItem.Name = "парашютныйСпортToolStripMenuItem";
+            this.парашютныйСпортToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.парашютныйСпортToolStripMenuItem.Text = "Парашютный спорт";
+            // 
+            // плаваниеToolStripMenuItem
+            // 
+            this.плаваниеToolStripMenuItem.Name = "плаваниеToolStripMenuItem";
+            this.плаваниеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.плаваниеToolStripMenuItem.Text = "Плавание";
+            // 
+            // путешествияToolStripMenuItem
+            // 
+            this.путешествияToolStripMenuItem.Name = "путешествияToolStripMenuItem";
+            this.путешествияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.путешествияToolStripMenuItem.Text = "Путешествия";
+            // 
+            // равнинныеЛыжиToolStripMenuItem
+            // 
+            this.равнинныеЛыжиToolStripMenuItem.Name = "равнинныеЛыжиToolStripMenuItem";
+            this.равнинныеЛыжиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.равнинныеЛыжиToolStripMenuItem.Text = "Равнинные лыжи";
+            // 
+            // рукоделиеToolStripMenuItem
+            // 
+            this.рукоделиеToolStripMenuItem.Name = "рукоделиеToolStripMenuItem";
+            this.рукоделиеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.рукоделиеToolStripMenuItem.Text = "Рукоделие";
+            // 
+            // садToolStripMenuItem
+            // 
+            this.садToolStripMenuItem.Name = "садToolStripMenuItem";
+            this.садToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.садToolStripMenuItem.Text = "Сад";
+            // 
+            // танцыToolStripMenuItem
+            // 
+            this.танцыToolStripMenuItem.Name = "танцыToolStripMenuItem";
+            this.танцыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.танцыToolStripMenuItem.Text = "Танцы";
+            // 
+            // театрToolStripMenuItem
+            // 
+            this.театрToolStripMenuItem.Name = "театрToolStripMenuItem";
+            this.театрToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.театрToolStripMenuItem.Text = "Театр";
+            // 
+            // тренажеркаToolStripMenuItem
+            // 
+            this.тренажеркаToolStripMenuItem.Name = "тренажеркаToolStripMenuItem";
+            this.тренажеркаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.тренажеркаToolStripMenuItem.Text = "Тренажерка";
+            // 
+            // фотографияToolStripMenuItem
+            // 
+            this.фотографияToolStripMenuItem.Name = "фотографияToolStripMenuItem";
+            this.фотографияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.фотографияToolStripMenuItem.Text = "Фотография";
+            // 
+            // шахматыToolStripMenuItem
+            // 
+            this.шахматыToolStripMenuItem.Name = "шахматыToolStripMenuItem";
+            this.шахматыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.шахматыToolStripMenuItem.Text = "Шахматы";
+            // 
+            // яхтингToolStripMenuItem
+            // 
+            this.яхтингToolStripMenuItem.Name = "яхтингToolStripMenuItem";
+            this.яхтингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.яхтингToolStripMenuItem.Text = "Яхтинг";
+            // 
+            // фитнессToolStripMenuItem
+            // 
+            this.фитнессToolStripMenuItem.Name = "фитнессToolStripMenuItem";
+            this.фитнессToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
+            this.фитнессToolStripMenuItem.Text = "Фитнесс";
+            // 
             // educationToolStripMenuItem
             // 
             this.educationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -438,7 +612,7 @@ namespace SchoolProject
             this.мИРЭАToolStripMenuItem});
             this.educationToolStripMenuItem.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.educationToolStripMenuItem.Name = "educationToolStripMenuItem";
-            this.educationToolStripMenuItem.Size = new System.Drawing.Size(164, 38);
+            this.educationToolStripMenuItem.Size = new System.Drawing.Size(164, 37);
             this.educationToolStripMenuItem.Text = "Education";
             this.educationToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.educationToolStripMenuItem_DropDownItemClicked);
             // 
@@ -578,7 +752,7 @@ namespace SchoolProject
             this.юриспруденцияToolStripMenuItem});
             this.clanToolStripMenuItem.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clanToolStripMenuItem.Name = "clanToolStripMenuItem";
-            this.clanToolStripMenuItem.Size = new System.Drawing.Size(95, 38);
+            this.clanToolStripMenuItem.Size = new System.Drawing.Size(95, 37);
             this.clanToolStripMenuItem.Text = "Clan";
             this.clanToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.clanToolStripMenuItem_DropDownItemClicked);
             // 
@@ -782,7 +956,7 @@ namespace SchoolProject
             this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(0, 48);
+            this.fb_l.Location = new System.Drawing.Point(0, 41);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -795,186 +969,12 @@ namespace SchoolProject
             this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(179, 48);
+            this.vk_l.Location = new System.Drawing.Point(179, 41);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;
             this.vk_l.Text = "VK connections";
             this.vk_l.Visible = false;
-            // 
-            // альпинизмToolStripMenuItem
-            // 
-            this.альпинизмToolStripMenuItem.Name = "альпинизмToolStripMenuItem";
-            this.альпинизмToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.альпинизмToolStripMenuItem.Text = "Альпинизм";
-            // 
-            // альпинизмToolStripMenuItem1
-            // 
-            this.альпинизмToolStripMenuItem1.Name = "альпинизмToolStripMenuItem1";
-            this.альпинизмToolStripMenuItem1.Size = new System.Drawing.Size(359, 44);
-            this.альпинизмToolStripMenuItem1.Text = "Астрономия";
-            // 
-            // бегToolStripMenuItem
-            // 
-            this.бегToolStripMenuItem.Name = "бегToolStripMenuItem";
-            this.бегToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.бегToolStripMenuItem.Text = "Бег";
-            // 
-            // боевыеИскусстваToolStripMenuItem
-            // 
-            this.боевыеИскусстваToolStripMenuItem.Name = "боевыеИскусстваToolStripMenuItem";
-            this.боевыеИскусстваToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.боевыеИскусстваToolStripMenuItem.Text = "Боевые искусства";
-            // 
-            // велосипедToolStripMenuItem
-            // 
-            this.велосипедToolStripMenuItem.Name = "велосипедToolStripMenuItem";
-            this.велосипедToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.велосипедToolStripMenuItem.Text = "Велосипед";
-            // 
-            // командныеИгрыToolStripMenuItem
-            // 
-            this.командныеИгрыToolStripMenuItem.Name = "командныеИгрыToolStripMenuItem";
-            this.командныеИгрыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.командныеИгрыToolStripMenuItem.Text = "Командные игры";
-            // 
-            // горныеЛыжиToolStripMenuItem
-            // 
-            this.горныеЛыжиToolStripMenuItem.Name = "горныеЛыжиToolStripMenuItem";
-            this.горныеЛыжиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.горныеЛыжиToolStripMenuItem.Text = "Горные лыжи";
-            // 
-            // дайвингToolStripMenuItem
-            // 
-            this.дайвингToolStripMenuItem.Name = "дайвингToolStripMenuItem";
-            this.дайвингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.дайвингToolStripMenuItem.Text = "Дайвинг";
-            // 
-            // домашниеПитомцыToolStripMenuItem
-            // 
-            this.домашниеПитомцыToolStripMenuItem.Name = "домашниеПитомцыToolStripMenuItem";
-            this.домашниеПитомцыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.домашниеПитомцыToolStripMenuItem.Text = "Домашние питомцы";
-            // 
-            // йогаToolStripMenuItem
-            // 
-            this.йогаToolStripMenuItem.Name = "йогаToolStripMenuItem";
-            this.йогаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.йогаToolStripMenuItem.Text = "Йога";
-            // 
-            // каякингToolStripMenuItem
-            // 
-            this.каякингToolStripMenuItem.Name = "каякингToolStripMenuItem";
-            this.каякингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.каякингToolStripMenuItem.Text = "Каякинг";
-            // 
-            // коллекционированиеToolStripMenuItem
-            // 
-            this.коллекционированиеToolStripMenuItem.Name = "коллекционированиеToolStripMenuItem";
-            this.коллекционированиеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.коллекционированиеToolStripMenuItem.Text = "Коллекционирование";
-            // 
-            // кулинарияToolStripMenuItem
-            // 
-            this.кулинарияToolStripMenuItem.Name = "кулинарияToolStripMenuItem";
-            this.кулинарияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.кулинарияToolStripMenuItem.Text = "Кулинария";
-            // 
-            // моделизмToolStripMenuItem
-            // 
-            this.моделизмToolStripMenuItem.Name = "моделизмToolStripMenuItem";
-            this.моделизмToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.моделизмToolStripMenuItem.Text = "Моделизм";
-            // 
-            // музеиИВыставкиToolStripMenuItem
-            // 
-            this.музеиИВыставкиToolStripMenuItem.Name = "музеиИВыставкиToolStripMenuItem";
-            this.музеиИВыставкиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.музеиИВыставкиToolStripMenuItem.Text = "Музеи и выставки";
-            // 
-            // музыкаToolStripMenuItem
-            // 
-            this.музыкаToolStripMenuItem.Name = "музыкаToolStripMenuItem";
-            this.музыкаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.музыкаToolStripMenuItem.Text = "Музыка";
-            // 
-            // парашютныйСпортToolStripMenuItem
-            // 
-            this.парашютныйСпортToolStripMenuItem.Name = "парашютныйСпортToolStripMenuItem";
-            this.парашютныйСпортToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.парашютныйСпортToolStripMenuItem.Text = "Парашютный спорт";
-            // 
-            // плаваниеToolStripMenuItem
-            // 
-            this.плаваниеToolStripMenuItem.Name = "плаваниеToolStripMenuItem";
-            this.плаваниеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.плаваниеToolStripMenuItem.Text = "Плавание";
-            // 
-            // путешествияToolStripMenuItem
-            // 
-            this.путешествияToolStripMenuItem.Name = "путешествияToolStripMenuItem";
-            this.путешествияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.путешествияToolStripMenuItem.Text = "Путешествия";
-            // 
-            // равнинныеЛыжиToolStripMenuItem
-            // 
-            this.равнинныеЛыжиToolStripMenuItem.Name = "равнинныеЛыжиToolStripMenuItem";
-            this.равнинныеЛыжиToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.равнинныеЛыжиToolStripMenuItem.Text = "Равнинные лыжи";
-            // 
-            // рукоделиеToolStripMenuItem
-            // 
-            this.рукоделиеToolStripMenuItem.Name = "рукоделиеToolStripMenuItem";
-            this.рукоделиеToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.рукоделиеToolStripMenuItem.Text = "Рукоделие";
-            // 
-            // садToolStripMenuItem
-            // 
-            this.садToolStripMenuItem.Name = "садToolStripMenuItem";
-            this.садToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.садToolStripMenuItem.Text = "Сад";
-            // 
-            // танцыToolStripMenuItem
-            // 
-            this.танцыToolStripMenuItem.Name = "танцыToolStripMenuItem";
-            this.танцыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.танцыToolStripMenuItem.Text = "Танцы";
-            // 
-            // театрToolStripMenuItem
-            // 
-            this.театрToolStripMenuItem.Name = "театрToolStripMenuItem";
-            this.театрToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.театрToolStripMenuItem.Text = "Театр";
-            // 
-            // тренажеркаToolStripMenuItem
-            // 
-            this.тренажеркаToolStripMenuItem.Name = "тренажеркаToolStripMenuItem";
-            this.тренажеркаToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.тренажеркаToolStripMenuItem.Text = "Тренажерка";
-            // 
-            // фотографияToolStripMenuItem
-            // 
-            this.фотографияToolStripMenuItem.Name = "фотографияToolStripMenuItem";
-            this.фотографияToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.фотографияToolStripMenuItem.Text = "Фотография";
-            // 
-            // шахматыToolStripMenuItem
-            // 
-            this.шахматыToolStripMenuItem.Name = "шахматыToolStripMenuItem";
-            this.шахматыToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.шахматыToolStripMenuItem.Text = "Шахматы";
-            // 
-            // яхтингToolStripMenuItem
-            // 
-            this.яхтингToolStripMenuItem.Name = "яхтингToolStripMenuItem";
-            this.яхтингToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.яхтингToolStripMenuItem.Text = "Яхтинг";
-            // 
-            // фитнессToolStripMenuItem
-            // 
-            this.фитнессToolStripMenuItem.Name = "фитнессToolStripMenuItem";
-            this.фитнессToolStripMenuItem.Size = new System.Drawing.Size(436, 44);
-            this.фитнессToolStripMenuItem.Text = "Фитнесс";
             // 
             // Form1
             // 

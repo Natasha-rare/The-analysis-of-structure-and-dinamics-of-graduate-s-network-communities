@@ -204,7 +204,7 @@ namespace SchoolProject
 
         private void hobbies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            person.Other = hobbies.Text;
+            person.Hobby = hobbies.Text;
         }
     }
 }

@@ -47,8 +47,6 @@ namespace SchoolProject
         public string Inst_name { get; set; }
         [JsonProperty("Inst_id")]
         public string Inst_id { get; set; }
-        [JsonProperty("LinkedIn_id")]
-        public string LinkedIn_id { get; set; }
         [JsonProperty("LinkedIn_name")]
         public string LinkedIn_name { get; set; }
         [JsonProperty("Telegram")]
@@ -59,5 +57,9 @@ namespace SchoolProject
         public string Email { get; set; }
         [JsonProperty("Other")]
         public string Other { get; set; }
+        [JsonProperty("Hobby")]
+        public string Hobby { get; set; }
+        [JsonProperty("Country")]
+        public string Country { get; set; }
     }
 }
