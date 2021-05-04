@@ -154,7 +154,7 @@ namespace SchoolProject
             this.clanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1471, 41);
+            this.menuStrip1.Size = new System.Drawing.Size(1471, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -887,6 +887,7 @@ namespace SchoolProject
             this.search.AccessibleName = "search";
             this.search.BackColor = System.Drawing.Color.Transparent;
             this.search.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.search.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.search.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search.Location = new System.Drawing.Point(944, 0);
             this.search.Name = "search";
@@ -901,6 +902,7 @@ namespace SchoolProject
             this.reload.AccessibleName = "reload";
             this.reload.BackColor = System.Drawing.Color.Transparent;
             this.reload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.reload.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.reload.Font = new System.Drawing.Font("Calibri", 11F);
             this.reload.Location = new System.Drawing.Point(1053, 0);
             this.reload.Name = "reload";
@@ -914,6 +916,7 @@ namespace SchoolProject
             this.clear.AccessibleName = "clear";
             this.clear.BackColor = System.Drawing.Color.Transparent;
             this.clear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.clear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear.Location = new System.Drawing.Point(1170, 0);
             this.clear.Name = "clear";
@@ -928,6 +931,7 @@ namespace SchoolProject
             this.share.AccessibleName = "share";
             this.share.BackColor = System.Drawing.Color.Transparent;
             this.share.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.share.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.share.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.share.Image = ((System.Drawing.Image)(resources.GetObject("share.Image")));
             this.share.Location = new System.Drawing.Point(1281, 0);
@@ -935,6 +939,7 @@ namespace SchoolProject
             this.share.Size = new System.Drawing.Size(58, 41);
             this.share.TabIndex = 2;
             this.share.UseVisualStyleBackColor = false;
+            this.share.Visible = false;
             // 
             // info
             // 
@@ -956,7 +961,7 @@ namespace SchoolProject
             this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(0, 41);
+            this.fb_l.Location = new System.Drawing.Point(0, 42);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -969,7 +974,7 @@ namespace SchoolProject
             this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(179, 41);
+            this.vk_l.Location = new System.Drawing.Point(179, 42);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;

@@ -23,9 +23,7 @@ namespace ConsoleApp1
         {
             db a = new db("12345");
             a.connect();
-
-            for (int i = 1995; i <= 2020; i++)
-                a.from_vk_group(i.ToString());
+            a.add_from_inst_group();
             Console.WriteLine("Working");
         }
 
@@ -372,6 +370,7 @@ namespace ConsoleApp1
                     var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Vk_name != "0").Return(per => per.As<Person>()).Results;
                     foreach (Person x in people)
                     {
+                    Console.WriteLine(x.Name);
                         try
                         {
                             var users = api.Friends.Get((new FriendsGetParams { UserId = long.Parse(x.Vk_id) }));
@@ -473,6 +472,7 @@ namespace ConsoleApp1
             {
                 GraphClient client;
                 Dictionary<string, string> full_list;
+            string currentWindow;
                 public db(string password)
                 {
                     client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "12345");
@@ -767,9 +767,23 @@ namespace ConsoleApp1
                     //separate_names();
                 }
 
-                public void add_list()
+               
+
+                public void add_list(string flag)
                 {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name == "0").Return(per => per.As<Person>()).Results;
+                    IEnumerable<Person> people;
+                    switch (flag)
+                    {
+                        case "FB":
+                            people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name == "0").Return(per => per.As<Person>()).Results;
+                            break;
+                        case "INST":
+                            people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Inst_name == "").Return(per => per.As<Person>()).Results;
+                            break;
+                        default:
+                            people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name == "0").Return(per => per.As<Person>()).Results;
+                            break;
+                    }
                     string name = "";
                     foreach (Person x in people)
                     {
@@ -787,17 +801,104 @@ namespace ConsoleApp1
                             }
                         }
                     }
-                    /*foreach(string i in full_list.Keys)
-                    {
-                    Console.OutputEncoding = Encoding.UTF8;
-                    Console.WriteLine(full_list[i]);
-                    }*/
-                }
+                /*foreach(string i in full_list.Keys)
+                {
+                Console.OutputEncoding = Encoding.UTF8;
+                Console.WriteLine(full_list[i]);
+                }*/
+                //PZuss
+            }
+
+            public string inst_name_by_id(string link)
+            {
+                inst_parser.driver.SwitchTo().Window(link);
+                string name = inst_parser.driver.FindElement(By.CssSelector("h1")).Text;
+                inst_parser.driver.SwitchTo().Window(currentWindow);
+                return name;
+            }
 
             public void add_from_inst_group()
             {
                 inst_parser.driver.Navigate().GoToUrl("https://www.instagram.com/lit1533_official/followers/");
+                currentWindow = inst_parser.driver.CurrentWindowHandle;
+                Thread.Sleep(600);
                 Console.WriteLine("Inst_work");
+                inst_parser.driver.FindElement(By.CssSelector("a.-nal3")).Click();
+                Thread.Sleep(200);
+                //inst_parser.driver.Navigate().GoToUrl("https://www.instagram.com/lit1533_official/followers");
+                var elements = inst_parser.driver.FindElement(By.ClassName("PZuss"));
+                var index = elements.FindElements(By.CssSelector("li"));
+                IJavaScriptExecutor js = (IJavaScriptExecutor)inst_parser.driver;
+                js.ExecuteScript("arguments[0].scrollIntoView();", elements);
+                add_list("INST");
+                int count = 0;
+                do
+                {
+                    for (int i = count; i < index.Count(); i ++)
+                    {
+                        var t = index[i].FindElements(By.TagName("a"));
+                        try
+                        {
+                            var student1 = index[i].FindElements(By.TagName("a"))[0];
+                            string link = student1.GetAttribute("href");
+                            string id = link.Split('/')[3];
+                            string name = inst_name_by_id(link);
+                            if (name == null) continue;
+                            Console.WriteLine(name);
+
+                            Console.WriteLine("added");
+                            var people = client.Cypher.Match("(per:Person)")
+            .Where((Person per) => per.Inst_name == name).Return(per => per.As<Person>()).Results;
+                            if (people.Count() == 0)
+                            {
+                                var people2 = client.Cypher.Match("(per:Person)")
+        .Where((Person per) => per.Inst_id == id).Return(per => per.As<Person>()).Results;
+                                if (people2.Count() == 0)
+                                {
+                                    string name2 = Change_of_View.change(name);
+                                    name2 = Change_of_View.reverse(name2);
+                                    if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2))
+                                    {
+                                        string p_name = full_list[name2];
+                                        Console.WriteLine(full_list[name2]);
+                                        var person = client.Cypher.Match("(per:Person)")
+                                        .Where((Person per) => per.Name == p_name).Return(per => per.As<Person>()).Results;
+                                        client.Cypher.Match("(per:Person)")
+                                        .Where((Person per) => per.Name == p_name)
+                                        .Set("per.Inst_name = {name}").WithParam("name", name).ExecuteWithoutResults();
+                                        client.Cypher.Match("(per:Person)")
+                .Where((Person per) => per.Name == p_name).Set("per.Inst_id = {id}").WithParam("id", id).ExecuteWithoutResults();
+
+                                        Console.WriteLine("+" + name2);
+                                    }
+                                    else
+                                    {
+                                        /* Person person = new Person { Name = "0", Fb_name = name, Graduation = "0", Project = "0", Fb_id = id, Group = "0" };
+                                         client.Cypher.Create("(per:Person {person})").WithParam("person", person).ExecuteWithoutResults();*/
+                                        Console.WriteLine("-" + name2);
+                                        Console.WriteLine("new was created");
+                                    }
+
+                                    /*var people1 = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
+                                    foreach (Person x in people1) add_work(x);*/
+                                }
+                                else
+                                {
+                                    /*friends_searcher fr_search = new friends_searcher(id, client);
+                                    fr_search.Friends_Searh_two();*/
+                                }
+                            }
+                            /*friends_searcher fr = new friends_searcher(id, client);
+                            fr.Friends_Searh_two();*/
+                            //separate_names();
+                        }
+                        catch (Exception e)
+                        { Console.WriteLine(e); continue; }
+                    }
+                    count = index.Count() - 1;
+                    js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                    index = elements.FindElements(By.CssSelector("li"));
+                } while (index != null);
             }
             public void add_from_fb_group()
             {
@@ -808,7 +909,7 @@ namespace ConsoleApp1
                 IJavaScriptExecutor js = (IJavaScriptExecutor)facebook_parser.driver;
                 js.ExecuteScript("arguments[0].scrollIntoView();", index);
                 var student = index.FindElements(By.ClassName("nc684nl6"));
-                add_list();
+                add_list("FB");
                 int count = 0;
                 do
                 {
@@ -1261,19 +1362,22 @@ namespace ConsoleApp1
                 static string login, password;
 
                 static inst_parser()
-            {
+                {
                 login = "recipef1nder";
                 password = "BestTeamver2020";
-                driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver_win32");
-                driver.Navigate().GoToUrl("http://www.instagram.com/");
+                ChromeOptions options = new ChromeOptions();
+                options.PageLoadStrategy = PageLoadStrategy.Eager;
+                options.AddArguments("--disable-notifications");
+                driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver", options);
+                driver.Navigate().GoToUrl("https://www.instagram.com/lit1533_official/followers/");
                 driver.FindElement(By.Name("username")).SendKeys(login);
                 driver.FindElement(By.Name("password")).SendKeys(password);
                 driver.FindElement(By.CssSelector("button.sqdOP.L3NKy.y3zKF")).Click();
-            }
+                Thread.Sleep(100);
+                }
                 public inst_parser(string id)
                 {
                     this.id = id;
-
                 }
 
         }
@@ -1301,7 +1405,6 @@ namespace ConsoleApp1
                 public facebook_parser(string id)
                 {
                     this.id = id;
-
                 }
                 public List<string> Occupation
                 {

@@ -31,29 +31,34 @@ namespace SchoolProject
 
         private void Person_Info_Paint(object sender, PaintEventArgs e)
         {
+            //Main info
             Lyceum_surname.Text = person.Lyceum_surname;
             Current_surname.Text = person.Current_surname;
             First_name.Text = person.First_name;
             patronym.Text = person.patronym;
-            string text = "";
-            if (person.Occupation.Count() > 0)
-                foreach (string occup in person.Occupation)
-                    text += occup + ", ";
-            Occupation.Text = text.Length > 0? text.Substring(0, text.Length - 2): "-";
-            fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0"? String.Join(",", person.FieldOfEducation):"-";
-            Fb_name.Text = person.Fb_name.Count() > 1 ? person.Fb_name : "-";
-            Vk_name.Text = person.Vk_name.Count() > 1 ? person.Vk_name : "-";
-            Group.Text = person.Group;
-            Graduation.Text = person.Graduation.Count() > 1? person.Graduation: "-";
-            Project.Text = person.Project;
+            //contacts
+            if (person.Fb_name != null) Fb_name.Text = person.Fb_name.Count() > 1 ? person.Fb_name : "-";
+            if (person.Vk_name != null) Vk_name.Text = person.Vk_name.Count() > 1 ? person.Vk_name : "-";
+            LinkedIn_name.Text = person.LinkedIn_name.Count() > 0? person.LinkedIn_name: "-";
+            Inst_name.Text = person.Inst_name.Count() > 0 ? person.Inst_name : "-";
+            Telegram.Text = person.Telegram.Count() > 0 ? person.Telegram : "-";
+            Phone.Text = person.Phone.Count() > 0 ? person.Phone : "-";
+            email.Text = person.Email.Count() > 0 ? person.Email : "-";
+            //lyceum study
+            if (person.Group != null) Group.Text = person.Group;
+            if (person.Graduation != null) Graduation.Text = person.Graduation.Count() > 1? person.Graduation: "-";
+            if (person.Project != null) Project.Text = person.Project.Count() > 0 ? person.Project : "-"; 
             Clan.Text = person.Clan;
-            if (person.Other != null)
-                Phone.Text = ((string)person.Other).Any(char.IsDigit) ? person.Other : "-";
-            text = "";
-            if (person.Education.Count() > 0)
-                foreach (string edu in person.Education)
-                    text += edu + ", ";
-            Education.Text = text.Length > 0 ? text.Substring(0, text.Length - 2) : "-";
+            //education
+            Education.Text = person.Education.Count() > 0 ? String.Join(", ", person.Education) : "-";
+            fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0" ? String.Join(", ", person.FieldOfEducation) : "-";
+            //work
+            Occupation.Text = person.Occupation.Count() > 0 ? String.Join(", ", person.Occupation) : "-";
+            position.Text = person.Position.Count() > 0 ? String.Join(", ", person.Position) : "-";
+            //other
+            hobbies.Text = person.Hobby.Count() > 0 ? person.Hobby : "-";
+            if (person.Country != null)
+                country.Text = person.Country.Count() > 0 ? person.Country : "-";
         }
 
         private void Login()
@@ -94,6 +99,7 @@ namespace SchoolProject
                 email.ReadOnly = false;
                 position.ReadOnly = false;
                 hobbies.Enabled = true;
+                country.ReadOnly = false;
                 this.saveBtn.Visible = true;
             }
         }
@@ -168,6 +174,7 @@ namespace SchoolProject
             email.ReadOnly = true;
             position.ReadOnly = true;
             hobbies.Enabled = false;
+            country.ReadOnly = true;
             Thread.Sleep(100);
             this.saveBtn.Visible = false;
         }
@@ -205,6 +212,11 @@ namespace SchoolProject
         private void hobbies_SelectedIndexChanged(object sender, EventArgs e)
         {
             person.Hobby = hobbies.Text;
+        }
+
+        private void country_TextChanged(object sender, EventArgs e)
+        {
+            person.Country = country.Text;
         }
     }
 }

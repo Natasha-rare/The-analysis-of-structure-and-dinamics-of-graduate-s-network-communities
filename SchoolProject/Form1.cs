@@ -9,7 +9,7 @@ namespace SchoolProject
     public partial class Form1 : Form
     {
         //поля: которые меняет пользователь
-        public string Occupation, Education;
+        public string Hobby, Education;
         public string Clan, Year;
         public List<Person> people = new List<Person>();
         List<Shape> shapes = new List<Shape>();
@@ -35,7 +35,7 @@ namespace SchoolProject
             int x = 100;
             int y = 100;
             
-            var results = a.GetPeople(Clan, Occupation, Education, Year);
+            var results = a.GetPeople(Clan, Hobby, Education, Year);
             foreach (Person person in results)
             {
                 if (!people.Contains(person))
@@ -143,21 +143,25 @@ namespace SchoolProject
                     .Set("per.Group = {group}").WithParam("group", person.Group)
                     .Set("per.Graduation = {grad}").WithParam("grad", person.Graduation)
                     .Set("per.Project = {project}").WithParam("project", person.Project)
+                    .Set("per.Email = {email}").WithParam("email", person.Email)
+                    .Set("per.Phone = {phone}").WithParam("phone", person.Phone)
+                    .Set("per.Hobby = {hobby}").WithParam("hobby", person.Hobby)
+                    .Set("per.Country = {country}").WithParam("country", person.Country)
                     .ExecuteWithoutResults();
             }
-            public IEnumerable<Person> GetPeople(string Clan, string Occupation, string Education, string Year)
+            public IEnumerable<Person> GetPeople(string Clan, string Hobby, string Education, string Year)
             {
                 IEnumerable<Person> results;
                 if (Clan != null)
                 {
                     if (Education != null)
                     {
-                        if (Occupation != null)
+                        if (Hobby != null)
                         {
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per)=> per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per)=> per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
                                     .AndWhere((Person per) => per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
@@ -165,7 +169,7 @@ namespace SchoolProject
                             else
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
                                     .Return(per => per.As<Person>()).Results;
                             }
@@ -189,19 +193,19 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Occupation != null)
+                        if (Hobby != null)
                         {
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per) => per.Occupation.Contains(Occupation))
+                                    .AndWhere((Person per) => per.Hobby.Contains(Hobby))
                                     .Return(per => per.As<Person>()).Results;
                             }
                         }
@@ -225,19 +229,19 @@ namespace SchoolProject
                 {
                     if (Education != null)
                     {
-                        if (Occupation != null)
+                        if (Hobby != null)
                         {
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)")
-                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .Where((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
                                     .AndWhere((Person per) => per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
                             {
-                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Occupation.Contains(Occupation))
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
                                     .Return(per => per.As<Person>()).Results;
                             }
@@ -259,19 +263,19 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Occupation != null)
+                        if (Hobby != null)
                         {
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)")
-                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .Where((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
                             {
                                 results = client.Cypher.Match("(per:Person)")
-                                    .Where((Person per) => per.Occupation.Contains(Occupation))
+                                    .Where((Person per) => per.Hobby.Contains(Hobby))
                                     .Return(per => per.As<Person>()).Results;
                             }
                         }

@@ -81,6 +81,8 @@ namespace SchoolProject
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.country = new System.Windows.Forms.TextBox();
+            this.countrylbl = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.hobbies = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
@@ -283,6 +285,7 @@ namespace SchoolProject
             this.Project.Multiline = true;
             this.Project.Name = "Project";
             this.Project.ReadOnly = true;
+            this.Project.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Project.Size = new System.Drawing.Size(324, 41);
             this.Project.TabIndex = 31;
             this.Project.Text = "-";
@@ -568,7 +571,7 @@ namespace SchoolProject
             this.Occupation.ReadOnly = true;
             this.Occupation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Occupation.Size = new System.Drawing.Size(342, 77);
-            this.Occupation.TabIndex = 26;
+            this.Occupation.TabIndex = 1;
             this.Occupation.Text = "-";
             this.Occupation.TextChanged += new System.EventHandler(this.Occupation_TextChanged);
             // 
@@ -601,7 +604,7 @@ namespace SchoolProject
             this.fieldOfEducation.Name = "fieldOfEducation";
             this.fieldOfEducation.ReadOnly = true;
             this.fieldOfEducation.Size = new System.Drawing.Size(342, 78);
-            this.fieldOfEducation.TabIndex = 25;
+            this.fieldOfEducation.TabIndex = 1;
             this.fieldOfEducation.Text = "-";
             this.fieldOfEducation.TextChanged += new System.EventHandler(this.fieldOfEducation_TextChanged);
             // 
@@ -615,7 +618,7 @@ namespace SchoolProject
             this.Education.ReadOnly = true;
             this.Education.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Education.Size = new System.Drawing.Size(342, 77);
-            this.Education.TabIndex = 24;
+            this.Education.TabIndex = 1;
             this.Education.Text = "-";
             this.Education.TextChanged += new System.EventHandler(this.Education_TextChanged);
             // 
@@ -643,20 +646,28 @@ namespace SchoolProject
             // 
             // editBtn
             // 
+            this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
-            this.editBtn.Location = new System.Drawing.Point(1282, 752);
+            this.editBtn.Location = new System.Drawing.Point(1282, 795);
+            this.editBtn.MaximumSize = new System.Drawing.Size(92, 92);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(92, 96);
+            this.editBtn.Size = new System.Drawing.Size(92, 92);
             this.editBtn.TabIndex = 2;
             this.editBtn.UseVisualStyleBackColor = true;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // saveBtn
             // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveBtn.AutoSize = true;
+            this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveBtn.Image")));
-            this.saveBtn.Location = new System.Drawing.Point(1282, 648);
+            this.saveBtn.Location = new System.Drawing.Point(1282, 691);
+            this.saveBtn.MaximumSize = new System.Drawing.Size(92, 92);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(92, 96);
+            this.saveBtn.Size = new System.Drawing.Size(92, 92);
             this.saveBtn.TabIndex = 3;
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Visible = false;
@@ -738,7 +749,7 @@ namespace SchoolProject
             this.position.Name = "position";
             this.position.ReadOnly = true;
             this.position.Size = new System.Drawing.Size(342, 78);
-            this.position.TabIndex = 25;
+            this.position.TabIndex = 1;
             this.position.Text = "-";
             this.position.TextChanged += new System.EventHandler(this.position_TextChanged);
             // 
@@ -780,18 +791,45 @@ namespace SchoolProject
             // 
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.65217F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.34783F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.country, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.countrylbl, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label25, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.hobbies, 1, 0);
             this.tableLayoutPanel4.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel4.Location = new System.Drawing.Point(802, 544);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(578, 77);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(578, 126);
             this.tableLayoutPanel4.TabIndex = 31;
+            // 
+            // country
+            // 
+            this.country.AcceptsReturn = true;
+            this.country.BackColor = System.Drawing.Color.White;
+            this.country.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.country.Location = new System.Drawing.Point(293, 67);
+            this.country.Multiline = true;
+            this.country.Name = "country";
+            this.country.ReadOnly = true;
+            this.country.Size = new System.Drawing.Size(279, 53);
+            this.country.TabIndex = 26;
+            this.country.Text = "-";
+            this.country.TextChanged += new System.EventHandler(this.country_TextChanged);
+            // 
+            // countrylbl
+            // 
+            this.countrylbl.AutoSize = true;
+            this.countrylbl.BackColor = System.Drawing.Color.LemonChiffon;
+            this.countrylbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.countrylbl.Location = new System.Drawing.Point(6, 64);
+            this.countrylbl.Name = "countrylbl";
+            this.countrylbl.Size = new System.Drawing.Size(278, 59);
+            this.countrylbl.TabIndex = 3;
+            this.countrylbl.Text = "Страна проживания";
             // 
             // label25
             // 
@@ -800,7 +838,7 @@ namespace SchoolProject
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label25.Location = new System.Drawing.Point(6, 3);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(219, 71);
+            this.label25.Size = new System.Drawing.Size(278, 58);
             this.label25.TabIndex = 0;
             this.label25.Text = "Пристрастия";
             // 
@@ -839,9 +877,9 @@ namespace SchoolProject
             "Фотография",
             "Шахматы",
             "Яхтинг"});
-            this.hobbies.Location = new System.Drawing.Point(234, 6);
+            this.hobbies.Location = new System.Drawing.Point(293, 6);
             this.hobbies.Name = "hobbies";
-            this.hobbies.Size = new System.Drawing.Size(338, 40);
+            this.hobbies.Size = new System.Drawing.Size(279, 40);
             this.hobbies.TabIndex = 1;
             this.hobbies.Text = "Hobbies";
             this.hobbies.SelectedIndexChanged += new System.EventHandler(this.hobbies_SelectedIndexChanged);
@@ -935,5 +973,7 @@ namespace SchoolProject
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox hobbies;
+        private System.Windows.Forms.TextBox country;
+        private System.Windows.Forms.Label countrylbl;
     }
 }
