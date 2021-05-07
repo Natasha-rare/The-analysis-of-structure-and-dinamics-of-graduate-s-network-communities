@@ -139,6 +139,10 @@ namespace SchoolProject
             this.info = new System.Windows.Forms.Label();
             this.fb_l = new System.Windows.Forms.Label();
             this.vk_l = new System.Windows.Forms.Label();
+            this.infobttn = new System.Windows.Forms.Button();
+            this.query_l = new System.Windows.Forms.Label();
+            this.info_txt = new System.Windows.Forms.RichTextBox();
+            this.close_info = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +158,8 @@ namespace SchoolProject
             this.clanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1471, 42);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.menuStrip1.Size = new System.Drawing.Size(1118, 37);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -889,9 +894,9 @@ namespace SchoolProject
             this.search.Cursor = System.Windows.Forms.Cursors.Hand;
             this.search.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.search.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search.Location = new System.Drawing.Point(944, 0);
+            this.search.Location = new System.Drawing.Point(740, 0);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(58, 41);
+            this.search.Size = new System.Drawing.Size(42, 42);
             this.search.TabIndex = 1;
             this.search.Text = "🔍";
             this.search.UseVisualStyleBackColor = false;
@@ -904,9 +909,9 @@ namespace SchoolProject
             this.reload.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reload.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.reload.Font = new System.Drawing.Font("Calibri", 11F);
-            this.reload.Location = new System.Drawing.Point(1053, 0);
+            this.reload.Location = new System.Drawing.Point(839, 0);
             this.reload.Name = "reload";
-            this.reload.Size = new System.Drawing.Size(58, 41);
+            this.reload.Size = new System.Drawing.Size(42, 42);
             this.reload.TabIndex = 1;
             this.reload.Text = "🔃";
             this.reload.UseVisualStyleBackColor = false;
@@ -918,9 +923,9 @@ namespace SchoolProject
             this.clear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.clear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.clear.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clear.Location = new System.Drawing.Point(1170, 0);
+            this.clear.Location = new System.Drawing.Point(932, 0);
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(58, 41);
+            this.clear.Size = new System.Drawing.Size(42, 42);
             this.clear.TabIndex = 1;
             this.clear.Text = "☒";
             this.clear.UseVisualStyleBackColor = false;
@@ -934,9 +939,9 @@ namespace SchoolProject
             this.share.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.share.Font = new System.Drawing.Font("Arial", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.share.Image = ((System.Drawing.Image)(resources.GetObject("share.Image")));
-            this.share.Location = new System.Drawing.Point(1281, 0);
+            this.share.Location = new System.Drawing.Point(1025, 0);
             this.share.Name = "share";
-            this.share.Size = new System.Drawing.Size(58, 41);
+            this.share.Size = new System.Drawing.Size(42, 42);
             this.share.TabIndex = 2;
             this.share.UseVisualStyleBackColor = false;
             this.share.Visible = false;
@@ -961,7 +966,7 @@ namespace SchoolProject
             this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(0, 42);
+            this.fb_l.Location = new System.Drawing.Point(0, 37);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -974,18 +979,78 @@ namespace SchoolProject
             this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(179, 42);
+            this.vk_l.Location = new System.Drawing.Point(179, 37);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;
             this.vk_l.Text = "VK connections";
             this.vk_l.Visible = false;
             // 
+            // infobttn
+            // 
+            this.infobttn.AccessibleName = "info";
+            this.infobttn.BackColor = System.Drawing.Color.Transparent;
+            this.infobttn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infobttn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.infobttn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobttn.Location = new System.Drawing.Point(631, 0);
+            this.infobttn.Name = "infobttn";
+            this.infobttn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.infobttn.Size = new System.Drawing.Size(42, 42);
+            this.infobttn.TabIndex = 6;
+            this.infobttn.Text = "i";
+            this.infobttn.UseVisualStyleBackColor = false;
+            this.infobttn.Click += new System.EventHandler(this.infobttn_Click);
+            // 
+            // query_l
+            // 
+            this.query_l.AutoSize = true;
+            this.query_l.Dock = System.Windows.Forms.DockStyle.Left;
+            this.query_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.query_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.query_l.Location = new System.Drawing.Point(358, 37);
+            this.query_l.Name = "query_l";
+            this.query_l.Size = new System.Drawing.Size(97, 27);
+            this.query_l.TabIndex = 6;
+            this.query_l.Text = "QUERY";
+            this.query_l.Visible = false;
+            // 
+            // info_txt
+            // 
+            this.info_txt.Location = new System.Drawing.Point(126, 127);
+            this.info_txt.Name = "info_txt";
+            this.info_txt.Size = new System.Drawing.Size(941, 635);
+            this.info_txt.TabIndex = 8;
+            this.info_txt.Text = resources.GetString("info_txt.Text");
+            this.info_txt.Visible = false;
+            // 
+            // close_info
+            // 
+            this.close_info.AccessibleName = "close_info";
+            this.close_info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.close_info.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.close_info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close_info.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.close_info.ForeColor = System.Drawing.Color.Black;
+            this.close_info.Location = new System.Drawing.Point(75, 127);
+            this.close_info.Name = "close_info";
+            this.close_info.Size = new System.Drawing.Size(45, 48);
+            this.close_info.TabIndex = 9;
+            this.close_info.Text = "☒";
+            this.close_info.UseVisualStyleBackColor = true;
+            this.close_info.Visible = false;
+            this.close_info.Click += new System.EventHandler(this.close_info_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1471, 1132);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1118, 805);
+            this.Controls.Add(this.close_info);
+            this.Controls.Add(this.info_txt);
+            this.Controls.Add(this.query_l);
+            this.Controls.Add(this.infobttn);
             this.Controls.Add(this.vk_l);
             this.Controls.Add(this.fb_l);
             this.Controls.Add(this.info);
@@ -995,6 +1060,7 @@ namespace SchoolProject
             this.Controls.Add(this.search);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "School Project";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1120,6 +1186,10 @@ namespace SchoolProject
         private System.Windows.Forms.ToolStripMenuItem шахматыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem яхтингToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фитнессToolStripMenuItem;
+        private System.Windows.Forms.Button infobttn;
+        private System.Windows.Forms.Label query_l;
+        private System.Windows.Forms.RichTextBox info_txt;
+        private System.Windows.Forms.Button close_info;
     }
 }
 

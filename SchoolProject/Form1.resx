@@ -120,15 +120,6 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="search.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="reload.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clear.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="share.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -141,6 +132,31 @@
         9qHz+tUtGkiIbeAe44iMXyiuBqrxCL1cmjWQIn4D5+jQQFySGuiDdjBvzaaMGtCekuqVnNTAFObyh6mj
         ebRhpUpSA8PQKig2NWjMHwaT1EAp0oYjOOfPuoFeaPOJnD/rBvQAx86fdQOJ89uCrDkb0J8OV3EWnP+S
         d+EqLrVTaCkWRGtcu5xuT1b0y51f/p+/nlzuEy/nPQle35siAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="info_txt.Text" xml:space="preserve">
+    <value>Инструкция по использованию приложения
+
+В строке меню выберите те свойства, по которым хотите увидеть выбрку результатов запроса.
+Graduation - год выпуска
+Hobby - пристрастие
+Education - место обучения выпускника ВУЗ
+Clan - "клан" выпускника (сфера деятельности)
+
+Далее вы должны нажать на кнопку поиска (🔍) и в течение 1 мин на экран будет выведен результат, полученный по вашему запросу. Если вы хотите изменить данные отбора, то вам следует нажать на кнопку сброса результатов (☒) и ввести новый запрос.
+
+После отображения результатов, вы также можете просмотреть информацию об отдельном ученике.
+Для этого вам надо всего лишь нажать на него правой кнопкой мышки и справа появиться окно, с подробной информацией о выпускнике. Если вы хотите что-то изменить, то вам потребуется вход от имени администратора. 
+
+Если вам понадобиться помощь во время пользования данным приложением, вы можете нажать на кнопку информации (i).
+
+Приятного пользования!
+
+
+
+ВНИМАНИЕ!
+Данное приложение создано исключительно в образовательных целях. Распространение данных карается
+штрафом и запрещено законом.
 </value>
   </data>
 </root>

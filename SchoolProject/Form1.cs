@@ -20,11 +20,112 @@ namespace SchoolProject
         Person_Info Form_Info = null;
         //запрос
         public string query;
+        public string Glasnye = "ауоиэыяюеёАУОИЭЫЯЮЕЁ";
+        public Dictionary<string, string> ShortNames = new Dictionary<string, string> {
+            {"Александр", "Саша"}, {"Артем", "Артем" }, {"Григорий", "Гоша"}, {"Дарья", "Даша"},
+            {"Дмитрий", "Митя"}, {"Антонина", "Тоня"}, {"Димитрий", "Дима"},
+            {"Алексей", "Леша"}, {"Сергей", "Сергей"}, {"Андрей", "Андрей"}, {"Михаил", "Миша"},
+            {"Иван", "Иван"}, {"Никита", "Никита"}, {"Артём", "Артём"},
+            {"Максим", "Макс"}, {"Илья", "Илья"}, {"Антон", "Антон"},
+            {"Павел", "Паша"}, {"Николай", "Коля"}, {"Кирилл", "Киря"},
+            {"Владимир", "Володя"}, {"Володя", "Вова"}, {"Константин", "Костя"}, {"Денис", "Денис"},
+            {"Евгений", "Женя"}, {"Роман", "Рома"}, {"Даниил", "Даня"}, {"Игорь", "Игорь"},
+            {"Егор", "Егор"}, {"Олег", "Олег"}, {"Петр", "Петр"},
+            {"Василий", "Вася"}, {"Георгий", "Гоша"}, {"Виктор", "Витя"},
+            {"Григор", "Гриша"}, {"Станислав", "Стас"}, {"Арсений", "Сеня"},
+            {"Борис", "Боря"}, {"Леонид", "Лёня"}, {"Вадим", "Вадим"}, {"Глеб", "Глеб"},
+            {"Юрий", "Юра"}, {"Федор", "Федя"}, {"Матвей", "Матвей"},
+            {"Владислав", "Влад"}, {"Тимофей", "Тима"}, {"Вячеслав", "Слава"},
+            {"Филипп", "Филя"}, {"Степан", "Степа"}, {"Всеволод", "Сева"},
+            {"Анатолий", "Толя"}, {"Виталий", "Виталий"}, {"Ярослав", "Яра"},
+            {"Тимур", "Тимур"}, {"Яков", "Яша"}, {"Марк", "Марк"}, {"Руслан", "Руся"},
+            {"Семен", "Сема"}, {"Екатерина", "Катя"}, {"Анна", "Аня"},
+            {"Анастасия", "Настя"}, {"Дария", "Даша"}, {"Мария", "Маша"},
+            {"Елена", "Лена"}, {"Ольга", "Оля"}, {"Наталия", "Ната"}, {"Наталья", "Ната"},
+            {"Татьяна", "Таня"}, {"Елизавета", "Лиза"},
+            {"Александра", "Саня"}, {"Юлия", "Юля"},
+            {"Евгения", "Женя"}, {"Ирина", "Ира"},
+            {"София", "Соня"}, {"Полина", "Полина"}, {"Ксения", "Ксю"},
+            {"Светлана", "Света"}, {"Марина", "Марина"}, {"Виктория", "Вика"},
+            {"Надежда", "Надя"}, {"Варвара", "Варя"}, {"Маргарита", "Рита"}, {"Алина", "Лина"},
+            {"Людмила", "Люда"}, {"Вероника", "Ника"}, {"Яна", "Яна"},
+            {"Нина", "Нина"}, {"Лариса", "Лариса"}, {"Алёна", "Алёна"},
+            {"Вера", "Вера"}, {"Алиса", "Алиса"}, {"Диана", "Диана"},
+            {"Кристина", "Кристи"}, {"Любовь", "Люба"}, {"Галина", "Галя"},
+            {"Оксана", "Оксана"}, {"Алла", "Алла"}, {"Алеся", "Алеся"},
+            {"Алехандро", "Саша"}, {"Альберт", "Алик"}, {"Альбина", "Альб"},
+            {"Амина", "Амина"}, {"Ана","Ана"}, {"Ангелина", "Геля"}, {"Анфиса", "Анфиса"},
+            {"Арам", "Арам"}, {"Арина", "Арина"}, {"Аркадий", "Аркаша"},
+            {"Арман", "Арман"}, {"Армен", "Армен"}, {"Арсен", "Арсен"},
+            {"Артур", "Артур"}, {"Ася", "Ася"}, {"Ахмед", "Ахмед"},
+            {"Ашот", "Ашот"}, {"Богдан", "Богдан"}, {"Валентин", "Валя"},
+            {"Валентина", "Валя"}, {"Валерий", "Валера"}, {"Валерия", "Лера"},
+            {"Валерьян", "Валера"}, {"Василиса", "Вася"}, {"Вениамин", "Веня"}, {"Весна", "Весна"}, {"Виолетта", "Вита"}, {"Гагик", "Гагик"}, {"Гаджимурад", "Гаджи"}, {"Гарик", "Гарик"}, {"Гарри", "Гарри"}, {"Геннадий", "Гена"},
+            {"Герман", "Герман"}, {"Глафира", "Глаша"}, {"Гулру", "Гулру"}, {"Гульнара", "Гуля"},
+            {"Давид", "Давид"}, {"Далия", "Далия"}, {"Дамир", "Дамир"}, {"Дарьюш", "Дарьюш"},
+            {"Демид", "Демид"}, {"Демьян", "Демьян"}, {"Джамиля", "Джамиля"}, {"Диляра", "Диляра"}, {"Дина", "Дина"}, {"Ева", "Ева"},
+            {"Евфросиния", "Фрося"}, {"Захар", "Захар"}, {"Зоя", "Зоя"}, {"Игнатий", "Игнат"}, {"Илай", "Илай"}, {"Илона", "Илона"}, {"Ильдар", "Ильдар"},
+            {"Инесса", "Инесса"}, {"Инна", "Инна"}, {"Иннокентий", "Кеша"}, {"Иоанн", "Иоанн"}, {"Иосиф", "Иосиф"}, {"Камилла", "Камила"}, {"Карина", "Карина"},
+            {"Кевин", "Кевин"}, {"Кира", "Кира"}, {"Кызы", "Кызы"}, {"Лаврентий", "Лаврик"}, {"Лада", "Лада"}, {"Лаура", "Лаура"}, {"Лев", "Лев"}, {"Левон", "Левон"}, {"Лейля", "Лейля"}, {"Лидия", "Лида"}, {"Лилия", "Лилия"},
+            {"Линара", "Линара"}, {"Линда", "Линда"}, {"Лука", "Лука"}, {"Мадина", "Мадина"},
+            {"Майя", "Майя"}, {"Марат", "Марат"}, {"Марианна", "Марья"}, {"Марьяна", "Марья"},
+            {"Матин", "Матин"}, {"Мелисса", "Мелиса"}, {"Мерген", "Мерген"}, {"Мередкули", "Меред"}, {"Метревели", "Метре"}, {"Микаэл", "Микаэл"},
+            {"Назар", "Назар"}, {"Наргиза", "Нарги"}, {"Нелли", "Нелли"}, {"Ника", "Ника"}, {"Николь", "Николь"}, {"Олеся", "Олеся"}, {"Регина", "Регина"}, {"Ренат", "Ренат"},
+            {"Рината", "Рината"}, {"Роберт", "Роб"}, {"Родион", "Родион"}, {"Ростислав", "Ростик"}, {"Рубен", "Рубен"}, {"Рувин", "Рувин"}, {"Рустам", "Рустам"}, {"Сабина", "Саби"}, {"Саман", "Саман"},
+            {"Саня", "Саня"}, {"Святослав", "Свят"}, {"Серафима", "Сима"}, {"Сослан", "Сослан"}, {"Сусанна", "Сана"}, {"Сяоган", "Сяоган"}, {"Таисия", "Тася"}, {"Тамара", "Тома"}, {"Тамерлан", "Тамер"}, {"Теймур", "Теймур"}, {"Тигран", "Тигран"}, {"Ульяна", "Уля"},
+            {"Фаик", "Фаик"}, {"Фатима", "Фатима"}, {"Шамиль", "Шамиль"}, {"Шенне", "Шенне"}, {"Эвелина", "Лина"}, {"Эдуард", "Эдик"}, {"Элизабет", "Элиза"},
+            {"Элина", "Элина"}, {"Элла", "Элла"}, {"Эльвира", "Эля"}, {"Эмиль", "Эмиль"},
+            {"Эммануил", "Эмма"}, {"Юлий", "Юлий"}, {"Юнна", "Юнна"}, {"Юсиф", "Юсиф"},
+            {"Ян", "Ян"},{"Ярослава", "Яра"}, {"Яфа", "Яфа"}, { "Аглая", "Аглая"}, {"Алена", "Алена"}, {"Софья", "Софья"},
+            {"Дмитриан", "Дима" }, {"Аннели", "Аня"}, {"Данило", "Даня"}, {"Агнеса", "Агнеса"},{"Семён", "Семен"}
+            , {"Арсентий", "Сеня"}, {"Артемий", "Артем"}, {"Мэтти", "Мэт"}, {"Фёдор", "Федя"}, {"Игнасио", "Игнас"}, {"Данила", "Даня"}, {"Пётр", "Пётр"},
+            {"Агата", "Агата"}, {"Сото", "Сото"}, {"Моника", "Мони"}, {"Азамат", "Азамат"}, {"Айна", "Айна"}, {"Адиль", "Адиль"}, {"Аджай", "Аджай"},
+            {"Нино", "Нино"}, {"Динара", "Дина"}, {"Даниял", "Даня"}
+        };
+
+
+
         public Form1()
         {
-            
             InitializeComponent();
             a.connect();
+        }
+
+        private string Get_soglasnye(string word)
+        {
+            string result = "";
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (!Glasnye.Contains(word[i].ToString()))
+                    result += word[i];
+            }
+            return result.Length > 4? result.Remove(4): result;
+        }
+        private string Short_Names(string name, string surname)
+        {
+            string result = $"{name} {surname}";
+            try
+            {
+                if (name.Contains("."))
+                { return result; }
+                result = ShortNames[name] + " ";
+                if (Glasnye.Contains(surname[0].ToString()))
+                {
+                    result += surname[0];
+                    surname = Get_soglasnye(surname);
+                    result += surname.Length > 3 ? surname.Remove(3) : surname;
+                }
+                else
+                {
+                    result += Get_soglasnye(surname);
+                }
+            }
+            catch
+            {
+                Console.WriteLine($"name={name} surname={surname}");
+            }
+
+            return result;
         }
 
 
@@ -42,7 +143,8 @@ namespace SchoolProject
                 {
                     x = r.Next(50, 600);
                     y = r.Next(50, 500);
-                    shapes.Add(new Shape(x, y, person.Name));
+                    
+                    shapes.Add(new Shape(x, y, Short_Names(person.First_name, person.Current_surname)));
                     people.Add(person);
                 }
             }
@@ -163,7 +265,7 @@ namespace SchoolProject
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per)=> per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -180,7 +282,7 @@ namespace SchoolProject
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -199,7 +301,7 @@ namespace SchoolProject
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Hobby.Contains(Hobby))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -214,7 +316,7 @@ namespace SchoolProject
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -236,7 +338,7 @@ namespace SchoolProject
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -251,7 +353,7 @@ namespace SchoolProject
                             if (Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -269,7 +371,7 @@ namespace SchoolProject
                             {
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
-                                    .AndWhere((Person per) => per.Graduation == Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -283,7 +385,7 @@ namespace SchoolProject
                         {
                             if (Year != null)
                             {
-                                results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Graduation == Year)
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => (string)per.Graduation == (string)Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -506,6 +608,18 @@ namespace SchoolProject
         private void graduation_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void infobttn_Click(object sender, EventArgs e)
+        {
+            info_txt.Visible = true;
+            close_info.Visible = true;
+        }
+
+        private void close_info_Click(object sender, EventArgs e)
+        {
+            info_txt.Visible = false;
+            close_info.Visible = false;
         }
 
         private void search_Click(object sender, EventArgs e)

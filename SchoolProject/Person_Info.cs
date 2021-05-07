@@ -42,8 +42,8 @@ namespace SchoolProject
             LinkedIn_name.Text = person.LinkedIn_name.Count() > 0? person.LinkedIn_name: "-";
             Inst_name.Text = person.Inst_name.Count() > 0 ? person.Inst_name : "-";
             Telegram.Text = person.Telegram.Count() > 0 ? person.Telegram : "-";
-            Phone.Text = person.Phone.Count() > 0 ? person.Phone : "-";
-            email.Text = person.Email.Count() > 0 ? person.Email : "-";
+            if (person.Phone != null) Phone.Text = person.Phone.Count() > 0 ? person.Phone : "-";
+            if (person.Email != null) email.Text = person.Email.Count() > 0 ? person.Email : "-";
             //lyceum study
             if (person.Group != null) Group.Text = person.Group;
             if (person.Graduation != null) Graduation.Text = person.Graduation.Count() > 1? person.Graduation: "-";
@@ -53,7 +53,7 @@ namespace SchoolProject
             Education.Text = person.Education.Count() > 0 ? String.Join(", ", person.Education) : "-";
             fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0" ? String.Join(", ", person.FieldOfEducation) : "-";
             //work
-            Occupation.Text = person.Occupation.Count() > 0 ? String.Join(", ", person.Occupation) : "-";
+            if (person.Occupation != null) Occupation.Text = person.Occupation.Count() > 0 ? String.Join(", ", person.Occupation) : "-";
             position.Text = person.Position.Count() > 0 ? String.Join(", ", person.Position) : "-";
             //other
             hobbies.Text = person.Hobby.Count() > 0 ? person.Hobby : "-";
