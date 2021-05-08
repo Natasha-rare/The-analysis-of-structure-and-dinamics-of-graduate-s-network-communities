@@ -14,6 +14,7 @@ namespace SchoolProject
         public List<Person> people = new List<Person>();
         List<Shape> shapes = new List<Shape>();
         db a = new db("12345");
+        
         public List<List<int>> fb_lines = new List<List<int>>();
         public List<List<int>> inst_lines = new List<List<int>>();
         public List<List<int>> vk_lines = new List<List<int>>();
@@ -254,18 +255,23 @@ namespace SchoolProject
             public IEnumerable<Person> GetPeople(string Clan, string Hobby, string Education, string Year)
             {
                 IEnumerable<Person> results;
-                if (Clan != null)
+                /*if (Clan != "")
+                    results = client.Cypher.Match("per:Person").Where((Person per) => per.Clan == Clan)
+*/
+
+                if (Clan != "")
                 {
-                    if (Education != null)
+                    if (Education != "")
                     {
-                        if (Hobby != null)
+                        if (Hobby != "")
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
+                                //if (Year.Contains("/")) -- добавление слешей при множественном выборе?
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per)=> per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -278,11 +284,11 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -295,13 +301,13 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Hobby != null)
+                        if (Hobby != "")
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Hobby.Contains(Hobby))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -313,10 +319,10 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -329,16 +335,16 @@ namespace SchoolProject
                 }
                 else
                 {
-                    if (Education != null)
+                    if (Education != "")
                     {
-                        if (Hobby != null)
+                        if (Hobby != "")
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
                                     .AndWhere((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -350,10 +356,10 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Education.Contains(Education))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -365,13 +371,13 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Hobby != null)
+                        if (Hobby != "")
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
-                                    .AndWhere((Person per) => (string)per.Graduation == (string)Year)
+                                    .AndWhere((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -383,9 +389,9 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != null)
+                            if (Year != "")
                             {
-                                results = client.Cypher.Match("(per:Person)").Where((Person per) => (string)per.Graduation == (string)Year)
+                                results = client.Cypher.Match("(per:Person)").Where((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
                             }
                             else
@@ -626,11 +632,16 @@ namespace SchoolProject
         {
             Console.WriteLine(Education);
             //query = $"MATCH (a:Person) WHERE a.Graduation CONTAINS '{Year}' AND a.Occupation CONTAINS '{Occupation}' AND a.Education CONTAINS '{Education}' AND a.Clan CONTAINS '{Clan}'";
-
-            query = $"MATCH (a:Person) WHERE a.Graduation CONTAINS '{Year}' AND a.Clan CONTAINS '{Clan}'";
-            query += " RETURN (a)";
+            query = "";
+            if (Year != "" && Year != null) query += $"Year = {Year}";
+            if (Hobby != "" && Hobby != null) query += $" Hobby = {Hobby}";
+            if (Education != "" && Education != null) query += $" Education = {Education}";
+            if (Clan != "" && Clan != null) query += $" Clan = {Clan}";
+            query = query.Trim();
             this.fb_l.Visible = true;
             this.vk_l.Visible = true;
+            this.query_l.Visible = true;
+            this.query_l.Text = query;
             Console.WriteLine(query);
             Draw_People();
             Refresh();
@@ -639,11 +650,22 @@ namespace SchoolProject
         private void clear_Click(object sender, EventArgs e)
         {
             query = "";
+            this.fb_l.Visible = false;
+            this.vk_l.Visible = false;
+            this.query_l.Visible = false;
             people.Clear();
             shapes.Clear();
             fb_lines.Clear();
             vk_lines.Clear();
             inst_lines.Clear();
+            Year = "";
+            Clan = "";
+            Hobby = "";
+            Education = "";
+            foreach (ToolStripMenuItem item in HobbyToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
             foreach (ToolStripMenuItem item in clanToolStripMenuItem.DropDownItems)
             {
                 item.Checked = false;
