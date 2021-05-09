@@ -9,6 +9,7 @@
       "ConsoleApp1/1.0.0": {
         "dependencies": {
           "ExcelDataReader.DataSet": "3.4.0",
+          "LumenWorksCsvReader": "4.0.0",
           "Microsoft.Office.Excel": "14.0.4760.1000",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
           "Neo4j.Driver": "4.2.0",
@@ -68,6 +69,14 @@
           "lib/netstandard1.0/JetBrains.Annotations.dll": {
             "assemblyVersion": "11.1.0.0",
             "fileVersion": "11.1.0.0"
+          }
+        }
+      },
+      "LumenWorksCsvReader/4.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/LumenWorks.Framework.IO.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -868,6 +877,13 @@
       "sha512": "sha512-umU4AjekbwDeUaAmzThW9m2e1u1VYL2WAcp85CnyI7QDl9EFI547dh9XRKb8ogY+1uGLxOOksQu1T+ADkQOccA==",
       "path": "jetbrains.annotations/11.1.0",
       "hashPath": "jetbrains.annotations.11.1.0.nupkg.sha512"
+    },
+    "LumenWorksCsvReader/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CP6bPmDbmV5yT7YwfGxN8Agrdj0nB82b2UitfrnTghqyfF4DXD4UXl8MoCXBz4Ja17bUYqpEDd+qaavh7lwUxg==",
+      "path": "lumenworkscsvreader/4.0.0",
+      "hashPath": "lumenworkscsvreader.4.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/2.0.0": {
       "type": "package",

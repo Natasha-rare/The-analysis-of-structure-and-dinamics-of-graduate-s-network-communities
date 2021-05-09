@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XOkqKkxz1r1nRQYar0xfT3i8CJlY9oABAN8WJz18BFZ38QE2CtigAi4ZOjgc+majw3nXnLw6RFTK/33hfeo5mg==",
+  "dgSpecHash": "HHw7VyGjpf6A9A3eGZucK6xF5F4Y17LQT2vYSol7tZoR2oT2S9Wu0mz3A2BupXRl5inkA6TJJmGqhwxxT19rTw==",
   "success": true,
   "projectFilePath": "C:\\Users\\nattt\\project\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\nattt\\.nuget\\packages\\exceldatareader.dataset\\3.4.0\\exceldatareader.dataset.3.4.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\htmlagilitypack\\1.8.4\\htmlagilitypack.1.8.4.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\jetbrains.annotations\\11.1.0\\jetbrains.annotations.11.1.0.nupkg.sha512",
+    "C:\\Users\\nattt\\.nuget\\packages\\lumenworkscsvreader\\4.0.0\\lumenworkscsvreader.4.0.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\2.0.0\\microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\nattt\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",

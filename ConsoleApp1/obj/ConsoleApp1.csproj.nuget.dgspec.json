@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[3.4.0, )"
             },
+            "LumenWorksCsvReader": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",

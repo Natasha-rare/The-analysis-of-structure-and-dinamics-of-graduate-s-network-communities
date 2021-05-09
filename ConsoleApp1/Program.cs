@@ -14,6 +14,9 @@ using VkNet.Model.RequestParams;
 using Excel = Microsoft.Office.Interop.Excel;
 using OpenQA.Selenium.IE;
 using System.Text.RegularExpressions;
+using LumenWorks.Framework.IO.Csv;
+using System.Data;
+using System.IO;
 
 namespace ConsoleApp1
 {
@@ -23,7 +26,9 @@ namespace ConsoleApp1
         {
             db a = new db("12345");
             a.connect();
-            a.add_from_inst_group();
+            
+            a.Inst_Add();
+            //a.add_from_inst_group();
             Console.WriteLine("Working");
         }
 
@@ -467,308 +472,373 @@ namespace ConsoleApp1
                 public string Inst_name { get; set; }
                 [JsonProperty("Inst_id")]
                 public string Inst_id { get; set; }
-            }
-            class db
-            {
-                GraphClient client;
-                Dictionary<string, string> full_list;
+                [JsonProperty("Inst_nick")]
+                public string Inst_nick { get; set; }
+        }
+        class db
+        {
+            GraphClient client;
+            Dictionary<string, string> full_list;
             string currentWindow;
-                public db(string password)
-                {
-                    client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "12345");
-                    full_list = new Dictionary<string, string>();
+            public db(string password)
+            {
+                client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "12345");
+                full_list = new Dictionary<string, string>();
 
+            }
+            public void connect()
+            {
+                try
+                {
+                    client.Connect();
+                    Console.WriteLine("Connected");
                 }
-                public void connect()
+                catch (Exception error)
                 {
-                    try
-                    {
-                        client.Connect();
-                        Console.WriteLine("Connected");
-                    }
-                    catch (Exception error)
-                    {
-                        Console.WriteLine(error);
-                    }
+                    Console.WriteLine(error);
                 }
-                public void stop()
-                {
+            }
+            public void stop()
+            {
 
+            }
+            public void Inst_Add()
+            {
+                string id, nickname, name;
+                var csvTable = new DataTable();
+                using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"C:\Users\nattt\project\All_users_lit1533_official_20210509_1000.csv")), true))
+                {
+                    csvTable.Load(csvReader);
                 }
-                public void IT_Clan()
-
+                add_list("INST");
+                for (int i = 0; i < csvTable.Rows.Count; i++)
                 {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    string pathToFile = @"C:\Users\nattt\Documents\IT.xlsx";
-                    Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-                    //Открываем книгу.                                                                                                                                                        
-                    Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                    //Выбираем таблицу(лист).
-                    Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
-
-                    // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-                    int numCol = 1;
-                    Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
-                    System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
-                    string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
-
-                    ObjExcel.Quit();
-                    foreach (Person x in people)
+                    id = csvTable.Rows[i][0].ToString();
+                    nickname = csvTable.Rows[i][1].ToString();
+                    name = csvTable.Rows[i][2].ToString();
+                    if (name == "" || name == null) continue;
+                    var people = client.Cypher.Match("(per:Person)")
+            .Where((Person per) => per.Inst_name == name).Return(per => per.As<Person>()).Results;
+                    if (people.Count() == 0)
                     {
-                        for (int i = 0; i < 73; i++)
+                        var people2 = client.Cypher.Match("(per:Person)")
+.Where((Person per) => per.Inst_id == id).Return(per => per.As<Person>()).Results;
+                        if (people2.Count() == 0)
                         {
-                            if (x.Name == strArray[i])
-                                client.Cypher.Match("(per:Person)")
-                                   .Where((Person per) => per.Name == x.Name).Set("per.Clan = {IT}").WithParam("IT", x.Clan).ExecuteWithoutResultsAsync()
-                                   .Wait();
-                        }
-                    }
-                }
-                public void Media_Clan()
-
-                {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    string pathToFile = @"C:\Users\nattt\Documents\Media.xlsx";
-                    Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-                //Открываем книгу.                 
-                Console.WriteLine("Opened");
-                    Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                    //Выбираем таблицу(лист).
-                    Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                
-                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
-                Console.WriteLine(ObjWorkSheet);
-                // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-                int numCol = 1;
-                    Console.WriteLine(ObjWorkSheet.UsedRange.Columns.Count);
-                    Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
-                    System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
-                    string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
-
-                    ObjExcel.Quit();
-                    foreach (Person x in people)
-                    {
-                        for (int i = 0; i < 70; i++)
-                        {
-                            if (x.Name == strArray[i])
-                                client.Cypher.Match("(per:Person)")
-                                   .Where((Person per) => per.Name == x.Name).Set("per.Clan = {Media}").WithParam("Media", x.Clan).ExecuteWithoutResultsAsync()
-                                   .Wait();
-                        }
-                    }
-                }
-                public void Research_Clan()
-
-                {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    string pathToFile = @"C:\Users\nattt\Documents\Research.xlsx";
-                    Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-                    //Открываем книгу.                                                                                                                                                        
-                    Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                    //Выбираем таблицу(лист).
-                    Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
-
-                    // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-                    int numCol = 1;
-                    Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
-                    System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
-                    string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
-
-                    ObjExcel.Quit();
-                    foreach (Person x in people)
-                    {
-                        for (int i = 0; i < 67; i++)
-                        {
-                            if (x.Name == strArray[i])
-                                client.Cypher.Match("(per:Person)")
-                                   .Where((Person per) => per.Name == x.Name).Set("per.Clan = {Research}").WithParam("Research", x.Clan).ExecuteWithoutResultsAsync()
-                                   .Wait();
-                        }
-                    }
-                }
-                public void get_vk_id()
-                {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Vk_name != "0").Return(per => per.As<Person>()).Results;
-                    foreach (Person x in people)
-                    {
-                        int num;
-                        if (!(int.TryParse(x.Vk_id, out num)))
-                        {
-                            vk_parser a = new vk_parser(x.Vk_id, x.Vk_name, x.Name);
-                            a.get_ids();
-                            x.Vk_id = a.Id;
-                            client.Cypher.Match("(per:Person)")
-                                    .Where((Person per) => per.Name == x.Name).Set("per.Vk_id = {Vk_id}").WithParam("Vk_id", x.Vk_id).ExecuteWithoutResultsAsync()
-                                    .Wait();
-                        }
-                    }
-                }
-                public void from_vk_group(string graduation_year)
-                {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Graduation.ToString() == graduation_year).Return(per => per.As<Person>()).Results;
-                    //var first = people.First();
-                    foreach (Person x in people)
-                    {
-                        if (x.Vk_id == "0" || x.Vk_id == null || x.Vk_id == "")
-                        {
-                            string name = x.First_name + " " + x.Current_surname;
-                            vk_parser tmp = new vk_parser(name);
-                            tmp.get_from_group();
-                            x.Vk_id = tmp.Id;
-                            x.Vk_name = tmp.Vk_name;
-                            client.Cypher.Match("(per:Person)")
-                                  .Where((Person per) => per.Name == x.Name).Set("per.Vk_name = {Vk_name}").WithParam("Vk_name", x.Vk_name).ExecuteWithoutResultsAsync()
-                                  .Wait();
-                            client.Cypher.Match("(per:Person)")
-                                  .Where((Person per) => per.Name == x.Name).Set("per.Vk_id = {Vk_id}").WithParam("Vk_id", x.Vk_id).ExecuteWithoutResultsAsync()
-                                  .Wait();
-                        }
-                    }
-
-                }
-
-                public void fb_friends_match()
-                {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    foreach (Person x in people)
-                    {
-                        if (x.Fb_id != "0")
-                        {
-                            friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
-                            a.Friends_Searh_two();
-                        }
-                    }
-                }
-                public void vk_friends_match()
-                {
-                    vk_parser.vk_api(client);
-                }
-                public void friend_into_txt()
-                {
-                    string line = "";
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    string[] lines = new string[25];
-                    for (int i = 1993; i <= 2017; i++)
-                    {
-                        line = "";
-                        line += i.ToString() + ": ";
-                        foreach (Person x in people)
-                        {
-                            if (x.Graduation == i.ToString())
+                            string name2 = Change_of_View.change(name);
+                            if (name2 == "") continue;
+                            name2 = Change_of_View.reverse(name2);
+                            if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2))
                             {
-                                line += x.Name + ", ";
-                                var number = client.Cypher.OptionalMatch("(person:Person)-[FB_FRIENDS]-(friend:Person)").Where((Person person) => person.Name == x.Name).Return((person, friend) => new { number = friend.Count() }).Results;
-                                long number1 = 0;
-                                foreach (var x1 in number)
-                                {
-                                    number1 = x1.number;
-                                }
-                                line += number1.ToString() + "; ";
-                            }
-                        }
-                        lines[i - 1993] = line;
-                    }
-                    System.IO.File.WriteAllLines(@"text4.txt", lines);
-                }
-                public void separate_names()
-                {
-                    var people = client.Cypher.Match("(per:Person)").Return(per => per.As<Person>()).Results;
-                    foreach (Person x in people)
-                    {
-                        string full_name = x.Name;
-                        if (full_name != "0" && full_name != null)
-                        {
-                            string current_surname, lyceum_surname, name, otchestvo;
-                            int index2;
-                            if (full_name.Contains("("))
-                            {
-                                int index1 = full_name.IndexOf("(");
-                                index2 = full_name.IndexOf(")");
-                                current_surname = full_name.Substring(index1 + 1, index2 - index1 - 1);
-                                lyceum_surname = full_name.Substring(0, index1 - 1);
-                                index2 += 1;
+                                string p_name = full_list[name2];
+                                Console.WriteLine(full_list[name2]);
+                                var person = client.Cypher.Match("(per:Person)")
+                                .Where((Person per) => per.Name == p_name).Return(per => per.As<Person>()).Results;
+                                client.Cypher.Match("(per:Person)")
+                                .Where((Person per) => per.Name == p_name)
+                                .Set("per.Inst_name = {name}").WithParam("name", name).ExecuteWithoutResults();
+                                client.Cypher.Match("(per:Person)")
+        .Where((Person per) => per.Name == p_name).Set("per.Inst_id = {id}").WithParam("id", id).ExecuteWithoutResults();
+                                client.Cypher.Match("(per:Person)").Where((Person per) => per.Name == p_name)
+                                .Set("per.Inst_nick = {nick}").WithParam("nick", nickname).ExecuteWithoutResults();
+
+                                Console.WriteLine("+" + name2);
                             }
                             else
                             {
-                                int index1 = full_name.IndexOf(" ");
-                                index2 = index1;
-
-
-                                current_surname = full_name.Substring(0, index1);
-                                lyceum_surname = current_surname;
+                                /* Person person = new Person { Name = "0", Fb_name = name, Graduation = "0", Project = "0", Fb_id = id, Group = "0" };
+                                 client.Cypher.Create("(per:Person {person})").WithParam("person", person).ExecuteWithoutResults();*/
+                                Console.WriteLine("-" + name2);
+                                Console.WriteLine("new was created");
                             }
-                            int index = full_name.IndexOf(" ", index2 + 1);
-                            if (index == -1) index = full_name.Length;
-                            name = full_name.Substring(index2 + 1, index - index2 - 1);
-                            if (index + 1 < full_name.Length)
-                            {
-                                otchestvo = full_name.Substring(index + 1, full_name.Length - index - 1);
 
-                            }
-                            else otchestvo = "0";
-                            client.Cypher.Match("(per:Person)")
-                                  .Where((Person per) => per.Name == full_name).Set("per.Current_surname = {cur_sur}").WithParam("cur_sur", current_surname).ExecuteWithoutResultsAsync();
-                            client.Cypher.Match("(per:Person)")
-                                  .Where((Person per) => per.Name == full_name).Set("per.Lyceum_surname= {lyc_sur}").WithParam("lyc_sur", lyceum_surname).ExecuteWithoutResultsAsync();
-                            client.Cypher.Match("(per:Person)")
-                               .Where((Person per) => per.Name == full_name).Set("per.First_name = {nam}").WithParam("nam", name).ExecuteWithoutResultsAsync();
-                            client.Cypher.Match("(per:Person)")
-                                  .Where((Person per) => per.Name == full_name).Set("per.patronym = {patronym}").WithParam("patronym", otchestvo).ExecuteWithoutResultsAsync();
+                            /*var people1 = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
+                            foreach (Person x in people1) add_work(x);*/
                         }
+                        else { }
+                    }
+                    else
+                    {
+                        friends_searcher_inst fr_search = new friends_searcher_inst(nickname, client);
+                        fr_search.Friends_Searh_two();
+                    }
+                    /* catch (Exception e) { Console.WriteLine(e); continue; }*/
+                }
+                Console.WriteLine(csvTable.Rows[1][0].ToString());
+                //
+            }
+            public void IT_Clan()
+
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                string pathToFile = @"C:\Users\nattt\Documents\IT.xlsx";
+                Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+                //Открываем книгу.                                                                                                                                                        
+                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                //Выбираем таблицу(лист).
+                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+                ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+
+                // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
+                int numCol = 1;
+                Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
+                System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
+                string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+
+                ObjExcel.Quit();
+                foreach (Person x in people)
+                {
+                    for (int i = 0; i < 73; i++)
+                    {
+                        if (x.Name == strArray[i])
+                            client.Cypher.Match("(per:Person)")
+                               .Where((Person per) => per.Name == x.Name).Set("per.Clan = {IT}").WithParam("IT", x.Clan).ExecuteWithoutResultsAsync()
+                               .Wait();
                     }
                 }
-                public void add_works_for_new()
+            }
+            public void Media_Clan()
+
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                string pathToFile = @"C:\Users\nattt\Documents\Media.xlsx";
+                Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+                //Открываем книгу.                 
+                Console.WriteLine("Opened");
+                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                //Выбираем таблицу(лист).
+                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+
+                ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+                Console.WriteLine(ObjWorkSheet);
+                // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
+                int numCol = 1;
+                Console.WriteLine(ObjWorkSheet.UsedRange.Columns.Count);
+                Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
+                System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
+                string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+
+                ObjExcel.Quit();
+                foreach (Person x in people)
                 {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    foreach (Person x in people)
+                    for (int i = 0; i < 70; i++)
                     {
-                        add_work(x);
+                        if (x.Name == strArray[i])
+                            client.Cypher.Match("(per:Person)")
+                               .Where((Person per) => per.Name == x.Name).Set("per.Clan = {Media}").WithParam("Media", x.Clan).ExecuteWithoutResultsAsync()
+                               .Wait();
                     }
                 }
-                public void add_work(Person x)
+            }
+            public void Research_Clan()
+
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                string pathToFile = @"C:\Users\nattt\Documents\Research.xlsx";
+                Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+                //Открываем книгу.                                                                                                                                                        
+                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                //Выбираем таблицу(лист).
+                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+                ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+
+                // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
+                int numCol = 1;
+                Microsoft.Office.Interop.Excel.Range usedColumn = (Excel.Range)ObjWorkSheet.UsedRange.Columns[numCol];
+                System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
+                string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+
+                ObjExcel.Quit();
+                foreach (Person x in people)
                 {
-                    if (x.Education.Count() == 0) x.Education.Add("0");
-                    if (x.Occupation.Count() == 0) x.Occupation.Add("0");
-                    if (x.Position.Count() == 0) x.Position.Add("0");
-                    if (x.FieldOfEducation.Count() == 0) x.FieldOfEducation.Add("0");
-                    if ((x.Education[0] == "0") && (x.Position[0] == "0") && (x.Occupation[0] == "0") && (x.FieldOfEducation[0] == "0"))
+                    for (int i = 0; i < 67; i++)
                     {
-                        facebook_parser a = new facebook_parser(x.Fb_id.ToString());
-                        a.Page_load();
+                        if (x.Name == strArray[i])
+                            client.Cypher.Match("(per:Person)")
+                               .Where((Person per) => per.Name == x.Name).Set("per.Clan = {Research}").WithParam("Research", x.Clan).ExecuteWithoutResultsAsync()
+                               .Wait();
+                    }
+                }
+            }
+            public void get_vk_id()
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Vk_name != "0").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
+                {
+                    int num;
+                    if (!(int.TryParse(x.Vk_id, out num)))
+                    {
+                        vk_parser a = new vk_parser(x.Vk_id, x.Vk_name, x.Name);
+                        a.get_ids();
+                        x.Vk_id = a.Id;
                         client.Cypher.Match("(per:Person)")
-                              .Where((Person per) => per.Name == x.Name).Set("per.Occupation = {Occupation}").WithParam("Occupation", a.Occupation).ExecuteWithoutResultsAsync();
+                                .Where((Person per) => per.Name == x.Name).Set("per.Vk_id = {Vk_id}").WithParam("Vk_id", x.Vk_id).ExecuteWithoutResultsAsync()
+                                .Wait();
+                    }
+                }
+            }
+            public void from_vk_group(string graduation_year)
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Graduation.ToString() == graduation_year).Return(per => per.As<Person>()).Results;
+                //var first = people.First();
+                foreach (Person x in people)
+                {
+                    if (x.Vk_id == "0" || x.Vk_id == null || x.Vk_id == "")
+                    {
+                        string name = x.First_name + " " + x.Current_surname;
+                        vk_parser tmp = new vk_parser(name);
+                        tmp.get_from_group();
+                        x.Vk_id = tmp.Id;
+                        x.Vk_name = tmp.Vk_name;
                         client.Cypher.Match("(per:Person)")
-                              .Where((Person per) => per.Name == x.Name).Set("per.Position = {Position}").WithParam("Position", a.Position).ExecuteWithoutResultsAsync();
+                              .Where((Person per) => per.Name == x.Name).Set("per.Vk_name = {Vk_name}").WithParam("Vk_name", x.Vk_name).ExecuteWithoutResultsAsync()
+                              .Wait();
                         client.Cypher.Match("(per:Person)")
-                              .Where((Person per) => per.Name == x.Name).Set("per.Education = {Education}").WithParam("Education", a.Education).ExecuteWithoutResultsAsync();
-                        client.Cypher.Match("(per:Person)")
-                              .Where((Person per) => per.Name == x.Name).Set("per.FieldOfEducation = {FieldOfEducation}").WithParam("FieldOfEducation", a.FieldOfEducation).ExecuteWithoutResultsAsync();
+                              .Where((Person per) => per.Name == x.Name).Set("per.Vk_id = {Vk_id}").WithParam("Vk_id", x.Vk_id).ExecuteWithoutResultsAsync()
+                              .Wait();
                     }
                 }
 
-                public void add_fb_id()
+            }
+
+            public void fb_friends_match()
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
                 {
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == "0").Return(per => per.As<Person>()).Results;
+                    if (x.Fb_id != "0")
+                    {
+                        friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
+                        a.Friends_Searh_two();
+                    }
+                }
+            }
+
+            public void vk_friends_match()
+            {
+                vk_parser.vk_api(client);
+            }
+            public void friend_into_txt()
+            {
+                string line = "";
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                string[] lines = new string[25];
+                for (int i = 1993; i <= 2017; i++)
+                {
+                    line = "";
+                    line += i.ToString() + ": ";
                     foreach (Person x in people)
                     {
-                        if (x.Fb_name != "0")
+                        if (x.Graduation == i.ToString())
                         {
-                            string id = refresher.return_id(x.Fb_name);
-                            client.Cypher.Match("(per:Person)")
-            .Where((Person per) => per.Name == x.Name).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync();
-                            friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
-                            a.Friends_Searh_two();
-                            add_work(x);
-
+                            line += x.Name + ", ";
+                            var number = client.Cypher.OptionalMatch("(person:Person)-[FB_FRIENDS]-(friend:Person)").Where((Person person) => person.Name == x.Name).Return((person, friend) => new { number = friend.Count() }).Results;
+                            long number1 = 0;
+                            foreach (var x1 in number)
+                            {
+                                number1 = x1.number;
+                            }
+                            line += number1.ToString() + "; ";
                         }
                     }
-                    //separate_names();
+                    lines[i - 1993] = line;
                 }
+                System.IO.File.WriteAllLines(@"text4.txt", lines);
+            }
+            public void separate_names()
+            {
+                var people = client.Cypher.Match("(per:Person)").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
+                {
+                    string full_name = x.Name;
+                    if (full_name != "0" && full_name != null)
+                    {
+                        string current_surname, lyceum_surname, name, otchestvo;
+                        int index2;
+                        if (full_name.Contains("("))
+                        {
+                            int index1 = full_name.IndexOf("(");
+                            index2 = full_name.IndexOf(")");
+                            current_surname = full_name.Substring(index1 + 1, index2 - index1 - 1);
+                            lyceum_surname = full_name.Substring(0, index1 - 1);
+                            index2 += 1;
+                        }
+                        else
+                        {
+                            int index1 = full_name.IndexOf(" ");
+                            index2 = index1;
 
-               
 
+                            current_surname = full_name.Substring(0, index1);
+                            lyceum_surname = current_surname;
+                        }
+                        int index = full_name.IndexOf(" ", index2 + 1);
+                        if (index == -1) index = full_name.Length;
+                        name = full_name.Substring(index2 + 1, index - index2 - 1);
+                        if (index + 1 < full_name.Length)
+                        {
+                            otchestvo = full_name.Substring(index + 1, full_name.Length - index - 1);
+
+                        }
+                        else otchestvo = "0";
+                        client.Cypher.Match("(per:Person)")
+                              .Where((Person per) => per.Name == full_name).Set("per.Current_surname = {cur_sur}").WithParam("cur_sur", current_surname).ExecuteWithoutResultsAsync();
+                        client.Cypher.Match("(per:Person)")
+                              .Where((Person per) => per.Name == full_name).Set("per.Lyceum_surname= {lyc_sur}").WithParam("lyc_sur", lyceum_surname).ExecuteWithoutResultsAsync();
+                        client.Cypher.Match("(per:Person)")
+                           .Where((Person per) => per.Name == full_name).Set("per.First_name = {nam}").WithParam("nam", name).ExecuteWithoutResultsAsync();
+                        client.Cypher.Match("(per:Person)")
+                              .Where((Person per) => per.Name == full_name).Set("per.patronym = {patronym}").WithParam("patronym", otchestvo).ExecuteWithoutResultsAsync();
+                    }
+                }
+            }
+            public void add_works_for_new()
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
+                {
+                    add_work(x);
+                }
+            }
+            public void add_work(Person x)
+            {
+                if (x.Education.Count() == 0) x.Education.Add("0");
+                if (x.Occupation.Count() == 0) x.Occupation.Add("0");
+                if (x.Position.Count() == 0) x.Position.Add("0");
+                if (x.FieldOfEducation.Count() == 0) x.FieldOfEducation.Add("0");
+                if ((x.Education[0] == "0") && (x.Position[0] == "0") && (x.Occupation[0] == "0") && (x.FieldOfEducation[0] == "0"))
+                {
+                    facebook_parser a = new facebook_parser(x.Fb_id.ToString());
+                    a.Page_load();
+                    client.Cypher.Match("(per:Person)")
+                          .Where((Person per) => per.Name == x.Name).Set("per.Occupation = {Occupation}").WithParam("Occupation", a.Occupation).ExecuteWithoutResultsAsync();
+                    client.Cypher.Match("(per:Person)")
+                          .Where((Person per) => per.Name == x.Name).Set("per.Position = {Position}").WithParam("Position", a.Position).ExecuteWithoutResultsAsync();
+                    client.Cypher.Match("(per:Person)")
+                          .Where((Person per) => per.Name == x.Name).Set("per.Education = {Education}").WithParam("Education", a.Education).ExecuteWithoutResultsAsync();
+                    client.Cypher.Match("(per:Person)")
+                          .Where((Person per) => per.Name == x.Name).Set("per.FieldOfEducation = {FieldOfEducation}").WithParam("FieldOfEducation", a.FieldOfEducation).ExecuteWithoutResultsAsync();
+                }
+            }
+
+            public void add_fb_id()
+            {
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == "0").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
+                {
+                    if (x.Fb_name != "0")
+                    {
+                        string id = refresher.return_id(x.Fb_name);
+                        client.Cypher.Match("(per:Person)")
+        .Where((Person per) => per.Name == x.Name).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync();
+                        friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
+                        a.Friends_Searh_two();
+                        add_work(x);
+
+                    }
+                }
+                //separate_names();
+            }
                 public void add_list(string flag)
                 {
                     IEnumerable<Person> people;
@@ -809,10 +879,17 @@ namespace ConsoleApp1
                 //PZuss
             }
 
-            public string inst_name_by_id(string link)
+            public string inst_name_by_id(string link, IJavaScriptExecutor js)
             {
-                inst_parser.driver.SwitchTo().Window(link);
+                //inst_parser.driver.Navigate().GoToUrl(link);
+                var windowHandles = inst_parser.driver.WindowHandles;
+                js.ExecuteScript(string.Format("window.open('{0}', '_blank');", link));
+                var newWindowHandles = inst_parser.driver.WindowHandles;
+                var openedWindowHandle = newWindowHandles.Except(windowHandles).Single();
+                inst_parser.driver.SwitchTo().Window(openedWindowHandle);
+                //inst_parser.driver.SwitchTo().Window(link);
                 string name = inst_parser.driver.FindElement(By.CssSelector("h1")).Text;
+                //inst_parser.driver.Navigate().GoToUrl("https://www.instagram.com/lit1533_official/followers/");
                 inst_parser.driver.SwitchTo().Window(currentWindow);
                 return name;
             }
@@ -820,7 +897,6 @@ namespace ConsoleApp1
             public void add_from_inst_group()
             {
                 inst_parser.driver.Navigate().GoToUrl("https://www.instagram.com/lit1533_official/followers/");
-                currentWindow = inst_parser.driver.CurrentWindowHandle;
                 Thread.Sleep(600);
                 Console.WriteLine("Inst_work");
                 inst_parser.driver.FindElement(By.CssSelector("a.-nal3")).Click();
@@ -834,6 +910,7 @@ namespace ConsoleApp1
                 int count = 0;
                 do
                 {
+                    currentWindow = inst_parser.driver.CurrentWindowHandle;
                     for (int i = count; i < index.Count(); i ++)
                     {
                         var t = index[i].FindElements(By.TagName("a"));
@@ -842,7 +919,9 @@ namespace ConsoleApp1
                             var student1 = index[i].FindElements(By.TagName("a"))[0];
                             string link = student1.GetAttribute("href");
                             string id = link.Split('/')[3];
-                            string name = inst_name_by_id(link);
+                            string name = index[i].FindElement(By.CssSelector("div._7UhW9.xLCgt.MMzan._0PwGv.fDxYl")).Text;
+                                //.FindElements(By.TagName("div"))[1].FindElements(By.TagName("div"))[0].GetAttribute("aria-label");
+                            string n2 = index[i].FindElement(By.CssSelector("div._7UhW9.xLCgt.MMzan._0PwGv.fDxYl")).Text;
                             if (name == null) continue;
                             Console.WriteLine(name);
 
@@ -896,7 +975,7 @@ namespace ConsoleApp1
                         { Console.WriteLine(e); continue; }
                     }
                     count = index.Count() - 1;
-                    js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                    js.ExecuteScript("arguments[0].scrollTop += 200", elements);
                     index = elements.FindElements(By.CssSelector("li"));
                 } while (index != null);
             }
@@ -981,7 +1060,79 @@ namespace ConsoleApp1
                 } while (student != null);
             }
                 
+         }
+
+        class friends_searcher_inst
+        {
+            private List<string> friends = new List<string>();
+            private string URL_friends, page_Source, filename;
+            GraphClient client;
+            static IWebDriver driver;
+            string id;
+            public friends_searcher_inst(string id, GraphClient client)
+            {
+                this.client = client;
+                URL_friends = "https://www.instagram.com/" + id + "/followers";
+                this.id = id;
             }
+            public List<string> Friends
+            {
+                get { return friends; }
+            }
+            static friends_searcher_inst()
+            {
+                string login = "recipef1nder";
+                string password = "BestTeamver2020";
+                ChromeOptions options = new ChromeOptions();
+                options.PageLoadStrategy = PageLoadStrategy.Eager;
+                options.AddArguments("--disable-notifications");
+                driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver", options);
+                driver.Navigate().GoToUrl("https://www.instagram.com/");
+                driver.FindElement(By.Name("username")).SendKeys(login);
+                driver.FindElement(By.Name("password")).SendKeys(password);
+                driver.FindElement(By.CssSelector("button.sqdOP.L3NKy.y3zKF")).Click();
+                Thread.Sleep(1000);
+                driver.Navigate().GoToUrl("https://www.instagram.com/");
+            }
+            public int Friends_Searh_two()
+            {
+                Thread.Sleep(100);
+                driver.Navigate().GoToUrl(URL_friends);
+                try { driver.FindElement(By.CssSelector("a.-nal3")).Click(); }
+                catch { return 0; }
+                
+                Thread.Sleep(1000);
+                var elements = driver.FindElements(By.CssSelector("div.wFPL8"));
+                List<string> nicknames = new List<string>();
+                for (int i = 0; i < elements.Count(); i++)
+                {
+                    if (elements[i].Text != "") nicknames.Add(elements[i].Text);
+                }
+                page_Source = driver.PageSource;
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Inst_name != "").Return(per => per.As<Person>()).Results;
+                foreach (Person x in people)
+                {
+                    if ((nicknames.Contains(x.Inst_nick)) && (x.Inst_nick != id) && (x.Inst_name != ""))
+                    {
+                        try
+                        {
+                            var query = client.Cypher
+            .Match("(friend1:Person)", "(friend2:Person)")
+            .Where((Person friend1) => friend1.Inst_nick == id)
+            .AndWhere((Person friend2) => friend2.Inst_nick == x.Inst_nick)
+            .CreateUnique("(friend1)-[:INST_FRIENDS]->(friend2)");
+                            query.ExecuteWithoutResults();
+                            Console.WriteLine("cool");
+                        }
+                        catch (Exception error)
+                        {
+                            Console.WriteLine(error);
+                        }
+                    }
+                }
+                return 1;
+            }
+        }
 
             class refresher
             {
@@ -1073,7 +1224,7 @@ namespace ConsoleApp1
                 {
                     // Thread.Sleep(10);
                     driver.Navigate().GoToUrl(URL_friends);
-                    page_Source = driver.PageSource; // change!!!!
+                    page_Source = driver.PageSource;
                     var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
                     foreach (Person x in people)
                     {
