@@ -42,6 +42,11 @@ namespace SchoolProject
             this.DialogResult = DialogResult.OK;
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public LoginForm()
         {
             InitializeComponent();

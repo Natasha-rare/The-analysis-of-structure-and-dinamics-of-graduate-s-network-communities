@@ -24,3 +24,4 @@ C:\Users\nattt\project\SchoolProject\bin\Debug\System.ValueTuple.xml
 C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.csproj.CopyComplete
 C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.Person_Info.resources
 C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.LoginForm.resources
+C:\Users\nattt\project\SchoolProject\obj\Debug\SchoolProject.RegisterForm.resources

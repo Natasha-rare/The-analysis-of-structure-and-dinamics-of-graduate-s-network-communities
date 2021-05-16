@@ -143,13 +143,17 @@ namespace SchoolProject
             this.query_l = new System.Windows.Forms.Label();
             this.info_txt = new System.Windows.Forms.RichTextBox();
             this.close_info = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.login_main_btn = new System.Windows.Forms.Button();
+            this.register_main_btn = new System.Windows.Forms.Button();
+            this.login_lbl = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 50);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.graduation,
@@ -159,7 +163,7 @@ namespace SchoolProject
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(1118, 37);
+            this.menuStrip1.Size = new System.Drawing.Size(1118, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -173,6 +177,7 @@ namespace SchoolProject
             this.graduation.Name = "graduation";
             this.graduation.Size = new System.Drawing.Size(179, 37);
             this.graduation.Text = "Graduation";
+            this.graduation.Visible = false;
             this.graduation.Click += new System.EventHandler(this.graduation_Click);
             // 
             // first
@@ -424,6 +429,7 @@ namespace SchoolProject
             this.HobbyToolStripMenuItem.Name = "HobbyToolStripMenuItem";
             this.HobbyToolStripMenuItem.Size = new System.Drawing.Size(117, 37);
             this.HobbyToolStripMenuItem.Text = "Hobby";
+            this.HobbyToolStripMenuItem.Visible = false;
             // 
             // альпинизмToolStripMenuItem
             // 
@@ -619,6 +625,7 @@ namespace SchoolProject
             this.educationToolStripMenuItem.Name = "educationToolStripMenuItem";
             this.educationToolStripMenuItem.Size = new System.Drawing.Size(164, 37);
             this.educationToolStripMenuItem.Text = "Education";
+            this.educationToolStripMenuItem.Visible = false;
             this.educationToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.educationToolStripMenuItem_DropDownItemClicked);
             // 
             // toolStripMenuItem32
@@ -759,6 +766,7 @@ namespace SchoolProject
             this.clanToolStripMenuItem.Name = "clanToolStripMenuItem";
             this.clanToolStripMenuItem.Size = new System.Drawing.Size(95, 37);
             this.clanToolStripMenuItem.Text = "Clan";
+            this.clanToolStripMenuItem.Visible = false;
             this.clanToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.clanToolStripMenuItem_DropDownItemClicked);
             // 
             // mediaToolStripMenuItem
@@ -900,6 +908,7 @@ namespace SchoolProject
             this.search.TabIndex = 1;
             this.search.Text = "🔍";
             this.search.UseVisualStyleBackColor = false;
+            this.search.Visible = false;
             this.search.Click += new System.EventHandler(this.search_Click);
             // 
             // reload
@@ -915,6 +924,7 @@ namespace SchoolProject
             this.reload.TabIndex = 1;
             this.reload.Text = "🔃";
             this.reload.UseVisualStyleBackColor = false;
+            this.reload.Visible = false;
             // 
             // clear
             // 
@@ -929,6 +939,7 @@ namespace SchoolProject
             this.clear.TabIndex = 1;
             this.clear.Text = "☒";
             this.clear.UseVisualStyleBackColor = false;
+            this.clear.Visible = false;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // share
@@ -966,7 +977,7 @@ namespace SchoolProject
             this.fb_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.fb_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fb_l.ForeColor = System.Drawing.Color.Blue;
-            this.fb_l.Location = new System.Drawing.Point(0, 37);
+            this.fb_l.Location = new System.Drawing.Point(0, 24);
             this.fb_l.Name = "fb_l";
             this.fb_l.Size = new System.Drawing.Size(179, 27);
             this.fb_l.TabIndex = 4;
@@ -976,10 +987,11 @@ namespace SchoolProject
             // vk_l
             // 
             this.vk_l.AutoSize = true;
+            this.vk_l.BackColor = System.Drawing.SystemColors.Control;
             this.vk_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.vk_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vk_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vk_l.Location = new System.Drawing.Point(179, 37);
+            this.vk_l.ForeColor = System.Drawing.Color.Red;
+            this.vk_l.Location = new System.Drawing.Point(179, 24);
             this.vk_l.Name = "vk_l";
             this.vk_l.Size = new System.Drawing.Size(179, 27);
             this.vk_l.TabIndex = 5;
@@ -1000,6 +1012,7 @@ namespace SchoolProject
             this.infobttn.TabIndex = 6;
             this.infobttn.Text = "i";
             this.infobttn.UseVisualStyleBackColor = false;
+            this.infobttn.Visible = false;
             this.infobttn.Click += new System.EventHandler(this.infobttn_Click);
             // 
             // query_l
@@ -1008,7 +1021,7 @@ namespace SchoolProject
             this.query_l.Dock = System.Windows.Forms.DockStyle.Left;
             this.query_l.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.query_l.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.query_l.Location = new System.Drawing.Point(358, 37);
+            this.query_l.Location = new System.Drawing.Point(358, 24);
             this.query_l.Name = "query_l";
             this.query_l.Size = new System.Drawing.Size(97, 27);
             this.query_l.TabIndex = 6;
@@ -1041,14 +1054,75 @@ namespace SchoolProject
             this.close_info.Visible = false;
             this.close_info.Click += new System.EventHandler(this.close_info_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(310, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(509, 59);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Добро пожаловать!";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 13.875F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(118, 218);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(881, 45);
+            this.label2.TabIndex = 11;
+            this.label2.Text = " Для начала войдите или зарегистрируйтесь";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // login_main_btn
+            // 
+            this.login_main_btn.BackColor = System.Drawing.Color.PeachPuff;
+            this.login_main_btn.Font = new System.Drawing.Font("Verdana", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_main_btn.Location = new System.Drawing.Point(462, 316);
+            this.login_main_btn.Name = "login_main_btn";
+            this.login_main_btn.Size = new System.Drawing.Size(221, 79);
+            this.login_main_btn.TabIndex = 12;
+            this.login_main_btn.Text = "Вход";
+            this.login_main_btn.UseVisualStyleBackColor = false;
+            this.login_main_btn.Click += new System.EventHandler(this.login_main_btn_Click);
+            // 
+            // register_main_btn
+            // 
+            this.register_main_btn.BackColor = System.Drawing.Color.Honeydew;
+            this.register_main_btn.Font = new System.Drawing.Font("Verdana", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.register_main_btn.Location = new System.Drawing.Point(462, 463);
+            this.register_main_btn.Name = "register_main_btn";
+            this.register_main_btn.Size = new System.Drawing.Size(221, 79);
+            this.register_main_btn.TabIndex = 13;
+            this.register_main_btn.Text = "Регистрация";
+            this.register_main_btn.UseVisualStyleBackColor = false;
+            this.register_main_btn.Click += new System.EventHandler(this.register_main_btn_Click);
+            // 
+            // login_lbl
+            // 
+            this.login_lbl.AutoSize = true;
+            this.login_lbl.BackColor = System.Drawing.Color.PeachPuff;
+            this.login_lbl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_lbl.Location = new System.Drawing.Point(834, 45);
+            this.login_lbl.Name = "login_lbl";
+            this.login_lbl.Size = new System.Drawing.Size(90, 27);
+            this.login_lbl.TabIndex = 14;
+            this.login_lbl.Text = "Логин: ";
+            this.login_lbl.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1118, 805);
-            this.Controls.Add(this.close_info);
-            this.Controls.Add(this.info_txt);
+            this.Controls.Add(this.login_lbl);
+            this.Controls.Add(this.register_main_btn);
+            this.Controls.Add(this.login_main_btn);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.query_l);
             this.Controls.Add(this.infobttn);
             this.Controls.Add(this.vk_l);
@@ -1059,6 +1133,8 @@ namespace SchoolProject
             this.Controls.Add(this.reload);
             this.Controls.Add(this.search);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.close_info);
+            this.Controls.Add(this.info_txt);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1190,6 +1266,11 @@ namespace SchoolProject
         private System.Windows.Forms.Label query_l;
         private System.Windows.Forms.RichTextBox info_txt;
         private System.Windows.Forms.Button close_info;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button login_main_btn;
+        private System.Windows.Forms.Button register_main_btn;
+        private System.Windows.Forms.Label login_lbl;
     }
 }
 

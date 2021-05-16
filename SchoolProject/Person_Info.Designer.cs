@@ -151,18 +151,18 @@ namespace SchoolProject
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.881433F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.881433F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.881433F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 848);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 998);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // email
             // 
             this.email.BackColor = System.Drawing.Color.White;
             this.email.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.email.Location = new System.Drawing.Point(337, 544);
+            this.email.Location = new System.Drawing.Point(337, 643);
             this.email.Multiline = true;
             this.email.Name = "email";
             this.email.ReadOnly = true;
-            this.email.Size = new System.Drawing.Size(324, 41);
+            this.email.Size = new System.Drawing.Size(324, 50);
             this.email.TabIndex = 44;
             this.email.Text = "-";
             this.email.TextChanged += new System.EventHandler(this.email_TextChanged);
@@ -171,11 +171,11 @@ namespace SchoolProject
             // 
             this.Phone.BackColor = System.Drawing.Color.White;
             this.Phone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Phone.Location = new System.Drawing.Point(337, 495);
+            this.Phone.Location = new System.Drawing.Point(337, 585);
             this.Phone.Multiline = true;
             this.Phone.Name = "Phone";
             this.Phone.ReadOnly = true;
-            this.Phone.Size = new System.Drawing.Size(324, 41);
+            this.Phone.Size = new System.Drawing.Size(324, 50);
             this.Phone.TabIndex = 43;
             this.Phone.Text = "-";
             this.Phone.TextChanged += new System.EventHandler(this.Phone_TextChanged);
@@ -184,11 +184,11 @@ namespace SchoolProject
             // 
             this.Telegram.BackColor = System.Drawing.Color.White;
             this.Telegram.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Telegram.Location = new System.Drawing.Point(337, 446);
+            this.Telegram.Location = new System.Drawing.Point(337, 527);
             this.Telegram.Multiline = true;
             this.Telegram.Name = "Telegram";
             this.Telegram.ReadOnly = true;
-            this.Telegram.Size = new System.Drawing.Size(324, 41);
+            this.Telegram.Size = new System.Drawing.Size(324, 50);
             this.Telegram.TabIndex = 42;
             this.Telegram.Text = "-";
             this.Telegram.TextChanged += new System.EventHandler(this.Telegram_TextChanged);
@@ -197,11 +197,11 @@ namespace SchoolProject
             // 
             this.Inst_name.BackColor = System.Drawing.Color.White;
             this.Inst_name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Inst_name.Location = new System.Drawing.Point(337, 397);
+            this.Inst_name.Location = new System.Drawing.Point(337, 469);
             this.Inst_name.Multiline = true;
             this.Inst_name.Name = "Inst_name";
             this.Inst_name.ReadOnly = true;
-            this.Inst_name.Size = new System.Drawing.Size(324, 41);
+            this.Inst_name.Size = new System.Drawing.Size(324, 50);
             this.Inst_name.TabIndex = 41;
             this.Inst_name.Text = "-";
             this.Inst_name.TextChanged += new System.EventHandler(this.Inst_name_TextChanged);
@@ -210,11 +210,11 @@ namespace SchoolProject
             // 
             this.LinkedIn_name.BackColor = System.Drawing.Color.White;
             this.LinkedIn_name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LinkedIn_name.Location = new System.Drawing.Point(337, 348);
+            this.LinkedIn_name.Location = new System.Drawing.Point(337, 411);
             this.LinkedIn_name.Multiline = true;
             this.LinkedIn_name.Name = "LinkedIn_name";
             this.LinkedIn_name.ReadOnly = true;
-            this.LinkedIn_name.Size = new System.Drawing.Size(324, 41);
+            this.LinkedIn_name.Size = new System.Drawing.Size(324, 50);
             this.LinkedIn_name.TabIndex = 40;
             this.LinkedIn_name.Text = "-";
             this.LinkedIn_name.TextChanged += new System.EventHandler(this.LinkedIn_name_TextChanged);
@@ -224,9 +224,9 @@ namespace SchoolProject
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.LemonChiffon;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(5, 541);
+            this.label15.Location = new System.Drawing.Point(5, 640);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(324, 47);
+            this.label15.Size = new System.Drawing.Size(324, 56);
             this.label15.TabIndex = 39;
             this.label15.Text = "E-mail";
             // 
@@ -235,9 +235,9 @@ namespace SchoolProject
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.LemonChiffon;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(5, 492);
+            this.label13.Location = new System.Drawing.Point(5, 582);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(324, 47);
+            this.label13.Size = new System.Drawing.Size(324, 56);
             this.label13.TabIndex = 38;
             this.label13.Text = "Телефон";
             // 
@@ -246,9 +246,9 @@ namespace SchoolProject
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.LemonChiffon;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(5, 443);
+            this.label11.Location = new System.Drawing.Point(5, 524);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(324, 47);
+            this.label11.Size = new System.Drawing.Size(324, 56);
             this.label11.TabIndex = 37;
             this.label11.Text = "Telegram";
             // 
@@ -257,9 +257,9 @@ namespace SchoolProject
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.LemonChiffon;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(5, 394);
+            this.label10.Location = new System.Drawing.Point(5, 466);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(324, 47);
+            this.label10.Size = new System.Drawing.Size(324, 56);
             this.label10.TabIndex = 36;
             this.label10.Text = "Instagram";
             // 
@@ -271,9 +271,9 @@ namespace SchoolProject
             this.lyceum_studies.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lyceum_studies.Font = new System.Drawing.Font("Calibri", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lyceum_studies.ForeColor = System.Drawing.Color.White;
-            this.lyceum_studies.Location = new System.Drawing.Point(5, 590);
+            this.lyceum_studies.Location = new System.Drawing.Point(5, 698);
             this.lyceum_studies.Name = "lyceum_studies";
-            this.lyceum_studies.Size = new System.Drawing.Size(656, 47);
+            this.lyceum_studies.Size = new System.Drawing.Size(656, 56);
             this.lyceum_studies.TabIndex = 34;
             this.lyceum_studies.Text = "Учеба в лицее";
             // 
@@ -281,12 +281,12 @@ namespace SchoolProject
             // 
             this.Project.BackColor = System.Drawing.Color.White;
             this.Project.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Project.Location = new System.Drawing.Point(337, 740);
+            this.Project.Location = new System.Drawing.Point(337, 875);
             this.Project.Multiline = true;
             this.Project.Name = "Project";
             this.Project.ReadOnly = true;
             this.Project.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Project.Size = new System.Drawing.Size(324, 41);
+            this.Project.Size = new System.Drawing.Size(324, 50);
             this.Project.TabIndex = 31;
             this.Project.Text = "-";
             this.Project.TextChanged += new System.EventHandler(this.Project_TextChanged);
@@ -295,11 +295,11 @@ namespace SchoolProject
             // 
             this.Graduation.BackColor = System.Drawing.Color.White;
             this.Graduation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Graduation.Location = new System.Drawing.Point(337, 691);
+            this.Graduation.Location = new System.Drawing.Point(337, 817);
             this.Graduation.Multiline = true;
             this.Graduation.Name = "Graduation";
             this.Graduation.ReadOnly = true;
-            this.Graduation.Size = new System.Drawing.Size(324, 41);
+            this.Graduation.Size = new System.Drawing.Size(324, 50);
             this.Graduation.TabIndex = 30;
             this.Graduation.Text = "-";
             this.Graduation.TextChanged += new System.EventHandler(this.Graduation_TextChanged);
@@ -308,11 +308,11 @@ namespace SchoolProject
             // 
             this.Group.BackColor = System.Drawing.Color.White;
             this.Group.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Group.Location = new System.Drawing.Point(337, 642);
+            this.Group.Location = new System.Drawing.Point(337, 759);
             this.Group.Multiline = true;
             this.Group.Name = "Group";
             this.Group.ReadOnly = true;
-            this.Group.Size = new System.Drawing.Size(324, 41);
+            this.Group.Size = new System.Drawing.Size(324, 50);
             this.Group.TabIndex = 29;
             this.Group.Text = "-";
             this.Group.TextChanged += new System.EventHandler(this.Group_TextChanged);
@@ -321,11 +321,11 @@ namespace SchoolProject
             // 
             this.Vk_name.BackColor = System.Drawing.Color.White;
             this.Vk_name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Vk_name.Location = new System.Drawing.Point(337, 299);
+            this.Vk_name.Location = new System.Drawing.Point(337, 353);
             this.Vk_name.Multiline = true;
             this.Vk_name.Name = "Vk_name";
             this.Vk_name.ReadOnly = true;
-            this.Vk_name.Size = new System.Drawing.Size(324, 41);
+            this.Vk_name.Size = new System.Drawing.Size(324, 50);
             this.Vk_name.TabIndex = 28;
             this.Vk_name.Text = "-";
             this.Vk_name.TextChanged += new System.EventHandler(this.Vk_name_TextChanged);
@@ -334,11 +334,11 @@ namespace SchoolProject
             // 
             this.Fb_name.BackColor = System.Drawing.Color.White;
             this.Fb_name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Fb_name.Location = new System.Drawing.Point(337, 250);
+            this.Fb_name.Location = new System.Drawing.Point(337, 295);
             this.Fb_name.Multiline = true;
             this.Fb_name.Name = "Fb_name";
             this.Fb_name.ReadOnly = true;
-            this.Fb_name.Size = new System.Drawing.Size(324, 41);
+            this.Fb_name.Size = new System.Drawing.Size(324, 50);
             this.Fb_name.TabIndex = 27;
             this.Fb_name.Text = "-";
             this.Fb_name.TextChanged += new System.EventHandler(this.Fb_name_TextChanged);
@@ -347,11 +347,11 @@ namespace SchoolProject
             // 
             this.patronym.BackColor = System.Drawing.Color.White;
             this.patronym.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patronym.Location = new System.Drawing.Point(337, 152);
+            this.patronym.Location = new System.Drawing.Point(337, 179);
             this.patronym.Multiline = true;
             this.patronym.Name = "patronym";
             this.patronym.ReadOnly = true;
-            this.patronym.Size = new System.Drawing.Size(324, 41);
+            this.patronym.Size = new System.Drawing.Size(324, 50);
             this.patronym.TabIndex = 25;
             this.patronym.Text = "patronym";
             // 
@@ -359,11 +359,11 @@ namespace SchoolProject
             // 
             this.First_name.BackColor = System.Drawing.Color.White;
             this.First_name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.First_name.Location = new System.Drawing.Point(337, 103);
+            this.First_name.Location = new System.Drawing.Point(337, 121);
             this.First_name.Multiline = true;
             this.First_name.Name = "First_name";
             this.First_name.ReadOnly = true;
-            this.First_name.Size = new System.Drawing.Size(324, 41);
+            this.First_name.Size = new System.Drawing.Size(324, 50);
             this.First_name.TabIndex = 24;
             this.First_name.Text = "Name";
             // 
@@ -371,11 +371,11 @@ namespace SchoolProject
             // 
             this.Current_surname.BackColor = System.Drawing.Color.White;
             this.Current_surname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Current_surname.Location = new System.Drawing.Point(337, 54);
+            this.Current_surname.Location = new System.Drawing.Point(337, 63);
             this.Current_surname.Multiline = true;
             this.Current_surname.Name = "Current_surname";
             this.Current_surname.ReadOnly = true;
-            this.Current_surname.Size = new System.Drawing.Size(324, 41);
+            this.Current_surname.Size = new System.Drawing.Size(324, 50);
             this.Current_surname.TabIndex = 23;
             this.Current_surname.Text = "Current_surname";
             this.Current_surname.TextChanged += new System.EventHandler(this.Current_surname_TextChanged);
@@ -385,9 +385,9 @@ namespace SchoolProject
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.LemonChiffon;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label21.Location = new System.Drawing.Point(5, 786);
+            this.label21.Location = new System.Drawing.Point(5, 930);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(324, 60);
+            this.label21.Size = new System.Drawing.Size(324, 66);
             this.label21.TabIndex = 21;
             this.label21.Text = "Племя";
             // 
@@ -396,9 +396,9 @@ namespace SchoolProject
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.LemonChiffon;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(5, 737);
+            this.label19.Location = new System.Drawing.Point(5, 872);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(324, 47);
+            this.label19.Size = new System.Drawing.Size(324, 56);
             this.label19.TabIndex = 19;
             this.label19.Text = "Проект";
             // 
@@ -407,9 +407,9 @@ namespace SchoolProject
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.LemonChiffon;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(5, 688);
+            this.label17.Location = new System.Drawing.Point(5, 814);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(324, 47);
+            this.label17.Size = new System.Drawing.Size(324, 56);
             this.label17.TabIndex = 17;
             this.label17.Text = "Год выпуска";
             // 
@@ -418,9 +418,9 @@ namespace SchoolProject
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.LemonChiffon;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(5, 639);
+            this.label9.Location = new System.Drawing.Point(5, 756);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(324, 47);
+            this.label9.Size = new System.Drawing.Size(324, 56);
             this.label9.TabIndex = 9;
             this.label9.Text = "Группа";
             // 
@@ -429,9 +429,9 @@ namespace SchoolProject
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.LemonChiffon;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(5, 149);
+            this.label6.Location = new System.Drawing.Point(5, 176);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(324, 47);
+            this.label6.Size = new System.Drawing.Size(324, 56);
             this.label6.TabIndex = 6;
             this.label6.Text = "Отчество";
             // 
@@ -440,9 +440,9 @@ namespace SchoolProject
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.LemonChiffon;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(5, 100);
+            this.label4.Location = new System.Drawing.Point(5, 118);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(324, 47);
+            this.label4.Size = new System.Drawing.Size(324, 56);
             this.label4.TabIndex = 4;
             this.label4.Text = "Имя";
             // 
@@ -451,9 +451,9 @@ namespace SchoolProject
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.LemonChiffon;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(5, 51);
+            this.label2.Location = new System.Drawing.Point(5, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(324, 47);
+            this.label2.Size = new System.Drawing.Size(324, 56);
             this.label2.TabIndex = 2;
             this.label2.Text = "Фамилия в настоящий момент";
             // 
@@ -464,7 +464,7 @@ namespace SchoolProject
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(5, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(324, 47);
+            this.label1.Size = new System.Drawing.Size(324, 56);
             this.label1.TabIndex = 0;
             this.label1.Text = "Фамилия в лицее";
             // 
@@ -473,9 +473,9 @@ namespace SchoolProject
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.LemonChiffon;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(5, 247);
+            this.label12.Location = new System.Drawing.Point(5, 292);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(324, 47);
+            this.label12.Size = new System.Drawing.Size(324, 56);
             this.label12.TabIndex = 12;
             this.label12.Text = "Facebook";
             // 
@@ -484,9 +484,9 @@ namespace SchoolProject
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.LemonChiffon;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(5, 296);
+            this.label14.Location = new System.Drawing.Point(5, 350);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(324, 47);
+            this.label14.Size = new System.Drawing.Size(324, 56);
             this.label14.TabIndex = 14;
             this.label14.Text = "ВКонтакте";
             // 
@@ -498,7 +498,7 @@ namespace SchoolProject
             this.Lyceum_surname.Multiline = true;
             this.Lyceum_surname.Name = "Lyceum_surname";
             this.Lyceum_surname.ReadOnly = true;
-            this.Lyceum_surname.Size = new System.Drawing.Size(324, 41);
+            this.Lyceum_surname.Size = new System.Drawing.Size(324, 50);
             this.Lyceum_surname.TabIndex = 22;
             this.Lyceum_surname.Text = "Lyceum_surname";
             // 
@@ -529,7 +529,7 @@ namespace SchoolProject
             "Телеком",
             "Хранительницы семейного очага",
             "Юриспруденция"});
-            this.Clan.Location = new System.Drawing.Point(337, 789);
+            this.Clan.Location = new System.Drawing.Point(337, 933);
             this.Clan.Name = "Clan";
             this.Clan.Size = new System.Drawing.Size(324, 40);
             this.Clan.TabIndex = 32;
@@ -544,9 +544,9 @@ namespace SchoolProject
             this.contacts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contacts.Font = new System.Drawing.Font("Calibri", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contacts.ForeColor = System.Drawing.Color.White;
-            this.contacts.Location = new System.Drawing.Point(5, 198);
+            this.contacts.Location = new System.Drawing.Point(5, 234);
             this.contacts.Name = "contacts";
-            this.contacts.Size = new System.Drawing.Size(656, 47);
+            this.contacts.Size = new System.Drawing.Size(656, 56);
             this.contacts.TabIndex = 33;
             this.contacts.Text = "Контакты";
             // 
@@ -555,9 +555,9 @@ namespace SchoolProject
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.LemonChiffon;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(5, 345);
+            this.label8.Location = new System.Drawing.Point(5, 408);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(324, 47);
+            this.label8.Size = new System.Drawing.Size(324, 56);
             this.label8.TabIndex = 35;
             this.label8.Text = "LinkedIn";
             // 
@@ -648,12 +648,13 @@ namespace SchoolProject
             // 
             this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
-            this.editBtn.Location = new System.Drawing.Point(1282, 795);
+            this.editBtn.Location = new System.Drawing.Point(1288, 933);
             this.editBtn.MaximumSize = new System.Drawing.Size(92, 92);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(92, 92);
             this.editBtn.TabIndex = 2;
             this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Visible = false;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // saveBtn
@@ -664,7 +665,7 @@ namespace SchoolProject
             this.saveBtn.AutoSize = true;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveBtn.Image")));
-            this.saveBtn.Location = new System.Drawing.Point(1282, 691);
+            this.saveBtn.Location = new System.Drawing.Point(1282, 750);
             this.saveBtn.MaximumSize = new System.Drawing.Size(92, 92);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(92, 92);
@@ -889,7 +890,7 @@ namespace SchoolProject
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1481, 912);
+            this.ClientSize = new System.Drawing.Size(1481, 1083);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.label18);

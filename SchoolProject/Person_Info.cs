@@ -18,10 +18,12 @@ namespace SchoolProject
         public bool is_admin = false;
         public bool form_changed = false;
         LoginForm LoginForm = null;
-        public Person_Info(Person person)
+        public Person_Info(Person person, bool is_admin)
         {
             InitializeComponent();
             this.person = person;
+            this.is_admin = is_admin;
+            if (is_admin) editBtn.Visible = true;
         }
 
         private void Person_Info_Load(object sender, EventArgs e)
@@ -35,73 +37,55 @@ namespace SchoolProject
             Lyceum_surname.Text = person.Lyceum_surname;
             Current_surname.Text = person.Current_surname;
             First_name.Text = person.First_name;
-            patronym.Text = person.patronym;
+            if (person.patronym != null) patronym.Text = person.patronym;
             //contacts
             if (person.Fb_name != null) Fb_name.Text = person.Fb_name.Count() > 1 ? person.Fb_name : "-";
             if (person.Vk_name != null) Vk_name.Text = person.Vk_name.Count() > 1 ? person.Vk_name : "-";
-            LinkedIn_name.Text = person.LinkedIn_name.Count() > 0? person.LinkedIn_name: "-";
-            Inst_name.Text = person.Inst_name.Count() > 0 ? person.Inst_name : "-";
-            Telegram.Text = person.Telegram.Count() > 0 ? person.Telegram : "-";
+            if (person.LinkedIn_name != null) LinkedIn_name.Text = person.LinkedIn_name.Count() > 0? person.LinkedIn_name: "-";
+            if (person.Inst_name != null) Inst_name.Text = person.Inst_name.Count() > 0 ? person.Inst_name : "-";
+            if (person.Telegram != null) Telegram.Text = person.Telegram.Count() > 0 ? person.Telegram : "-";
             if (person.Phone != null) Phone.Text = person.Phone.Count() > 0 ? person.Phone : "-";
             if (person.Email != null) email.Text = person.Email.Count() > 0 ? person.Email : "-";
             //lyceum study
             if (person.Group != null) Group.Text = person.Group;
             if (person.Graduation != null) Graduation.Text = person.Graduation.Count() > 1? person.Graduation: "-";
-            if (person.Project != null) Project.Text = person.Project.Count() > 0 ? person.Project : "-"; 
-            Clan.Text = person.Clan;
+            if (person.Project != null) Project.Text = person.Project.Count() > 0 ? person.Project : "-";
+            if (person.Clan != null) Clan.Text = person.Clan;
             //education
-            Education.Text = person.Education.Count() > 0 ? String.Join(", ", person.Education) : "-";
-            fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0" ? String.Join(", ", person.FieldOfEducation) : "-";
+            if (person.Education != null) Education.Text = person.Education.Count() > 0 ? String.Join(", ", person.Education) : "-";
+            if (person.FieldOfEducation != null) fieldOfEducation.Text = person.FieldOfEducation.Count() > 0 && person.FieldOfEducation[0] != "0" ? String.Join(", ", person.FieldOfEducation) : "-";
             //work
             if (person.Occupation != null) Occupation.Text = person.Occupation.Count() > 0 ? String.Join(", ", person.Occupation) : "-";
-            position.Text = person.Position.Count() > 0 ? String.Join(", ", person.Position) : "-";
+            if (person.Position != null) position.Text = person.Position.Count() > 0 ? String.Join(", ", person.Position) : "-";
             //other
-            hobbies.Text = person.Hobby.Count() > 0 ? person.Hobby : "-";
+            if (person.Hobby != null) hobbies.Text = person.Hobby.Count() > 0 ? person.Hobby : "-";
             if (person.Country != null)
                 country.Text = person.Country.Count() > 0 ? person.Country : "-";
         }
 
-        private void Login()
-        {
-            LoginForm = new LoginForm();
-            LoginForm.ShowDialog();
-            if (LoginForm.DialogResult == DialogResult.OK)
-            {
-                Console.WriteLine($"login {LoginForm.Login} password {LoginForm.Password}");
-                if (LoginForm.Login == "admin" && LoginForm.Password == "Iamadm1n")
-                {
-                    is_admin = true;
-                }
-                LoginForm.Close();
-            }
-        }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            Login();
-            if (is_admin)
-            {
-                Current_surname.ReadOnly = false;
-                Occupation.ReadOnly = false;
-                fieldOfEducation.ReadOnly = false;
-                Fb_name.ReadOnly = false;
-                Vk_name.ReadOnly = false;
-                Group.ReadOnly = false;
-                Graduation.ReadOnly = false;
-                Project.ReadOnly = false;
-                Clan.Enabled = true;
-                Education.ReadOnly = false;
-                form_changed = true;
-                LinkedIn_name.ReadOnly = false;
-                Inst_name.ReadOnly = false;
-                Telegram.ReadOnly = false;
-                Phone.ReadOnly = false;
-                email.ReadOnly = false;
-                position.ReadOnly = false;
-                hobbies.Enabled = true;
-                country.ReadOnly = false;
-                this.saveBtn.Visible = true;
-            }
+            Current_surname.ReadOnly = false;
+            Occupation.ReadOnly = false;
+            fieldOfEducation.ReadOnly = false;
+            Fb_name.ReadOnly = false;
+            Vk_name.ReadOnly = false;
+            Group.ReadOnly = false;
+            Graduation.ReadOnly = false;
+            Project.ReadOnly = false;
+            Clan.Enabled = true;
+            Education.ReadOnly = false;
+            form_changed = true;
+            LinkedIn_name.ReadOnly = false;
+            Inst_name.ReadOnly = false;
+            Telegram.ReadOnly = false;
+            Phone.ReadOnly = false;
+            email.ReadOnly = false;
+            position.ReadOnly = false;
+            hobbies.Enabled = true;
+            country.ReadOnly = false;
+            this.saveBtn.Visible = true;
         }
 
         private void Current_surname_TextChanged(object sender, EventArgs e)

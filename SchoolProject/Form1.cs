@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SchoolProject
@@ -13,12 +14,15 @@ namespace SchoolProject
         public string Clan, Year;
         public List<Person> people = new List<Person>();
         List<Shape> shapes = new List<Shape>();
+        public bool is_admin = false;
         db a = new db("12345");
         
         public List<List<int>> fb_lines = new List<List<int>>();
         public List<List<int>> inst_lines = new List<List<int>>();
         public List<List<int>> vk_lines = new List<List<int>>();
         Person_Info Form_Info = null;
+        LoginForm LoginForm = null;
+        RegisterForm RegisterForm = null;
         //запрос
         public string query;
         public string Glasnye = "ауоиэыяюеёАУОИЭЫЯЮЕЁ";
@@ -92,6 +96,39 @@ namespace SchoolProject
             a.connect();
         }
 
+        private void Login()
+        {
+            LoginForm = new LoginForm();
+            LoginForm.ShowDialog();
+            if (LoginForm.DialogResult == DialogResult.OK)
+            {
+                Console.WriteLine($"login {LoginForm.Login} password {LoginForm.Password}");
+                if (LoginForm.Login == "admin" && LoginForm.Password == "Iamadm1n")
+                {
+                    is_admin = true;
+                }
+                LoginForm.Close();
+                this.login_main_btn.Visible = false;
+                this.register_main_btn.Visible = false;
+                this.label1.Visible = false;
+                this.label2.Visible = false;
+                this.info_txt.Visible = true;
+                this.close_info.Visible = true;
+                this.Visible = true;
+                this.login_lbl.Text += LoginForm.Login;
+                this.login_lbl.Visible = true;
+                this.graduation.Visible = true;
+                this.HobbyToolStripMenuItem.Visible = true;
+                this.clanToolStripMenuItem.Visible = true;
+                this.educationToolStripMenuItem.Visible = true;
+                this.infobttn.Visible = true;
+                this.clear.Visible = true;
+                this.reload.Visible = true;
+                this.search.Visible = true;
+            }
+
+        }
+
         private string Get_soglasnye(string word)
         {
             string result = "";
@@ -138,12 +175,22 @@ namespace SchoolProject
             int y = 100;
             
             var results = a.GetPeople(Clan, Hobby, Education, Year);
+            if (results.ToList().Count() == 0)
+            {
+                this.label2.Visible = true;
+                this.label2.Text = "По вашему запросу ничего не найдено\n" +
+                    "Попробуйте, пожалуйста, другой запрос";
+            }
+            else {
+                this.label1.Visible = false;
+                this.label2.Visible = false;
+            }
             foreach (Person person in results)
             {
                 if (!people.Contains(person))
                 {
                     x = r.Next(50, 600);
-                    y = r.Next(50, 500);
+                    y = r.Next(60, 500);
                     
                     shapes.Add(new Shape(x, y, Short_Names(person.First_name, person.Current_surname)));
                     people.Add(person);
@@ -258,14 +305,13 @@ namespace SchoolProject
                 /*if (Clan != "")
                     results = client.Cypher.Match("per:Person").Where((Person per) => per.Clan == Clan)
 */
-
-                if (Clan != "")
+                if (Clan != "" && Clan != null)
                 {
-                    if (Education != "")
+                    if (Education != "" && Education != null)
                     {
-                        if (Hobby != "")
+                        if (Hobby != "" && Hobby != null)
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 //if (Year.Contains("/")) -- добавление слешей при множественном выборе?
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
@@ -284,7 +330,7 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Education.Contains(Education))
@@ -301,9 +347,9 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Hobby != "")
+                        if (Hobby != "" && Hobby != null)
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => per.Hobby.Contains(Hobby))
@@ -319,7 +365,7 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Clan == Clan)
                                     .AndWhere((Person per) => (string)per.Graduation == Year)
@@ -335,11 +381,11 @@ namespace SchoolProject
                 }
                 else
                 {
-                    if (Education != "")
+                    if (Education != "" && Education != null)
                     {
-                        if (Hobby != "")
+                        if (Hobby != "" && Hobby != null)
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
@@ -356,7 +402,7 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => per.Education.Contains(Education))
                                     .AndWhere((Person per) => (string)per.Graduation == Year)
@@ -371,9 +417,9 @@ namespace SchoolProject
                     }
                     else
                     {
-                        if (Hobby != "")
+                        if (Hobby != "" && Hobby != null)
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)")
                                     .Where((Person per) => per.Hobby.Contains(Hobby))
@@ -389,7 +435,7 @@ namespace SchoolProject
                         }
                         else
                         {
-                            if (Year != "")
+                            if (Year != "" && Year != null)
                             {
                                 results = client.Cypher.Match("(per:Person)").Where((Person per) => (string)per.Graduation == Year)
                                     .Return(per => per.As<Person>()).Results;
@@ -402,6 +448,8 @@ namespace SchoolProject
                         }
                     }
                 }
+                
+                Console.WriteLine(results.ToList().Count());
                 return results;
             }
 
@@ -505,7 +553,7 @@ namespace SchoolProject
 
             foreach (List<int> line in vk_lines)
             {
-                g.DrawLine(new Pen(Color.Black), line[0], line[1], line[2], line[3]);
+                g.DrawLine(new Pen(Color.Red), line[0], line[1], line[2], line[3]);
             }
 
             foreach (List<int> line in inst_lines)
@@ -586,7 +634,7 @@ namespace SchoolProject
                 Form_Info.Close();
             }
             shapes[n].FillC = Color.LightCyan;
-            Form_Info = new Person_Info(people[n]);
+            Form_Info = new Person_Info(people[n], is_admin);
             Form_Info.Show();
             Refresh();
         }
@@ -603,6 +651,34 @@ namespace SchoolProject
                 }
             Refresh_Connections();
             Refresh();
+        }
+
+        private void Register()
+        {
+            RegisterForm = new RegisterForm();
+            RegisterForm.ShowDialog();
+            if (RegisterForm.DialogResult == DialogResult.OK)
+            {
+                Console.WriteLine($"login {RegisterForm.login} password {RegisterForm.password}");
+                RegisterForm.Close();
+                this.login_main_btn.Visible = false;
+                this.register_main_btn.Visible = false;
+                this.label1.Visible = false;
+                this.label2.Visible = false;
+                this.info_txt.Visible = true;
+                this.close_info.Visible = true;
+                this.Visible = true;
+                this.login_lbl.Text += RegisterForm.login;
+                this.login_lbl.Visible = true;
+                this.graduation.Visible = true;
+                this.HobbyToolStripMenuItem.Visible = true;
+                this.clanToolStripMenuItem.Visible = true;
+                this.educationToolStripMenuItem.Visible = true;
+                this.infobttn.Visible = true;
+                this.clear.Visible = true;
+                this.reload.Visible = true;
+                this.search.Visible = true;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -626,6 +702,18 @@ namespace SchoolProject
         {
             info_txt.Visible = false;
             close_info.Visible = false;
+        }
+
+        private void login_main_btn_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            Login();
+        }
+
+        private void register_main_btn_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            Register();
         }
 
         private void search_Click(object sender, EventArgs e)

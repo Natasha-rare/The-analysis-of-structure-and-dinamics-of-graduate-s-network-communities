@@ -41,12 +41,12 @@ namespace SchoolProject
             // 
             this.mainlbl.AutoSize = true;
             this.mainlbl.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainlbl.ForeColor = System.Drawing.Color.Red;
+            this.mainlbl.ForeColor = System.Drawing.Color.Black;
             this.mainlbl.Location = new System.Drawing.Point(63, 47);
             this.mainlbl.Name = "mainlbl";
-            this.mainlbl.Size = new System.Drawing.Size(305, 32);
+            this.mainlbl.Size = new System.Drawing.Size(487, 32);
             this.mainlbl.TabIndex = 0;
-            this.mainlbl.Text = "Login to edit information";
+            this.mainlbl.Text = "Войдите для просмотра информации";
             // 
             // loginlbl
             // 
@@ -54,9 +54,9 @@ namespace SchoolProject
             this.loginlbl.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginlbl.Location = new System.Drawing.Point(63, 117);
             this.loginlbl.Name = "loginlbl";
-            this.loginlbl.Size = new System.Drawing.Size(81, 32);
+            this.loginlbl.Size = new System.Drawing.Size(88, 32);
             this.loginlbl.TabIndex = 0;
-            this.loginlbl.Text = "Login";
+            this.loginlbl.Text = "Логин";
             // 
             // passwordlbl
             // 
@@ -64,9 +64,9 @@ namespace SchoolProject
             this.passwordlbl.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordlbl.Location = new System.Drawing.Point(63, 268);
             this.passwordlbl.Name = "passwordlbl";
-            this.passwordlbl.Size = new System.Drawing.Size(133, 32);
+            this.passwordlbl.Size = new System.Drawing.Size(107, 32);
             this.passwordlbl.TabIndex = 0;
-            this.passwordlbl.Text = "Password";
+            this.passwordlbl.Text = "Пароль";
             // 
             // LoginTB
             // 
@@ -89,13 +89,14 @@ namespace SchoolProject
             // 
             // LoginBtn
             // 
-            this.LoginBtn.Font = new System.Drawing.Font("Arial", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginBtn.Location = new System.Drawing.Point(410, 214);
+            this.LoginBtn.BackColor = System.Drawing.Color.PeachPuff;
+            this.LoginBtn.Font = new System.Drawing.Font("Verdana", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginBtn.Location = new System.Drawing.Point(410, 205);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(169, 71);
             this.LoginBtn.TabIndex = 2;
-            this.LoginBtn.Text = "LOGIN\r\n";
-            this.LoginBtn.UseVisualStyleBackColor = true;
+            this.LoginBtn.Text = " Войти";
+            this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // LoginForm
@@ -109,6 +110,7 @@ namespace SchoolProject
             this.Controls.Add(this.mainlbl);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
