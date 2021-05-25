@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1404</width>
+    <width>1400</width>
     <height>650</height>
    </rect>
   </property>
@@ -47,6 +47,12 @@
       <height>540</height>
      </size>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
@@ -54,7 +60,7 @@
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.875pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:14pt; color:#0000ff;&quot;&gt;Правила пользования приложением&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;Добро пожаловать в наше приложение.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Здесь вы можете найти информацию о выпускниках лицея, заранее сгруппировав их по интересующим вас признакам. &lt;/span&gt;&lt;/p&gt;
@@ -85,7 +91,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;ПРИЯТНОГО ПОЛЬЗОВАНИЯ!&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-weight:600; color:#fc0107;&quot;&gt;Внимание!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:12pt; font-weight:600; color:#fc0107;&quot;&gt;Внимание!&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#fc0107;&quot;&gt;Данное приложение создано в исключительно развлекательных целях. Распространение данных, имеющихся в данном приложении, карается законом.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
@@ -114,7 +120,7 @@ p, li { white-space: pre-wrap; }
      <string>x</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -355,13 +361,41 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>1400</width>
+      <height>570</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1404</width>
+     <width>1400</width>
      <height>24</height>
     </rect>
    </property>
@@ -641,11 +675,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuHobby"/>
    <addaction name="menuClan"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="styleSheet">
-    <string notr="true">color: red;</string>
-   </property>
-  </widget>
   <action name="action1993">
    <property name="checkable">
     <bool>true</bool>
@@ -791,51 +820,81 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="action2011">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2011</string>
    </property>
   </action>
   <action name="action2012">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2012</string>
    </property>
   </action>
   <action name="action2013">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2013</string>
    </property>
   </action>
   <action name="action2014">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2014</string>
    </property>
   </action>
   <action name="action2015">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2015</string>
    </property>
   </action>
   <action name="action2016">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2016</string>
    </property>
   </action>
   <action name="action2017">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2017</string>
    </property>
   </action>
   <action name="action2018">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2018</string>
    </property>
   </action>
   <action name="action2019">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2019</string>
    </property>
   </action>
   <action name="action2020">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2020</string>
    </property>
@@ -1496,171 +1555,273 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="action_92">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Географический</string>
    </property>
   </action>
   <action name="action_93">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Геологический</string>
    </property>
   </action>
   <action name="action_94">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Исторический</string>
    </property>
   </action>
   <action name="action_95">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Философский</string>
    </property>
   </action>
   <action name="action_96">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ВМК</string>
    </property>
   </action>
   <action name="action_97">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Мехмат</string>
    </property>
   </action>
   <action name="action_98">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Экономический</string>
    </property>
   </action>
   <action name="action_99">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Физический</string>
    </property>
   </action>
   <action name="action_100">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Психологический</string>
    </property>
   </action>
   <action name="action_101">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Биологический</string>
    </property>
   </action>
   <action name="action_102">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Юридический</string>
    </property>
   </action>
   <action name="action_103">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Филологический</string>
    </property>
   </action>
   <action name="action_104">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ИСАиА</string>
    </property>
   </action>
   <action name="action_105">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ВШБ</string>
    </property>
   </action>
   <action name="action_106">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФГУ</string>
    </property>
   </action>
   <action name="action_107">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Журналистика</string>
    </property>
   </action>
   <action name="action_108">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Социологический</string>
    </property>
   </action>
   <action name="action_109">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФГП</string>
    </property>
   </action>
   <action name="action_110">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФИИ</string>
    </property>
   </action>
   <action name="action_111">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Государственное управление</string>
    </property>
   </action>
   <action name="action_112">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Иностранные языки</string>
    </property>
   </action>
   <action name="action_113">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Химический</string>
    </property>
   </action>
   <action name="action_114">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>(БИ) Бизнес-информатика</string>
    </property>
   </action>
   <action name="action_115">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>(ПИ) Прикладная математика и информатика</string>
    </property>
   </action>
   <action name="action_116">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Востоковедение</string>
    </property>
   </action>
   <action name="action_117">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Госуправление</string>
    </property>
   </action>
   <action name="action_118">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Дизайн</string>
    </property>
   </action>
   <action name="action_119">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Инфокоммуникационные технологии</string>
    </property>
   </action>
   <action name="action_120">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Компьютерная безопасность</string>
    </property>
   </action>
   <action name="action_121">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Логистика</string>
    </property>
   </action>
   <action name="action_122">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Математика</string>
    </property>
   </action>
   <action name="action_123">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Менеджмент</string>
    </property>
   </action>
   <action name="action_124">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Мировая экономика</string>
    </property>
   </action>
   <action name="action_125">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>МИЭФ</string>
    </property>
@@ -1671,11 +1832,17 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="action_127">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Прикладная математика</string>
    </property>
   </action>
   <action name="action_128">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Прикладная информатика</string>
    </property>
@@ -1686,161 +1853,257 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="action_130">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Социология</string>
    </property>
   </action>
   <action name="action_132">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ПМИ</string>
    </property>
   </action>
   <action name="action_133">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ПИ</string>
    </property>
   </action>
   <action name="action_134">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ПАД</string>
    </property>
   </action>
   <action name="action_135">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Экономика</string>
    </property>
   </action>
   <action name="action_136">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Юриспруденция</string>
    </property>
   </action>
   <action name="action_137">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ИУ</string>
    </property>
   </action>
   <action name="action_138">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Инноватика</string>
    </property>
   </action>
   <action name="action_139">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Прикладная математика</string>
    </property>
   </action>
   <action name="action_140">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Биомедицинские технологии</string>
    </property>
   </action>
   <action name="action_141">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Компьютерные сети</string>
    </property>
   </action>
   <action name="action_142">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Информатика и вычислительная техника</string>
    </property>
   </action>
   <action name="action_143">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Математика и компьютерные науки</string>
    </property>
   </action>
   <action name="action_144">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Информационная безопасность</string>
    </property>
   </action>
   <action name="action_145">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Экономика</string>
    </property>
   </action>
   <action name="action_146">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Специальное машиностроение</string>
    </property>
   </action>
   <action name="action_147">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Программная инженерия</string>
    </property>
   </action>
   <action name="action_148">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Машиностроение</string>
    </property>
   </action>
   <action name="action_149">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>САПР</string>
    </property>
   </action>
   <action name="action_150">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Экономика и менеджмент</string>
    </property>
   </action>
   <action name="action_151">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Биоинженерия</string>
    </property>
   </action>
   <action name="action_152">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Информатика и вычислительная техника</string>
    </property>
   </action>
   <action name="action_153">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Информационная безопасность</string>
    </property>
   </action>
   <action name="action_154">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Маркетинг</string>
    </property>
   </action>
   <action name="action_155">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Прикладная математика и информатика</string>
    </property>
   </action>
   <action name="action_156">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Программная инженерия</string>
    </property>
   </action>
   <action name="action_157">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФИТ</string>
    </property>
   </action>
   <action name="action_158">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФК</string>
    </property>
   </action>
   <action name="action_159">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФАиВТ</string>
    </property>
   </action>
   <action name="action_160">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФГГНГ</string>
    </property>
   </action>
   <action name="action_161">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>ФЭУ</string>
    </property>
   </action>
   <action name="action_162">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>экономика и управление</string>
    </property>
