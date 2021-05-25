@@ -1,0 +1,1851 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1404</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1400</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextBrowser" name="info_txt">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>70</y>
+      <width>1001</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>760</width>
+      <height>540</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:14pt; color:#0000ff;&quot;&gt;Правила пользования приложением&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;Добро пожаловать в наше приложение.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Здесь вы можете найти информацию о выпускниках лицея, заранее сгруппировав их по интересующим вас признакам. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Выбор признаков&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Вверху вы можете увидеть меню с полями &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Graduation&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (год выпуска), &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Education&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (место обучения — университет и/или факультет), &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Hobby&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (увлечение выпускника) и &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Clan&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (направление жизненного пути выпускника). Используя разные комбинации значений этих полей, вы увидете на экране результат — граф с выпускниками, имеющими признаки, которые вы выбрали.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Меню с кнопками&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;На правой стороне экрана вы можете увидеть несколько кнопок. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; ℹ - &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;информация&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - при нажатии на кнопку вы увидите данное окно информации&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 🔎- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;поиск&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - при нажатии на кнопку вы увидете граф с выпускниками, отобранными по введенным вами признаками&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; ❌- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;закрыть&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - кнопка сброса результата. Все параметры также сбросятся&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 🔄 - &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;обновить&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - кнопка обновления результата на экране, например, если вы убрали или добавили некоторые признаки, не забудьте нажать на эту кнопку для отображения обновленного результата&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 📤- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;поделиться&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - вы можете экспортировать граф, который видите на экране, в csv формате.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Порядок действий при использовании приложения:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;1. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Внимательно ознакомится с данной инструкцией&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;2.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Выбрать интересующие вас поля, по которым будет отображаться граф выпускников&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;3.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Нажать на кнопку &amp;quot;поиск&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;4. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;В текстовом поле вверху убедится в том, что введены верные параметры&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;4.1 &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Если есть ошибки в запросе, то можно сбросить его, нажав на кнопку &amp;quot;очистить&amp;quot;, или изменить некоторые параметры и нажать на кнопку &amp;quot;обновить&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;. Нажимая на выпускников, можно получить подробную информацию о них.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;6.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; В конце можно экспортироваьт полученный граф, нажав на кнопку &amp;quot;поделиться&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;ПРИЯТНОГО ПОЛЬЗОВАНИЯ!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-weight:600; color:#fc0107;&quot;&gt;Внимание!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#fc0107;&quot;&gt;Данное приложение создано в исключительно развлекательных целях. Распространение данных, имеющихся в данном приложении, карается законом.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="close_info">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>70</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 127);</string>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>-2</y>
+      <width>1391</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="vk_lbl">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>34</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(253, 102, 255)</string>
+         </property>
+         <property name="text">
+          <string>VK connections</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="fb_lbl">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 255)</string>
+         </property>
+         <property name="text">
+          <string>FB connections</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="query">
+       <property name="minimumSize">
+        <size>
+         <width>365</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: white;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="info">
+         <property name="minimumSize">
+          <size>
+           <width>61</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>1000</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>ℹ</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="search">
+         <property name="maximumSize">
+          <size>
+           <width>1000</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>🔎</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="clear">
+         <property name="minimumSize">
+          <size>
+           <width>61</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>10000</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>❌</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="reload">
+         <property name="minimumSize">
+          <size>
+           <width>61</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>10000</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>🔄</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="share">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>86</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>10000</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding-bottom: 2px</string>
+         </property>
+         <property name="text">
+          <string>📤</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>14</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>300</number>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1404</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGraduation">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Graduation</string>
+    </property>
+    <widget class="QMenu" name="menu1993_2000">
+     <property name="title">
+      <string>1993-2000</string>
+     </property>
+     <addaction name="action1993"/>
+     <addaction name="action1994"/>
+     <addaction name="action1995"/>
+     <addaction name="action1996"/>
+     <addaction name="action1997"/>
+     <addaction name="action1998"/>
+     <addaction name="action1999"/>
+     <addaction name="action2000"/>
+    </widget>
+    <widget class="QMenu" name="menu2001_2010">
+     <property name="title">
+      <string>2001-2010</string>
+     </property>
+     <addaction name="action2001"/>
+     <addaction name="action2002"/>
+     <addaction name="action2003"/>
+     <addaction name="action2004"/>
+     <addaction name="action2005"/>
+     <addaction name="action2006"/>
+     <addaction name="action2007"/>
+     <addaction name="action2008"/>
+     <addaction name="action2009"/>
+     <addaction name="action2010"/>
+    </widget>
+    <widget class="QMenu" name="menu2011_2020">
+     <property name="title">
+      <string>2011-2020</string>
+     </property>
+     <addaction name="action2011"/>
+     <addaction name="action2012"/>
+     <addaction name="action2013"/>
+     <addaction name="action2014"/>
+     <addaction name="action2015"/>
+     <addaction name="action2016"/>
+     <addaction name="action2017"/>
+     <addaction name="action2018"/>
+     <addaction name="action2019"/>
+     <addaction name="action2020"/>
+    </widget>
+    <addaction name="menu1993_2000"/>
+    <addaction name="menu2001_2010"/>
+    <addaction name="menu2011_2020"/>
+   </widget>
+   <widget class="QMenu" name="menuEducation">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Education</string>
+    </property>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>МГТУ</string>
+     </property>
+     <widget class="QMenu" name="menu_5">
+      <property name="title">
+       <string>МГТУ им. Баумана</string>
+      </property>
+      <addaction name="action_137"/>
+      <addaction name="action_138"/>
+      <addaction name="action_139"/>
+      <addaction name="action_140"/>
+      <addaction name="action_141"/>
+      <addaction name="action_142"/>
+      <addaction name="action_143"/>
+      <addaction name="action_144"/>
+      <addaction name="action_145"/>
+      <addaction name="action_146"/>
+      <addaction name="action_147"/>
+     </widget>
+     <widget class="QMenu" name="menu_6">
+      <property name="title">
+       <string>МГТУ им. А. Н. Косыгина</string>
+      </property>
+      <addaction name="action_148"/>
+      <addaction name="action_149"/>
+      <addaction name="action_150"/>
+     </widget>
+     <addaction name="menu_5"/>
+     <addaction name="menu_6"/>
+    </widget>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>МГУ</string>
+     </property>
+     <addaction name="action_101"/>
+     <addaction name="action_96"/>
+     <addaction name="action_105"/>
+     <addaction name="action_92"/>
+     <addaction name="action_93"/>
+     <addaction name="action_111"/>
+     <addaction name="action_107"/>
+     <addaction name="action_112"/>
+     <addaction name="action_104"/>
+     <addaction name="action_94"/>
+     <addaction name="action_97"/>
+     <addaction name="action_100"/>
+     <addaction name="action_108"/>
+     <addaction name="action_109"/>
+     <addaction name="action_106"/>
+     <addaction name="action_99"/>
+     <addaction name="action_110"/>
+     <addaction name="action_103"/>
+     <addaction name="action_95"/>
+     <addaction name="action_113"/>
+     <addaction name="action_98"/>
+     <addaction name="action_102"/>
+    </widget>
+    <widget class="QMenu" name="menu_3">
+     <property name="title">
+      <string>НИУ ВШЭ</string>
+     </property>
+     <widget class="QMenu" name="menu_4">
+      <property name="title">
+       <string>ФКН</string>
+      </property>
+      <addaction name="action_132"/>
+      <addaction name="action_133"/>
+      <addaction name="action_134"/>
+     </widget>
+     <addaction name="action_114"/>
+     <addaction name="action_115"/>
+     <addaction name="action_116"/>
+     <addaction name="action_117"/>
+     <addaction name="action_118"/>
+     <addaction name="action_119"/>
+     <addaction name="action_120"/>
+     <addaction name="action_121"/>
+     <addaction name="action_122"/>
+     <addaction name="action_123"/>
+     <addaction name="action_124"/>
+     <addaction name="action_125"/>
+     <addaction name="action_127"/>
+     <addaction name="action_128"/>
+     <addaction name="action_130"/>
+     <addaction name="menu_4"/>
+     <addaction name="action_135"/>
+     <addaction name="action_136"/>
+    </widget>
+    <widget class="QMenu" name="menu_7">
+     <property name="title">
+      <string>МИРЭА</string>
+     </property>
+     <addaction name="action_151"/>
+     <addaction name="action_152"/>
+     <addaction name="action_153"/>
+     <addaction name="action_154"/>
+     <addaction name="action_155"/>
+     <addaction name="action_156"/>
+     <addaction name="action_157"/>
+     <addaction name="action_158"/>
+    </widget>
+    <widget class="QMenu" name="menu_8">
+     <property name="title">
+      <string>РГУНГ</string>
+     </property>
+     <addaction name="action_159"/>
+     <addaction name="action_160"/>
+     <addaction name="action_161"/>
+     <addaction name="action_162"/>
+    </widget>
+    <addaction name="menu_2"/>
+    <addaction name="menu_3"/>
+    <addaction name="menu"/>
+    <addaction name="menu_7"/>
+    <addaction name="menu_8"/>
+    <addaction name="action_24"/>
+    <addaction name="action_48"/>
+    <addaction name="action_45"/>
+    <addaction name="action_47"/>
+    <addaction name="action_44"/>
+    <addaction name="action_34"/>
+    <addaction name="action_35"/>
+    <addaction name="action_33"/>
+    <addaction name="action_12"/>
+    <addaction name="action_37"/>
+    <addaction name="action_39"/>
+    <addaction name="action_32"/>
+   </widget>
+   <widget class="QMenu" name="menuHobby">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Hobby</string>
+    </property>
+    <addaction name="action_59"/>
+    <addaction name="action_60"/>
+    <addaction name="action_61"/>
+    <addaction name="action_62"/>
+    <addaction name="action_63"/>
+    <addaction name="action_64"/>
+    <addaction name="action_65"/>
+    <addaction name="action_66"/>
+    <addaction name="action_67"/>
+    <addaction name="action_68"/>
+    <addaction name="action_69"/>
+    <addaction name="action_70"/>
+    <addaction name="action_71"/>
+    <addaction name="action_72"/>
+    <addaction name="action_73"/>
+    <addaction name="action_74"/>
+    <addaction name="action_75"/>
+    <addaction name="action_76"/>
+    <addaction name="action_77"/>
+    <addaction name="action_78"/>
+    <addaction name="action_79"/>
+    <addaction name="action_80"/>
+    <addaction name="action_81"/>
+    <addaction name="action_82"/>
+    <addaction name="action_83"/>
+    <addaction name="action_84"/>
+    <addaction name="action_85"/>
+    <addaction name="action_86"/>
+    <addaction name="action_87"/>
+    <addaction name="action_88"/>
+    <addaction name="action_89"/>
+    <addaction name="action_90"/>
+    <addaction name="action_91"/>
+   </widget>
+   <widget class="QMenu" name="menuClan">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Clan</string>
+    </property>
+    <addaction name="actionIT"/>
+    <addaction name="actionResearch"/>
+    <addaction name="actionIT_consulting"/>
+    <addaction name="actionMedia"/>
+    <addaction name="actionMarketing"/>
+    <addaction name="action_41"/>
+    <addaction name="actionFinance"/>
+    <addaction name="actionEducation"/>
+    <addaction name="action_25"/>
+    <addaction name="action_40"/>
+    <addaction name="action_42"/>
+    <addaction name="action_49"/>
+    <addaction name="action_50"/>
+    <addaction name="action_51"/>
+    <addaction name="action_52"/>
+    <addaction name="action_53"/>
+    <addaction name="action_54"/>
+    <addaction name="action_55"/>
+    <addaction name="action_56"/>
+    <addaction name="action_57"/>
+   </widget>
+   <addaction name="menuGraduation"/>
+   <addaction name="menuEducation"/>
+   <addaction name="menuHobby"/>
+   <addaction name="menuClan"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">color: red;</string>
+   </property>
+  </widget>
+  <action name="action1993">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1993</string>
+   </property>
+  </action>
+  <action name="action1994">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1994</string>
+   </property>
+  </action>
+  <action name="action1995">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1995</string>
+   </property>
+  </action>
+  <action name="action1996">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1996</string>
+   </property>
+  </action>
+  <action name="action1997">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1997</string>
+   </property>
+  </action>
+  <action name="action1998">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1998</string>
+   </property>
+  </action>
+  <action name="action1999">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1999</string>
+   </property>
+  </action>
+  <action name="action2000">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2000</string>
+   </property>
+  </action>
+  <action name="action2001">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2001</string>
+   </property>
+  </action>
+  <action name="action2002">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2002</string>
+   </property>
+  </action>
+  <action name="action2003">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2003</string>
+   </property>
+  </action>
+  <action name="action2004">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2004</string>
+   </property>
+  </action>
+  <action name="action2005">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2005</string>
+   </property>
+  </action>
+  <action name="action2006">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2006</string>
+   </property>
+  </action>
+  <action name="action2007">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2007</string>
+   </property>
+  </action>
+  <action name="action2008">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2008</string>
+   </property>
+  </action>
+  <action name="action2009">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2009</string>
+   </property>
+  </action>
+  <action name="action2010">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>2010</string>
+   </property>
+  </action>
+  <action name="action2011">
+   <property name="text">
+    <string>2011</string>
+   </property>
+  </action>
+  <action name="action2012">
+   <property name="text">
+    <string>2012</string>
+   </property>
+  </action>
+  <action name="action2013">
+   <property name="text">
+    <string>2013</string>
+   </property>
+  </action>
+  <action name="action2014">
+   <property name="text">
+    <string>2014</string>
+   </property>
+  </action>
+  <action name="action2015">
+   <property name="text">
+    <string>2015</string>
+   </property>
+  </action>
+  <action name="action2016">
+   <property name="text">
+    <string>2016</string>
+   </property>
+  </action>
+  <action name="action2017">
+   <property name="text">
+    <string>2017</string>
+   </property>
+  </action>
+  <action name="action2018">
+   <property name="text">
+    <string>2018</string>
+   </property>
+  </action>
+  <action name="action2019">
+   <property name="text">
+    <string>2019</string>
+   </property>
+  </action>
+  <action name="action2020">
+   <property name="text">
+    <string>2020</string>
+   </property>
+  </action>
+  <action name="actionIT">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>IT</string>
+   </property>
+  </action>
+  <action name="actionResearch">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Research</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>МГУ</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>МГУП</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>МИРЭА</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>МГОУ</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>МГУП</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>РГГУ</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>МГПУ</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>Академия ФСБ</string>
+   </property>
+  </action>
+  <action name="action_9">
+   <property name="text">
+    <string>АФСБ</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="text">
+    <string>БВШД</string>
+   </property>
+  </action>
+  <action name="action_11">
+   <property name="text">
+    <string>ВАВТ</string>
+   </property>
+  </action>
+  <action name="action_12">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Финансовый университет</string>
+   </property>
+  </action>
+  <action name="action_14">
+   <property name="text">
+    <string>ГИТР</string>
+   </property>
+  </action>
+  <action name="action_15">
+   <property name="text">
+    <string>ГУУ</string>
+   </property>
+  </action>
+  <action name="action_16">
+   <property name="text">
+    <string>МАДИ</string>
+   </property>
+  </action>
+  <action name="action_17">
+   <property name="text">
+    <string>МАИ</string>
+   </property>
+  </action>
+  <action name="action_18">
+   <property name="text">
+    <string>МАРХИ</string>
+   </property>
+  </action>
+  <action name="action_19">
+   <property name="text">
+    <string>МАТИ</string>
+   </property>
+  </action>
+  <action name="action_20">
+   <property name="text">
+    <string>МГГУ</string>
+   </property>
+  </action>
+  <action name="action_21">
+   <property name="text">
+    <string>МГИМО</string>
+   </property>
+  </action>
+  <action name="action_23">
+   <property name="text">
+    <string>МГЛУ</string>
+   </property>
+  </action>
+  <action name="action_24">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МГУП</string>
+   </property>
+  </action>
+  <action name="action_28">
+   <property name="text">
+    <string>МГЮА</string>
+   </property>
+  </action>
+  <action name="action_29">
+   <property name="text">
+    <string>МИИГАиК</string>
+   </property>
+  </action>
+  <action name="action_30">
+   <property name="text">
+    <string>МИИТ</string>
+   </property>
+  </action>
+  <action name="action_32">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МИСиС</string>
+   </property>
+  </action>
+  <action name="action_33">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МИФИ</string>
+   </property>
+  </action>
+  <action name="action_34">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МИЭМ</string>
+   </property>
+  </action>
+  <action name="action_35">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МПГУ</string>
+   </property>
+  </action>
+  <action name="action_36">
+   <property name="text">
+    <string>МТУСИ</string>
+   </property>
+  </action>
+  <action name="action_37">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МФТИ</string>
+   </property>
+  </action>
+  <action name="action_38">
+   <property name="text">
+    <string>МЭИ</string>
+   </property>
+  </action>
+  <action name="action_39">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>МЭСИ</string>
+   </property>
+  </action>
+  <action name="action_43">
+   <property name="text">
+    <string>НИЯУ МИФИ</string>
+   </property>
+  </action>
+  <action name="action_44">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>РАНХиГС</string>
+   </property>
+  </action>
+  <action name="action_45">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>РГГУ</string>
+   </property>
+  </action>
+  <action name="action_47">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>РУДН</string>
+   </property>
+  </action>
+  <action name="action_48">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>РЭУ им. Плеханова</string>
+   </property>
+  </action>
+  <action name="actionIT_consulting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>IT-consulting</string>
+   </property>
+  </action>
+  <action name="action_25">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Геоинформатика</string>
+   </property>
+  </action>
+  <action name="action_40">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Телеком</string>
+   </property>
+  </action>
+  <action name="actionMedia">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Media</string>
+   </property>
+  </action>
+  <action name="actionMarketing">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Marketing</string>
+   </property>
+  </action>
+  <action name="action_41">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Management</string>
+   </property>
+  </action>
+  <action name="actionFinance">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Finance</string>
+   </property>
+  </action>
+  <action name="actionEducation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Education</string>
+   </property>
+  </action>
+  <action name="action_42">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Здравоохранение</string>
+   </property>
+  </action>
+  <action name="action_49">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Хранительницы семейного очага</string>
+   </property>
+  </action>
+  <action name="action_50">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Культура</string>
+   </property>
+  </action>
+  <action name="action_51">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Индустрия досуга</string>
+   </property>
+  </action>
+  <action name="action_52">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Промышленность</string>
+   </property>
+  </action>
+  <action name="action_53">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Строительство и недвижимость</string>
+   </property>
+  </action>
+  <action name="action_54">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Оптовая и розничная торговля</string>
+   </property>
+  </action>
+  <action name="action_55">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Государственное и муниципальное управление</string>
+   </property>
+  </action>
+  <action name="action_56">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Общественные организации</string>
+   </property>
+  </action>
+  <action name="action_57">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Юриспруденция</string>
+   </property>
+  </action>
+  <action name="action_58">
+   <property name="text">
+    <string>Аквариумистика</string>
+   </property>
+  </action>
+  <action name="action_59">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Альпинизм</string>
+   </property>
+  </action>
+  <action name="action_60">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Бег</string>
+   </property>
+  </action>
+  <action name="action_61">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Бильярд</string>
+   </property>
+  </action>
+  <action name="action_62">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Боевые искусства</string>
+   </property>
+  </action>
+  <action name="action_63">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Боулинг</string>
+   </property>
+  </action>
+  <action name="action_64">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ведение блога</string>
+   </property>
+  </action>
+  <action name="action_65">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Велосипед</string>
+   </property>
+  </action>
+  <action name="action_66">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Винил</string>
+   </property>
+  </action>
+  <action name="action_67">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Волонтерство</string>
+   </property>
+  </action>
+  <action name="action_68">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Вязание</string>
+   </property>
+  </action>
+  <action name="action_69">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Горные и равнинные лыжи</string>
+   </property>
+  </action>
+  <action name="action_70">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Гольф</string>
+   </property>
+  </action>
+  <action name="action_71">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Дайвинг</string>
+   </property>
+  </action>
+  <action name="action_72">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Езда на мотоцикле</string>
+   </property>
+  </action>
+  <action name="action_73">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Игра на гитаре</string>
+   </property>
+  </action>
+  <action name="action_74">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Изучение языков</string>
+   </property>
+  </action>
+  <action name="action_75">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Коллекционирование</string>
+   </property>
+  </action>
+  <action name="action_76">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Командный спорт</string>
+   </property>
+  </action>
+  <action name="action_77">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Любительская астрономия</string>
+   </property>
+  </action>
+  <action name="action_78">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Моделирование</string>
+   </property>
+  </action>
+  <action name="action_79">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Настольные игры</string>
+   </property>
+  </action>
+  <action name="action_80">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Охота</string>
+   </property>
+  </action>
+  <action name="action_81">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Пение</string>
+   </property>
+  </action>
+  <action name="action_82">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Плавание на каноэ/каяках/ хождение под парусом</string>
+   </property>
+  </action>
+  <action name="action_83">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Походы</string>
+   </property>
+  </action>
+  <action name="action_84">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Рисование</string>
+   </property>
+  </action>
+  <action name="action_85">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Рыбалка</string>
+   </property>
+  </action>
+  <action name="action_86">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Сёрфинг</string>
+   </property>
+  </action>
+  <action name="action_87">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Скалолазание</string>
+   </property>
+  </action>
+  <action name="action_88">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Танцы</string>
+   </property>
+  </action>
+  <action name="action_89">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Уход за садом</string>
+   </property>
+  </action>
+  <action name="action_90">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Фотография</string>
+   </property>
+  </action>
+  <action name="action_91">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Чтение</string>
+   </property>
+  </action>
+  <action name="action_92">
+   <property name="text">
+    <string>Географический</string>
+   </property>
+  </action>
+  <action name="action_93">
+   <property name="text">
+    <string>Геологический</string>
+   </property>
+  </action>
+  <action name="action_94">
+   <property name="text">
+    <string>Исторический</string>
+   </property>
+  </action>
+  <action name="action_95">
+   <property name="text">
+    <string>Философский</string>
+   </property>
+  </action>
+  <action name="action_96">
+   <property name="text">
+    <string>ВМК</string>
+   </property>
+  </action>
+  <action name="action_97">
+   <property name="text">
+    <string>Мехмат</string>
+   </property>
+  </action>
+  <action name="action_98">
+   <property name="text">
+    <string>Экономический</string>
+   </property>
+  </action>
+  <action name="action_99">
+   <property name="text">
+    <string>Физический</string>
+   </property>
+  </action>
+  <action name="action_100">
+   <property name="text">
+    <string>Психологический</string>
+   </property>
+  </action>
+  <action name="action_101">
+   <property name="text">
+    <string>Биологический</string>
+   </property>
+  </action>
+  <action name="action_102">
+   <property name="text">
+    <string>Юридический</string>
+   </property>
+  </action>
+  <action name="action_103">
+   <property name="text">
+    <string>Филологический</string>
+   </property>
+  </action>
+  <action name="action_104">
+   <property name="text">
+    <string>ИСАиА</string>
+   </property>
+  </action>
+  <action name="action_105">
+   <property name="text">
+    <string>ВШБ</string>
+   </property>
+  </action>
+  <action name="action_106">
+   <property name="text">
+    <string>ФГУ</string>
+   </property>
+  </action>
+  <action name="action_107">
+   <property name="text">
+    <string>Журналистика</string>
+   </property>
+  </action>
+  <action name="action_108">
+   <property name="text">
+    <string>Социологический</string>
+   </property>
+  </action>
+  <action name="action_109">
+   <property name="text">
+    <string>ФГП</string>
+   </property>
+  </action>
+  <action name="action_110">
+   <property name="text">
+    <string>ФИИ</string>
+   </property>
+  </action>
+  <action name="action_111">
+   <property name="text">
+    <string>Государственное управление</string>
+   </property>
+  </action>
+  <action name="action_112">
+   <property name="text">
+    <string>Иностранные языки</string>
+   </property>
+  </action>
+  <action name="action_113">
+   <property name="text">
+    <string>Химический</string>
+   </property>
+  </action>
+  <action name="action_114">
+   <property name="text">
+    <string>(БИ) Бизнес-информатика</string>
+   </property>
+  </action>
+  <action name="action_115">
+   <property name="text">
+    <string>(ПИ) Прикладная математика и информатика</string>
+   </property>
+  </action>
+  <action name="action_116">
+   <property name="text">
+    <string>Востоковедение</string>
+   </property>
+  </action>
+  <action name="action_117">
+   <property name="text">
+    <string>Госуправление</string>
+   </property>
+  </action>
+  <action name="action_118">
+   <property name="text">
+    <string>Дизайн</string>
+   </property>
+  </action>
+  <action name="action_119">
+   <property name="text">
+    <string>Инфокоммуникационные технологии</string>
+   </property>
+  </action>
+  <action name="action_120">
+   <property name="text">
+    <string>Компьютерная безопасность</string>
+   </property>
+  </action>
+  <action name="action_121">
+   <property name="text">
+    <string>Логистика</string>
+   </property>
+  </action>
+  <action name="action_122">
+   <property name="text">
+    <string>Математика</string>
+   </property>
+  </action>
+  <action name="action_123">
+   <property name="text">
+    <string>Менеджмент</string>
+   </property>
+  </action>
+  <action name="action_124">
+   <property name="text">
+    <string>Мировая экономика</string>
+   </property>
+  </action>
+  <action name="action_125">
+   <property name="text">
+    <string>МИЭФ</string>
+   </property>
+  </action>
+  <action name="action_126">
+   <property name="text">
+    <string>(ПМИ) Прикладная математика и информатика</string>
+   </property>
+  </action>
+  <action name="action_127">
+   <property name="text">
+    <string>Прикладная математика</string>
+   </property>
+  </action>
+  <action name="action_128">
+   <property name="text">
+    <string>Прикладная информатика</string>
+   </property>
+  </action>
+  <action name="action_129">
+   <property name="text">
+    <string>Программная инженерия</string>
+   </property>
+  </action>
+  <action name="action_130">
+   <property name="text">
+    <string>Социология</string>
+   </property>
+  </action>
+  <action name="action_132">
+   <property name="text">
+    <string>ПМИ</string>
+   </property>
+  </action>
+  <action name="action_133">
+   <property name="text">
+    <string>ПИ</string>
+   </property>
+  </action>
+  <action name="action_134">
+   <property name="text">
+    <string>ПАД</string>
+   </property>
+  </action>
+  <action name="action_135">
+   <property name="text">
+    <string>Экономика</string>
+   </property>
+  </action>
+  <action name="action_136">
+   <property name="text">
+    <string>Юриспруденция</string>
+   </property>
+  </action>
+  <action name="action_137">
+   <property name="text">
+    <string>ИУ</string>
+   </property>
+  </action>
+  <action name="action_138">
+   <property name="text">
+    <string>Инноватика</string>
+   </property>
+  </action>
+  <action name="action_139">
+   <property name="text">
+    <string>Прикладная математика</string>
+   </property>
+  </action>
+  <action name="action_140">
+   <property name="text">
+    <string>Биомедицинские технологии</string>
+   </property>
+  </action>
+  <action name="action_141">
+   <property name="text">
+    <string>Компьютерные сети</string>
+   </property>
+  </action>
+  <action name="action_142">
+   <property name="text">
+    <string>Информатика и вычислительная техника</string>
+   </property>
+  </action>
+  <action name="action_143">
+   <property name="text">
+    <string>Математика и компьютерные науки</string>
+   </property>
+  </action>
+  <action name="action_144">
+   <property name="text">
+    <string>Информационная безопасность</string>
+   </property>
+  </action>
+  <action name="action_145">
+   <property name="text">
+    <string>Экономика</string>
+   </property>
+  </action>
+  <action name="action_146">
+   <property name="text">
+    <string>Специальное машиностроение</string>
+   </property>
+  </action>
+  <action name="action_147">
+   <property name="text">
+    <string>Программная инженерия</string>
+   </property>
+  </action>
+  <action name="action_148">
+   <property name="text">
+    <string>Машиностроение</string>
+   </property>
+  </action>
+  <action name="action_149">
+   <property name="text">
+    <string>САПР</string>
+   </property>
+  </action>
+  <action name="action_150">
+   <property name="text">
+    <string>Экономика и менеджмент</string>
+   </property>
+  </action>
+  <action name="action_151">
+   <property name="text">
+    <string>Биоинженерия</string>
+   </property>
+  </action>
+  <action name="action_152">
+   <property name="text">
+    <string>Информатика и вычислительная техника</string>
+   </property>
+  </action>
+  <action name="action_153">
+   <property name="text">
+    <string>Информационная безопасность</string>
+   </property>
+  </action>
+  <action name="action_154">
+   <property name="text">
+    <string>Маркетинг</string>
+   </property>
+  </action>
+  <action name="action_155">
+   <property name="text">
+    <string>Прикладная математика и информатика</string>
+   </property>
+  </action>
+  <action name="action_156">
+   <property name="text">
+    <string>Программная инженерия</string>
+   </property>
+  </action>
+  <action name="action_157">
+   <property name="text">
+    <string>ФИТ</string>
+   </property>
+  </action>
+  <action name="action_158">
+   <property name="text">
+    <string>ФК</string>
+   </property>
+  </action>
+  <action name="action_159">
+   <property name="text">
+    <string>ФАиВТ</string>
+   </property>
+  </action>
+  <action name="action_160">
+   <property name="text">
+    <string>ФГГНГ</string>
+   </property>
+  </action>
+  <action name="action_161">
+   <property name="text">
+    <string>ФЭУ</string>
+   </property>
+  </action>
+  <action name="action_162">
+   <property name="text">
+    <string>экономика и управление</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
