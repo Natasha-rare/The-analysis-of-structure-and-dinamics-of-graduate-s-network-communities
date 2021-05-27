@@ -7,7 +7,6 @@ from PyQt5.QtGui import QPainter, QBrush, QColor, QFont
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from PyQt5.uic.properties import QtCore
 
 is_admin = False
 
@@ -17,7 +16,7 @@ ShortNames = {"Александр": "Саша", "Артем": "Артем", "Г�
     "Иван": "Иван", "Никита": "Никита", "Артём": "Артём",
     "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
     "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
-    "Владимир": "Володя", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
+    "Владимир": "Вова", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
     "Евгений": "Женя", "Роман": "Рома", "Даниил": "Даня", "Игорь": "Игорь",
     "Егор": "Егор", "Олег": "Олег", "Петр": "Петр",
     "Василий": "Вася", "Георгий": "Гоша", "Виктор": "Витя",
@@ -26,7 +25,7 @@ ShortNames = {"Александр": "Саша", "Артем": "Артем", "Г�
     "Юрий": "Юра", "Федор": "Федя", "Матвей": "Матвей",
     "Владислав": "Влад", "Тимофей": "Тима", "Вячеслав": "Слава",
     "Филипп": "Филя", "Степан": "Степа", "Всеволод": "Сева",
-    "Анатолий": "Толя", "Виталий": "Виталий", "Ярослав": "Яра",
+    "Анатолий": "Толя", "Виталий": "Витя", "Ярослав": "Яра",
     "Тимур": "Тимур", "Яков": "Яша", "Марк": "Марк", "Руслан": "Руся",
     "Семен": "Сема", "Екатерина": "Катя", "Анна": "Аня",
     "Анастасия": "Настя", "Дария": "Даша", "Мария": "Маша",
@@ -34,7 +33,7 @@ ShortNames = {"Александр": "Саша", "Артем": "Артем", "Г�
     "Татьяна": "Таня", "Елизавета": "Лиза",
     "Александра": "Саня", "Юлия": "Юля",
     "Евгения": "Женя", "Ирина": "Ира",
-    "София": "Соня", "Полина": "Полина", "Ксения": "Ксю",
+    "София": "Соня", "Полина": "Поля", "Ксения": "Ксю",
     "Светлана": "Света", "Марина": "Марина", "Виктория": "Вика",
     "Надежда": "Надя", "Варвара": "Варя", "Маргарита": "Рита", "Алина": "Лина",
     "Людмила": "Люда", "Вероника": "Ника", "Яна": "Яна",
@@ -125,6 +124,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi('Study project.ui', self)
+        self.ex_window = None
         self.label.hide()
         self.result = None
         self.points = []
@@ -139,38 +139,77 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.info.clicked.connect(self.open_info_ev)
         self.search.clicked.connect(self.show_results)
+        self.clear.clicked.connect(self.clear_all)
 
+    def clear_all(self):
+        self.result = None
+        # if 'Graduation' in self.query:
+        #     self.graduationClear()
+        # elif 'Clan' in self.query:
+        #     self.clanClear()
+        # elif 'Education' in self.query:
+        #     self.educationClear()
+        # elif 'Hobby' in self.query:
+        #     self.hobbyClear()
+        self.query = 'MATCH (p:Person) WHERE'
+        self.label.clear()
 
+    def graduationClear(self):
+        pass
     def graduationClicked(self, action):
         if self.first:
             self.query += f' p.Graduation = "{action.text()}"'
             self.first = False
+        elif 'Graduation' in self.query:
+            self.query += f' OR p.Graduation = "{action.text()}" '
         else:
             self.query += f' AND p.Graduation = "{action.text()}" '
         print('Graduation: ', action.text())
 
+    def educationClear(self):
+        pass
     def educationClicked(self, action):
         if self.first:
-            self.query += f' (p.Education = "{action.text()}" OR p.FieldOfEducation.Contains("{action.text()}"))'
+            self.query += f' (p.Education = "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
             self.first = False
+        elif 'Education' in self.query:
+            self.query += f' OR p.Education = "{action.text()}" '
         else:
-            self.query += f' AND (p.Education = "{action.text()}" OR p.FieldOfEducation.Contains("{action.text()}"))'
+            self.query += f' AND (p.Education = "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
         print('Eduation: ', action.text())
+
+    def hobbyClear(self):
+        for i in self.menuHobby:
+            if i.isChecked():
+                i.setChecked(False)
 
     def hobbyClicked(self, action):
         if self.first:
             self.query += f' p.Hobby = "{action.text()}" '
             self.first = False
+        elif 'Hobby' in self.query:
+            self.query += f' OR p.Hobby = "{action.text()}" '
         else:
             self.query += f' AND p.Hobby = "{action.text()}" '
         print('Hobby: ', action.text())
+
+    def clanClear(self):
+        for i in self.menuClan:
+            if i.isChecked():
+                i.setChecked(False)
 
     def clanClicked(self, action):
         if self.first:
             self.query += f' p.Clan = "{action.text()}" '
             self.first = False
+        elif action.text() in self.query:
+            self.query.replace(f'p.Clan = "{action.text()}"', '')
+            self.query = ' '.join(self.query.split()[:-1])
         else:
-            self.query += f' AND p.Clan = "{action.text()}" '
+            if 'Clan' in self.query:
+                self.query += f' OR p.Clan = "{action.text()}" '
+            else:
+                self.query += f' AND p.Clan = "{action.text()}" '
         print('Clan: ', action.text())
 
     def open_info_ev(self):
@@ -216,10 +255,86 @@ class MainWindow(QtWidgets.QMainWindow):
                                              f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
         painter.end()
 
+    def mousePressEvent(self, event):
+        if event.buttons() == Qt.LeftButton:
+            mx, my = event.x() - 57, event.y() - 134
+            print('mouse:', mx, my)
+            for i in range(len(self.points)):
+                cx, cy = self.points[i]
+                if ((mx - cx) ** 2 + (my - cy) ** 2) <= 50**2:
+                    print('figure: ', cx, cy)
+                    break
+            if self.ex_window is not None:
+                self.ex_window.close()
+            res = self.result[i]['p']
+            self.ex_window = PersonInfo(res, self)
+            self.ex_window.show()
+            print('sssjfnngn', i, 'fff08f',  self.result[i]['p'].get('Name'))
+
+
 def change_surname(surname):
     vowels = 'уеыаоэяиюё'
     s = surname[0] + ''.join([i for i in surname[1:] if i not in vowels])
     return s[:min(4, len(s))]
+
+class PersonInfo(QtWidgets.QMainWindow):
+    def __init__(self, data, parent=None):
+        super().__init__(parent)
+        uic.loadUi('Person_Info3.ui', self)
+        print('hello')
+        self.data = data
+        self.save_btn.clicked.connect(lambda: self.ability_toggle(False))
+        self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))
+        self.load_data()
+
+    def ability_toggle(self, flag=False):
+        self.lyceum_surname.setEnabled(flag)
+        self.current_surname.setEnabled(flag)
+        self.first_name.setEnabled(flag)
+        self.patronym.setEnabled(flag)
+        self.facebook_name.setEnabled(flag)
+        self.vk_name.setEnabled(flag)
+        self.linkedin_name.setEnabled(flag)
+        self.instagram_name.setEnabled(flag)
+        self.telegram_name.setEnabled(flag)
+        self.phone.setEnabled(flag)
+        self.email.setEnabled(flag)
+        self.group.setEnabled(flag)
+        self.project.setEnabled(flag)
+        self.clan.setEnabled(flag)
+        self.education.setEnabled(flag)
+        self.field_of_education.setEnabled(flag)
+        self.occupation.setEnabled(flag)
+        self.position.setEnabled(flag)
+        self.hobby.setEnabled(flag)
+        self.country.setEnabled(flag)
+
+    def load_data(self):
+        if is_admin:
+            self.ability_toggle(True)
+            self.save_btn.setEnabled(True)
+            self.edit_btn.setEnabled(True)
+        print(self.data.get('Name'))
+        self.lyceum_surname.setText(self.data.get('Lyceum_surname'))
+        self.current_surname.setText(self.data.get('Current_surname'))
+        self.first_name.setText(self.data.get('First_name'))
+        self.patronym.setText(self.data.get('patronym'))
+        self.facebook_name.setText(self.data.get('Facebook_name'))
+        self.linkedin_name.setText(self.data.get('LinkedIn_name'))
+        self.instagram_name.setText(self.data.get('Instagram_name'))
+        self.telegram_name.setText(self.data.get('Telegram'))
+        self.phone.setText(self.data.get('Phone'))
+        self.email.setText(self.data.get('Email'))
+        self.group.setText(self.data.get('Group'))
+        self.graduation.setText(self.data.get('Graduation'))
+        self.project.setText(self.data.get('Project'))
+        self.education.setText(', '.join(self.data.get('Education')))
+        self.occupation.setText(', '.join(self.data.get('Occupation')))
+        self.position.setText(', '.join(self.data.get('position')))
+        self.field_of_education.setText(self.data.get('FieldOfEducation'))
+        self.hobby.setText(self.data.get('Hobby'))
+        self.country.setText(self.data.get('Country'))
+
 
 class Greeting(QtWidgets.QDialog):
     def __init__(self, parent=None):
@@ -231,6 +346,7 @@ class Greeting(QtWidgets.QDialog):
 
 
     def login(self):
+        global is_admin
         login_form = Login()
         result = login_form.exec()
         if login_form.logged_in:
