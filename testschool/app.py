@@ -85,7 +85,7 @@ class App:
 
     @staticmethod
     def return_results_using_query(tx, my_query):
-        query = (my_query)
+        query = (my_query + 'RETURN p')
         result = tx.run(query)
         return [record for record in result]
 
