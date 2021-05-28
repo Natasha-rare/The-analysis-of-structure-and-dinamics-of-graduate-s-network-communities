@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: rgb(253, 102, 255)</string>
+          <string notr="true">color: rgb(255, 0, 0)</string>
          </property>
          <property name="text">
           <string>VK connections</string>

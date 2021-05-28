@@ -2,7 +2,7 @@ import sys
 from sysconfig import get_path
 from random import randrange
 from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QPainter, QBrush, QColor, QFont
+from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPen
 
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
@@ -124,6 +124,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi('Study project.ui', self)
+        self.number = 0
+        self.Names = []
         self.ex_window = None
         self.label.hide()
         self.result = None
@@ -228,29 +230,81 @@ class MainWindow(QtWidgets.QMainWindow):
     def show_results(self): # make dynamic resize???
         self.points = []
         w, h = self.width(), self.height()
+        self.shortnames = []
         self.result = neo4j_app.return_results(self.query)
+        self.number = len(self.result)
+        self.Names = [person['p'].get('Name') for person in self.result]
         print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
         self.label.resize(self.width(), self.height())
         pxmp = QtGui.QPixmap(1400, 570).scaled(w, h)
         pxmp.fill(Qt.transparent)
-
         self.label.setPixmap(pxmp)
 
         painter = QPainter(self.label.pixmap())
         painter.begin(self)
         painter.setBrush(QColor(255, 170, 255))
-        for i in range(len(self.result)):
+        for i in range(self.number):
             if self.result[i]['p'].get('First_name') not in ShortNames:
                 self.points.append((-10, -10))
+                self.shortnames.append("")
                 continue
             x, y = randrange(190, w - 200), randrange(80, h - 200)
             self.points.append((x, y))
-            painter.drawEllipse(x, y, 100, 100)
-            painter.setFont(QFont('Times', 8))
-            painter.drawText(x + 20, y + 20, 80, 80, 0, f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
+            self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                              f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
+
+        self.draw_lines_fb(painter)
+        self.draw_lines_vk(painter)
+        self.draw_circles(painter)
         painter.end()
         print(len(self.points))
+
+    def draw_circles(self, painter):
+        painter.setPen(QPen(QColor(0, 0, 0), 0))
+        for i in range(self.number):
+            x, y = self.points[i]
+            if x == y == -10: continue
+            txt = self.shortnames[i]
+            painter.drawEllipse(x, y, 100, 100)
+            painter.setFont(QFont('Times', 8))
+            painter.drawText(x + 20, y + 20, 80, 80, 0, txt)
+
+    def draw_lines_vk(self, painter):
+        painter.setPen(QPen(QColor(255, 0, 0), 3))
+        name = ''
+        new_query = 'MATCH (p1:Person)-[r:VK_FRIENDS]->(p:Person) WHERE p1.Name = "{}" AND (' \
+                    + ' '.join(self.query.split()[3:]) + ')'
+        for i in range(self.number):
+            ix, iy = self.points[i]
+            if ix==iy==-10: continue
+            name = self.result[i]['p'].get('Name')
+            _query = new_query.format(name)
+            res = neo4j_app.return_results(_query)
+            for r in res:
+                index = self.Names.index(r['p'].get('Name'))
+                print(index)
+                rx, ry = self.points[index]
+                painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
+
+    def draw_lines_fb(self, painter):
+        painter.setPen(QPen(QColor(0, 0, 255), 3))
+        name = ''
+        new_query = 'MATCH (p1:Person)-[r:FB_FRIENDS]->(p:Person) WHERE p1.Name = "{}" AND (' \
+                    + ' '.join(self.query.split()[3:]) + ')'
+        for i in range(self.number):
+            ix, iy = self.points[i]
+            if ix == iy == -10:
+                continue
+            name = self.result[i]['p'].get('Name')
+            _query = new_query.format(name)
+            res = neo4j_app.return_results(_query)
+            for r in res:
+                index = self.Names.index(r['p'].get('Name'))
+                print(index)
+                rx, ry = self.points[index]
+                if rx==ry==-10: continue
+                painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
+            print(len(res))
 
     def mousePressEvent(self, event):
         if event.buttons() == Qt.LeftButton:
@@ -280,7 +334,7 @@ class PersonInfo(QtWidgets.QMainWindow):
         uic.loadUi('Person_Info3.ui', self)
         print('hello')
         self.data = data
-        self.save_btn.clicked.connect(lambda: self.ability_toggle(False))
+        self.save_btn.clicked.connect(lambda: self.ability_toggle(False)) #change?? toggle only buttons?
         self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))
         self.load_data()
 
