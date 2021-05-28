@@ -142,17 +142,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clear.clicked.connect(self.clear_all)
 
     def clear_all(self):
-        self.result = None
-        # if 'Graduation' in self.query:
-        #     self.graduationClear()
-        # elif 'Clan' in self.query:
-        #     self.clanClear()
-        # elif 'Education' in self.query:
-        #     self.educationClear()
-        # elif 'Hobby' in self.query:
-        #     self.hobbyClear()
-        self.query = 'MATCH (p:Person) WHERE'
+        self.ex_window = None
         self.label.clear()
+        self.result = None
+        self.points = []
+        self.first = True
+        self.query = 'MATCH (p:Person) WHERE'
 
     def graduationClear(self):
         pass
@@ -231,7 +226,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def show_results(self): # make dynamic resize???
-        print(self.query)
+        self.points = []
         w, h = self.width(), self.height()
         self.result = neo4j_app.return_results(self.query)
         print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
@@ -246,6 +241,7 @@ class MainWindow(QtWidgets.QMainWindow):
         painter.setBrush(QColor(255, 170, 255))
         for i in range(len(self.result)):
             if self.result[i]['p'].get('First_name') not in ShortNames:
+                self.points.append((-10, -10))
                 continue
             x, y = randrange(190, w - 200), randrange(80, h - 200)
             self.points.append((x, y))
@@ -254,6 +250,7 @@ class MainWindow(QtWidgets.QMainWindow):
             painter.drawText(x + 20, y + 20, 80, 80, 0, f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                              f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
         painter.end()
+        print(len(self.points))
 
     def mousePressEvent(self, event):
         if event.buttons() == Qt.LeftButton:
@@ -311,29 +308,57 @@ class PersonInfo(QtWidgets.QMainWindow):
 
     def load_data(self):
         if is_admin:
-            self.ability_toggle(True)
             self.save_btn.setEnabled(True)
             self.edit_btn.setEnabled(True)
         print(self.data.get('Name'))
-        self.lyceum_surname.setText(self.data.get('Lyceum_surname'))
-        self.current_surname.setText(self.data.get('Current_surname'))
-        self.first_name.setText(self.data.get('First_name'))
-        self.patronym.setText(self.data.get('patronym'))
-        self.facebook_name.setText(self.data.get('Facebook_name'))
-        self.linkedin_name.setText(self.data.get('LinkedIn_name'))
-        self.instagram_name.setText(self.data.get('Instagram_name'))
-        self.telegram_name.setText(self.data.get('Telegram'))
-        self.phone.setText(self.data.get('Phone'))
-        self.email.setText(self.data.get('Email'))
-        self.group.setText(self.data.get('Group'))
-        self.graduation.setText(self.data.get('Graduation'))
-        self.project.setText(self.data.get('Project'))
-        self.education.setText(', '.join(self.data.get('Education')))
-        self.occupation.setText(', '.join(self.data.get('Occupation')))
-        self.position.setText(', '.join(self.data.get('position')))
-        self.field_of_education.setText(self.data.get('FieldOfEducation'))
-        self.hobby.setText(self.data.get('Hobby'))
-        self.country.setText(self.data.get('Country'))
+        if self.data.get('Lyceum_surname') is not None and self.data.get('Lyceum_surname') != '':
+            self.lyceum_surname.setText(self.data.get('Lyceum_surname'))
+        if self.data.get('Current_surname') is not None and self.data.get('Current_surname') != '':
+            self.current_surname.setText(self.data.get('Current_surname'))
+        if self.data.get('First_name') is not None and self.data.get('First_name') != '':
+            self.first_name.setText(self.data.get('First_name'))
+        if self.data.get('patronym') is not None and self.data.get('patronym') != '':
+            self.patronym.setText(self.data.get('patronym'))
+        if self.data.get('Fb_name') is not None and self.data.get('Fb_name') != '':
+            self.facebook_name.setText(self.data.get('Fb_name'))
+        if self.data.get('LinkedIn_name') is not None and self.data.get('LinkedIn_name') != '':
+            self.linkedin_name.setText(self.data.get('LinkedIn_name'))
+        if self.data.get('Inst_name') is not None and self.data.get('Inst_name') != '':
+            self.instagram_name.setText(self.data.get('Inst_name'))
+        if self.data.get('Telegram') is not None and self.data.get('Telegram') != '':
+            self.telegram_name.setText(self.data.get('Telegram'))
+        if self.data.get('Phone') is not None and self.data.get('Phone') != '':
+            self.phone.setText(self.data.get('Phone'))
+        if self.data.get('Email') is not None and self.data.get('Email')!= '':
+            self.email.setText(self.data.get('Email'))
+        if self.data.get('Group') is not None and self.data.get('Group') != '':
+            self.group.setText(self.data.get('Group'))
+        if self.data.get('Graduation') is not None and self.data.get('Graduation') != '':
+            self.graduation.setText(self.data.get('Graduation'))
+        if self.data.get('Project') is not None and self.data.get('Project') != '':
+            self.project.clear()
+            self.project.appendPlainText(self.data.get('Project'))
+        if self.data.get('Clan') is not None and self.data.get('Clan') != '':
+            self.clan.setCurrentText(self.data.get('Clan'))
+        if self.data.get('Education') is not None and len(self.data.get('Education')) > 0:
+            self.education.clear()
+            self.education.appendPlainText(
+                ', '.join(self.data.get('Education')) if isinstance(self.data.get('Education'), list) else self.data.get(
+                    'Education'))
+        if self.data.get('Occupation') is not None and len(self.data.get('Occupation')) > 0:
+            self.occupation.clear()
+            self.occupation.appendPlainText(', '.join(self.data.get('Occupation')) if isinstance(self.data.get('Occupation'), list) else self.data.get('Occupation'))
+        if self.data.get('Position') is not None and self.data.get('Position') != '':
+            self.position.clear()
+            self.position.appendPlainText(', '.join(self.data.get('Position')) if isinstance(self.data.get('Position'), list) else self.data.get('Position'))
+        if self.data.get('FieldOfEducation') is not None and self.data.get('FieldOfEducation') != '':
+            print('edu', isinstance(self.data.get('FieldOfEducation'), list))
+            print(self.data.get('FieldOfEducation'))
+            self.field_of_education.setText(', '.join(self.data.get('FieldOfEducation')) if isinstance(self.data.get('FieldOfEducation'), list) else self.data.get('FieldOfEducation'))
+        if self.data.get('Hobby') is not None and self.data.get('Hobby') != '':
+            self.hobby.setCurrentText(self.data.get('Hobby'))
+        if self.data.get('Country') is not None and self.data.get('Country') != '':
+            self.country.setText(self.data.get('Country'))
 
 
 class Greeting(QtWidgets.QDialog):
