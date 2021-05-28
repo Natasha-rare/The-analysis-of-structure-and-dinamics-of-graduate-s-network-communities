@@ -232,6 +232,9 @@ class MainWindow(QtWidgets.QMainWindow):
         w, h = self.width(), self.height()
         self.shortnames = []
         self.result = neo4j_app.return_results(self.query)
+        if len(self.result) == 0:
+            self.label.setText('К сожалению, мы ничего не нашли. Попробуйте другой запрос!')
+            return ''
         self.number = len(self.result)
         self.Names = [person['p'].get('Name') for person in self.result]
         print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
@@ -252,7 +255,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.points.append((x, y))
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                              f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
-
         self.draw_lines_fb(painter)
         self.draw_lines_vk(painter)
         self.draw_circles(painter)
@@ -308,9 +310,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def mousePressEvent(self, event):
         if event.buttons() == Qt.LeftButton:
+            cx, cy = -100, -100
             mx, my = event.x() - 57, event.y() - 134
             print('mouse:', mx, my)
-            for i in range(len(self.points)):
+            for i in range(self.number):
                 cx, cy = self.points[i]
                 if ((mx - cx) ** 2 + (my - cy) ** 2) <= 50**2:
                     print('figure: ', cx, cy)
@@ -333,6 +336,7 @@ class PersonInfo(QtWidgets.QMainWindow):
         super().__init__(parent)
         uic.loadUi('Person_Info3.ui', self)
         print('hello')
+        self.parent = parent
         self.data = data
         self.save_btn.clicked.connect(lambda: self.ability_toggle(False)) #change?? toggle only buttons?
         self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))
