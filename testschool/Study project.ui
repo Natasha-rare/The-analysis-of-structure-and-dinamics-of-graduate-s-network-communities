@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1428</width>
-    <height>650</height>
+    <width>1477</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>1400</width>
-    <height>650</height>
+    <height>1000</height>
    </size>
   </property>
   <property name="font">
@@ -35,10 +35,10 @@
    <widget class="QTextBrowser" name="info_txt">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>1001</width>
-      <height>541</height>
+      <x>110</x>
+      <y>50</y>
+      <width>1201</width>
+      <height>861</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -99,8 +99,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QToolButton" name="close_info">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>70</y>
+      <x>50</x>
+      <y>50</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -364,10 +364,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>39</y>
-      <width>1391</width>
-      <height>581</height>
+      <x>0</x>
+      <y>40</y>
+      <width>1401</width>
+      <height>871</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -395,7 +395,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1428</width>
+     <width>1477</width>
      <height>24</height>
     </rect>
    </property>

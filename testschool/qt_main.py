@@ -1,3 +1,4 @@
+import math
 import sys
 from sysconfig import get_path
 from random import randrange
@@ -146,6 +147,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.info.clicked.connect(self.open_info_ev)
         self.search.clicked.connect(self.show_results)
         self.clear.clicked.connect(self.clear_all)
+        self.reload.clicked.connect(self.show_results)
 
     def clear_all(self):
         self.clear_query()
@@ -203,12 +205,12 @@ class MainWindow(QtWidgets.QMainWindow):
         pass
     def educationClicked(self, action):
         if self.first:
-            self.query += f' (p.Education = "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
+            self.query += f' (p.Education CONTAINS "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
             self.first = False
         elif 'Education' in self.query:
-            self.query += f' OR p.Education = "{action.text()}" '
+            self.query += f' OR p.Education CONTAINS "{action.text()}" '
         else:
-            self.query += f' AND (p.Education = "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
+            self.query += f' AND (p.Education CONTAINS "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
         print('Eduation: ', action.text())
 
     def hobbyClear(self):
@@ -236,8 +238,10 @@ class MainWindow(QtWidgets.QMainWindow):
             self.query += f' p.Clan = "{action.text()}" '
             self.first = False
         elif action.text() in self.query:
-            self.query.replace(f'p.Clan = "{action.text()}"', '')
+            self.query = self.query.replace(f'p.Clan = "{action.text()}"', '')
             self.query = ' '.join(self.query.split()[:-1])
+            if len(self.query.strip().split()) == 3:
+                self.first = True
         else:
             if 'Clan' in self.query:
                 self.query += f' OR p.Clan = "{action.text()}" '
@@ -266,6 +270,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show()
 
     def show_results(self): # make dynamic resize???
+        print(self.query)
         self.points = []
         w, h = self.width(), self.height()
         self.shortnames = []
@@ -289,8 +294,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.points.append((-10, -10))
                 self.shortnames.append("")
                 continue
-            x, y = randrange(190, w - 200), randrange(80, h - 200)
-            self.points.append((x, y))
+            res = self.append_points(w, h)
+            print('res', res)
+            # x, y = randrange(190, w - 200), randrange(80, h - 200)
+            # self.points.append((x, y))
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                              f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
         self.draw_lines_fb(painter)
@@ -299,15 +306,35 @@ class MainWindow(QtWidgets.QMainWindow):
         painter.end()
         print(len(self.points))
 
+
+    def append_points(self, w, h):
+        protect = 0
+        while True:
+            x, y = randrange(50, w - 100), randrange(40, h - 120)
+            r = 40
+            overlapping = False
+            for i in self.points:
+                ox, oy = i[0], i[1]
+                d = math.hypot(ox - x, oy - y)
+                if d < r * 2:
+                    overlapping = True
+            if not overlapping:
+                self.points.append((x, y))
+                return 1
+            protect += 1
+            if protect > 10000:
+                return 0
+
+
     def draw_circles(self, painter):
         painter.setPen(QPen(QColor(0, 0, 0), 0))
         for i in range(self.number):
             x, y = self.points[i]
             if x == y == -10: continue
             txt = self.shortnames[i]
-            painter.drawEllipse(x, y, 100, 100)
+            painter.drawEllipse(x, y, 90, 90)
             painter.setFont(QFont('Times', 8))
-            painter.drawText(x + 20, y + 20, 80, 80, 0, txt)
+            painter.drawText(x + 15, y + 15, 60, 60, 0, txt)
 
     def draw_lines_vk(self, painter):
         painter.setPen(QPen(QColor(255, 0, 0), 3))

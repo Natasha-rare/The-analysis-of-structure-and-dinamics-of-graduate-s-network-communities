@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>890</width>
-    <height>940</height>
+    <height>970</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>890</width>
-    <height>940</height>
+    <height>970</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>890</width>
-    <height>940</height>
+    <height>12000000</height>
    </size>
   </property>
   <property name="font">
@@ -62,11 +62,14 @@
      <x>250</x>
      <y>130</y>
      <width>411</width>
-     <height>701</height>
+     <height>741</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
     <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="bottomMargin">
      <number>15</number>
     </property>
     <item>
@@ -89,7 +92,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -125,7 +128,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -164,7 +167,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -203,7 +206,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -242,7 +245,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -284,7 +287,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -308,18 +311,24 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>860</y>
-     <width>241</width>
-     <height>41</height>
+     <x>290</x>
+     <y>900</y>
+     <width>331</width>
+     <height>52</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QPushButton" name="ok">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
       <property name="text">
        <string>Ok</string>
       </property>
@@ -327,6 +336,12 @@
     </item>
     <item>
      <widget class="QPushButton" name="cancel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
       <property name="text">
        <string>Cancel</string>
       </property>

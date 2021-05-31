@@ -65,15 +65,24 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>280</x>
      <y>420</y>
-     <width>241</width>
-     <height>41</height>
+     <width>361</width>
+     <height>52</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
     <item>
      <widget class="QPushButton" name="ok">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
       <property name="text">
        <string>Ok</string>
       </property>
@@ -81,6 +90,12 @@
     </item>
     <item>
      <widget class="QPushButton" name="cancel">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
       <property name="text">
        <string>Cancel</string>
       </property>
@@ -88,18 +103,24 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>251</x>
      <y>269</y>
      <width>421</width>
-     <height>91</height>
+     <height>98</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QLabel" name="label_3">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Arial</family>
@@ -116,7 +137,7 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>30</height>
+        <height>50</height>
        </size>
       </property>
       <property name="font">
@@ -140,22 +161,31 @@
       <property name="placeholderText">
        <string>password</string>
       </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>251</x>
      <y>131</y>
      <width>421</width>
-     <height>91</height>
+     <height>98</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="login_lbl">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Arial</family>
@@ -172,7 +202,7 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>30</height>
+        <height>50</height>
        </size>
       </property>
       <property name="font">
@@ -183,6 +213,12 @@
       </property>
       <property name="placeholderText">
        <string>login</string>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::LogicalMoveStyle</enum>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
