@@ -9,7 +9,7 @@ from PyQt5 import QtWidgets, uic, QtGui
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
 is_admin = False
-
+login = ''
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
               "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
               "Алексей": "Леша", "Сергей": "Сергей", "Андрей": "Андрей", "Михаил": "Миша",
@@ -93,6 +93,8 @@ class Register(QtWidgets.QDialog):
             if error_dialog == QMessageBox.Ok:
                 print('ssd')
         else:
+            global login
+            login = self.login.text()
             self.registered = True
             print('maok')
             self.close()
@@ -115,7 +117,9 @@ class Login(QtWidgets.QDialog):
             if error_dialog == QMessageBox.Ok:
                 print('keee')
         else:
-            print('llol')
+            global login
+            login = self.login.text()
+            print(login)
             self.logged_in = True
             self.close()
 
@@ -144,6 +148,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clear.clicked.connect(self.clear_all)
 
     def clear_all(self):
+        self.clear_query()
         self.ex_window = None
         self.label.clear()
         self.result = None
@@ -151,8 +156,39 @@ class MainWindow(QtWidgets.QMainWindow):
         self.first = True
         self.query = 'MATCH (p:Person) WHERE'
 
+    def clear_query(self):
+        if 'Graduation' in self.query:
+            for action in self.menu1993_2000.actions():
+                action.setChecked(False)
+            for action in self.menu2001_2010.actions():
+                action.setChecked(False)
+            for action in self.menu2011_2020.actions():
+                action.setChecked(False)
+        if 'Education' in self.query:
+            for action in self.menu_2.actions():
+                action.setChecked(False)
+            for action in self.menu_3.actions():
+                action.setChecked(False)
+            for action in self.menu.actions():
+                action.setChecked(False)
+            for action in self.menu_7.actions():
+                action.setChecked(False)
+            for action in self.menu_8.actions():
+                action.setChecked(False)
+            for action in self.menuEducation.actions():
+                action.setChecked(False)
+        if 'Hobby' in self.query:
+            for action in self.menuHobby.actions():
+                action.setChecked(False)
+        if 'Clan' in self.query:
+            for action in self.menuClan.actions():
+                action.setChecked(False)
+
+
     def graduationClear(self):
         pass
+
+
     def graduationClicked(self, action):
         if self.first:
             self.query += f' p.Graduation = "{action.text()}"'
@@ -224,8 +260,10 @@ class MainWindow(QtWidgets.QMainWindow):
         greeting = Greeting(self)
         if greeting.exec_():
             pass
+        if login == '':
+            exit(0)
+        self.querylbl.setText(f'Logged in as {login}')
         self.show()
-
 
     def show_results(self): # make dynamic resize???
         self.points = []
@@ -304,12 +342,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 index = self.Names.index(r['p'].get('Name'))
                 print(index)
                 rx, ry = self.points[index]
-                if rx==ry==-10: continue
+                if rx == ry == -10: continue
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
             print(len(res))
 
     def mousePressEvent(self, event):
-        if event.buttons() == Qt.LeftButton:
+        if event.buttons() == Qt.LeftButton and self.number > 0:
             cx, cy = -100, -100
             mx, my = event.x() - 57, event.y() - 134
             print('mouse:', mx, my)
@@ -318,6 +356,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 if ((mx - cx) ** 2 + (my - cy) ** 2) <= 50**2:
                     print('figure: ', cx, cy)
                     break
+            if cx == cy == -100:
+                return ''
             if self.ex_window is not None:
                 self.ex_window.close()
             res = self.result[i]['p']
@@ -333,12 +373,14 @@ def change_surname(surname):
 
 class PersonInfo(QtWidgets.QMainWindow):
     def __init__(self, data, parent=None):
+        global login
         super().__init__(parent)
         uic.loadUi('Person_Info3.ui', self)
         print('hello')
+        self.ability_toggle(False)
         self.parent = parent
         self.data = data
-        self.save_btn.clicked.connect(lambda: self.ability_toggle(False)) #change?? toggle only buttons?
+        self.save_btn.clicked.connect(self.save_results) #change?? toggle only buttons?
         self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))
         self.load_data()
 
@@ -355,14 +397,28 @@ class PersonInfo(QtWidgets.QMainWindow):
         self.phone.setEnabled(flag)
         self.email.setEnabled(flag)
         self.group.setEnabled(flag)
-        self.project.setEnabled(flag)
+        self.graduation.setEnabled(flag)
+        # self.project.setEnabled(flag)
         self.clan.setEnabled(flag)
-        self.education.setEnabled(flag)
+        # self.education.setEnabled(flag)
         self.field_of_education.setEnabled(flag)
-        self.occupation.setEnabled(flag)
-        self.position.setEnabled(flag)
+        # self.occupation.setEnabled(flag)
+        # self.position.setEnabled(flag)
         self.hobby.setEnabled(flag)
         self.country.setEnabled(flag)
+
+    def save_results(self):
+        self.ability_toggle(False)
+        neo4j_app.add_linkedin(self.data.get('Name'), self.linkedin_name.text())
+        neo4j_app.add_clan(self.data.get('Name'), self.clan.text())
+        neo4j_app.add_position(self.data.get('Name'), self.position.text())
+        neo4j_app.add_occupation(self.data.get('Name'), self.occupation.text())
+        neo4j_app.add_extra_education(self.data.get('Name'), self.field_of_education.text())
+        neo4j_app.add_field(self.data.get('Name'), 'phone', self.phone.text())
+        neo4j_app.add_field(self.data.get('Name'), 'hobby', self.hobby.current_text())
+        neo4j_app.add_field(self.data.get('Name'), 'email', self.email.text())
+        neo4j_app.add_field(self.data.get('Name'), 'tg', self.telegram.text())
+        neo4j_app.add_field(self.data.get('Name'), 'inst_name', self.instagram_name.text())
 
     def load_data(self):
         if is_admin:
@@ -387,12 +443,12 @@ class PersonInfo(QtWidgets.QMainWindow):
             self.telegram_name.setText(self.data.get('Telegram'))
         if self.data.get('Phone') is not None and self.data.get('Phone') != '':
             self.phone.setText(self.data.get('Phone'))
-        if self.data.get('Email') is not None and self.data.get('Email')!= '':
+        if self.data.get('Email') is not None and self.data.get('Email') != '':
             self.email.setText(self.data.get('Email'))
         if self.data.get('Group') is not None and self.data.get('Group') != '':
             self.group.setText(self.data.get('Group'))
         if self.data.get('Graduation') is not None and self.data.get('Graduation') != '':
-            self.graduation.setText(self.data.get('Graduation'))
+            self.graduation.setText(str(self.data.get('Graduation')))
         if self.data.get('Project') is not None and self.data.get('Project') != '':
             self.project.clear()
             self.project.appendPlainText(self.data.get('Project'))

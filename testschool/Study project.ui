@@ -176,7 +176,7 @@ p, li { white-space: pre-wrap; }
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="query">
+      <widget class="QLabel" name="querylbl">
        <property name="minimumSize">
         <size>
          <width>365</width>

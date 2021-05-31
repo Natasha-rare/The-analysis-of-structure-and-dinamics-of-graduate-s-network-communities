@@ -1,8 +1,10 @@
 from neo4j import GraphDatabase
+
 Clans = {"Разработка ПО": "IT", "Финансы и страхование": "Finance", "Медиа-проекты": "Media",
          "Менеджмент и консалтинг": "Management", "Маркетинговые коммуникации": "Marketing",
          "Образование": "Education", "ИТ-консалтинг": "IT-consulting", "Исследования": "Research", None: ""}
 Countries = {}
+
 
 class App:
     def __init__(self, uri, user, password):
@@ -12,7 +14,8 @@ class App:
         # Don't forget to close the driver connection when you are finished with it
         self.driver.close()
 
-    def create_person(self, name, group, education,graduation, exta_education, position, occupation, clan, notes, other):
+    def create_person(self, name, group, education, graduation, exta_education, position, occupation, clan, notes,
+                      other):
         with self.driver.session() as session:
             result = session.read_transaction(self.create_new_person, name, group, graduation)
             result = session.read_transaction(self.add_education_to_person, name, education, new=True)
@@ -54,7 +57,6 @@ class App:
                         patronym=patronym, group=group, graduation=graduation)
         return result
 
-
     def add_note(self, name, note):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_note_to_person, name, note)
@@ -82,7 +84,6 @@ class App:
             result = session.read_transaction(self.return_results_using_query, query)
             return result
 
-
     @staticmethod
     def return_results_using_query(tx, my_query):
         query = (my_query + 'RETURN p')
@@ -106,7 +107,7 @@ class App:
     def add_extra_education(self, name, education):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_add_extra_education, name, education)
-            #print(result)
+            # print(result)
 
     @staticmethod
     def add_add_extra_education(tx, name, education, new=False):
@@ -135,6 +136,41 @@ class App:
         result = tx.run(query, name=name, education=prev_education)
         return result
 
+    # hobby, inst_name, telegram, phone, email
+    def add_field(self, name, field_name, field_value):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.add_hobby_to_person, name, field_name, field_value)
+
+    @staticmethod
+    def add_field_to_person(tx, name, field_name, field_value):
+        result = ''
+        if field_name == 'hobby':
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Hobby = $hobby"
+            result = tx.run(query, name=name, hobby=field_value)
+        elif field_name == 'inst_name':
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Inst_name = $inst"
+            result = tx.run(query, name=name, inst=field_value)
+        elif field_name == 'tg':
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Telegram = $tg"
+            result = tx.run(query, name=name, tg=field_value)
+        elif field_name == 'phone':
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Phone = $phone"
+            result = tx.run(query, name=name, phone=field_value)
+        elif field_name == 'email':
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Email = $email"
+            result = tx.run(query, name=name, email=field_value)
+        return result
+
+    def add_hobby(self, name, hobby):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.add_hobby_to_person, name, hobby)
+
+    @staticmethod
+    def add_hobby_to_person(tx, name, hobby):
+        query = "MATCH (p:Person) WHERE p.Name = $name SET p.Hobby = $hobby"
+        result = tx.run(query, name=name, hobby=hobby)
+        return result
+
     def add_phone(self, name, phone):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_phone_to_person, name, phone)
@@ -155,12 +191,10 @@ class App:
         result = tx.run(query, name=name, email=email)
         return result
 
-
     def add_education(self, name, education):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_education_to_person, name, education)
-            #print(result)
-
+            # print(result)
 
     @staticmethod
     def add_education_to_person(tx, name, education, new=False):
@@ -189,17 +223,17 @@ class App:
         result = tx.run(query, name=name, education=prev_education)
         return result
 
-
-    def add_linkedin(self, name, linkedin_name, country):
+    def add_linkedin(self, name, linkedin_name, country=""):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_linkedin_to_person, name, linkedin_name, country)
 
     @staticmethod
     def add_linkedin_to_person(tx, name, linkedin_name, country):
-        for c in Countries.keys():
-            if country in c.split(' / '):
-                country = Countries[c]
-                break
+        if country != "":
+            for c in Countries.keys():
+                if country in c.split(' / '):
+                    country = Countries[c]
+                    break
         print(country)
         query = "MATCH (p:Person) WHERE p.Name = $name SET p.LinkedIn_name=$linkedin_name SET p.Country=$country"
         result = tx.run(query, name=name, linkedin_name=linkedin_name, country=country)
@@ -208,7 +242,7 @@ class App:
     def add_occupation(self, name, occupation):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_occupation_to_person, name, occupation)
-            #print(result)
+            # print(result)
 
     @staticmethod
     def add_occupation_to_person(tx, name, occupation, new=False):
@@ -227,7 +261,8 @@ class App:
                 prev_occupation.append(record["Occupation"].split())
             except Exception:
                 prev_occupation.append(record["Occupation"])
-        prev_occupation = prev_occupation[0] if len(prev_occupation) > 0 and prev_occupation is not None else prev_occupation
+        prev_occupation = prev_occupation[0] if len(
+            prev_occupation) > 0 and prev_occupation is not None else prev_occupation
         if prev_occupation is None:
             prev_occupation = []
         if occupation != "" and occupation is not None:
@@ -246,7 +281,7 @@ class App:
     def add_position(self, name, position):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_position_to_person, name, position)
-            #print(result)
+            # print(result)
 
     @staticmethod
     def add_position_to_person(tx, name, position, new=False):
