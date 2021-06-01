@@ -1,5 +1,7 @@
 import math
+import os
 import sys
+import pandas as pd
 from sysconfig import get_path
 from random import randrange
 from PyQt5.QtCore import Qt, QRect
@@ -7,10 +9,11 @@ from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPen
 
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog
 
 is_admin = False
 login = ''
+copies_count = 0
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
               "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
               "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
@@ -149,6 +152,46 @@ class MainWindow(QtWidgets.QMainWindow):
         self.search.clicked.connect(self.show_results)
         self.clear.clicked.connect(self.clear_all)
         self.reload.clicked.connect(self.show_results)
+        self.share.clicked.connect(self.share_csv)
+
+
+    def share_csv(self):
+        global copies_count
+        lyceum_surname = [person['p'].get('Lyceum_surname') for person in self.result]
+        current_surname = [person['p'].get('Current_surname') for person in self.result]
+        f_n = [person['p'].get('First_name') for person in self.result]
+        patronym = [person['p'].get('patronym') for person in self.result]
+        fb_name = [person['p'].get('Fb_name') for person in self.result]
+        vk_name = [person['p'].get('Vk_name') for person in self.result]
+        linkedin_n = [person['p'].get('LinkedIn_name') for person in self.result]
+        inst_name = [person['p'].get('Inst_name') for person in self.result]
+        tg = [person['p'].get('Telegam') for person in self.result]
+        phone = [person['p'].get('Phone') for person in self.result]
+        mail = [person['p'].get('Email') for person in self.result]
+        group = [person['p'].get('Group') for person in self.result]
+        grad = [person['p'].get('Graduation') for person in self.result]
+        project = [person['p'].get('Project') for person in self.result]
+        clan = [person['p'].get('CLan') for person in self.result]
+        education = [person['p'].get('Education') for person in self.result]
+        f_edu = [person['p'].get('FieldOfEducation') for person in self.result]
+        occup = [person['p'].get('Occupation') for person in self.result]
+        pos = [person['p'].get('Position') for person in self.result]
+        hobby = [person['p'].get('Hobby') for person in self.result]
+        country = [person['p'].get('Country') for person in self.result]
+
+        df = pd.DataFrame(list(zip(self.Names, lyceum_surname, current_surname, f_n, patronym,
+                                   fb_name, vk_name, linkedin_n, inst_name, tg, phone, mail, group,
+                                   grad, project, clan, education, f_edu, occup, pos, hobby, country)),
+                          columns=['ФИО', 'Фамилия в лицее', 'Фамилия сейчас', 'Имя', 'Отчество',
+                                   'Facebook', 'ВКонтакте', 'LinkedIn', 'Instagram', 'Telegram', 'Телефон', 'Email',
+                                   'Группа', 'Год выпуска', 'Проект', 'Племя', 'ВУЗ', 'Факультет', 'Место работы',
+                                   'Должность', 'Хобби', 'Страна'])
+        name = QFileDialog.getSaveFileName(self, caption='Save session as .csv',
+                                           directory=f'{os.path.expanduser("~/Desktop")}/neo4j_result{copies_count}.csv',
+                                           filter='*.csv')
+        if name[0] != '':
+            df.to_csv(name[0], encoding='utf-8-sig')
+            copies_count += 1
 
     def clear_all(self):
         self.clear_query()
@@ -461,6 +504,8 @@ class PersonInfo(QtWidgets.QMainWindow):
             self.linkedin_name.setText(self.data.get('LinkedIn_name'))
         if self.data.get('Inst_name') is not None and self.data.get('Inst_name') != '':
             self.instagram_name.setText(self.data.get('Inst_name'))
+        if self.data.get('Vk_name') is not None and self.data.get('Vk_name') != '':
+            self.vk_name.setText(self.data.get('Vk_name'))
         if self.data.get('Telegram') is not None and self.data.get('Telegram') != '':
             self.telegram_name.setText(self.data.get('Telegram'))
         if self.data.get('Phone') is not None and self.data.get('Phone') != '':
