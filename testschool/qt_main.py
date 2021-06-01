@@ -13,7 +13,7 @@ is_admin = False
 login = ''
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
               "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
-              "Алексей": "Леша", "Сергей": "Сергей", "Андрей": "Андрей", "Михаил": "Миша",
+              "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
     "Иван": "Иван", "Никита": "Никита", "Артём": "Артём",
     "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
     "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
@@ -59,7 +59,7 @@ ShortNames = {"Александр": "Саша", "Артем": "Артем", "Г�
     "Майя": "Майя", "Марат": "Марат", "Марианна": "Марья", "Марьяна": "Марья",
     "Матин": "Матин", "Мелисса": "Мелиса", "Мерген": "Мерген", "Мередкули": "Меред", "Метревели": "Метре", "Микаэл": "Микаэл",
     "Назар": "Назар", "Наргиза": "Нарги", "Нелли": "Нелли", "Ника": "Ника", "Николь": "Николь", "Олеся": "Олеся", "Регина": "Регина", "Ренат": "Ренат",
-    "Рината": "Рината", "Роберт": "Роб", "Родион": "Родион", "Ростислав": "Ростик", "Рубен": "Рубен", "Рувин": "Рувин", "Рустам": "Рустам", "Сабина": "Саби", "Саман": "Саман",
+    "Рината": "Рина", "Роберт": "Роб", "Родион": "Родион", "Ростислав": "Ростик", "Рубен": "Рубен", "Рувин": "Рувин", "Рустам": "Рустам", "Сабина": "Саби", "Саман": "Саман",
     "Саня": "Саня", "Святослав": "Свят", "Серафима": "Сима", "Сослан": "Сослан", "Сусанна": "Сана", "Сяоган": "Сяоган", "Таисия": "Тася", "Тамара": "Тома", "Тамерлан": "Тамер", "Теймур": "Теймур", "Тигран": "Тигран", "Ульяна": "Уля",
     "Фаик": "Фаик", "Фатима": "Фатима", "Шамиль": "Шамиль", "Шенне": "Шенне", "Эвелина": "Лина", "Эдуард": "Эдик", "Элизабет": "Элиза",
     "Элина": "Элина", "Элла": "Элла", "Эльвира": "Эля", "Эмиль": "Эмиль",
@@ -129,6 +129,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi('Study project.ui', self)
+        self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.number = 0
         self.Names = []
         self.ex_window = None
@@ -151,6 +152,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def clear_all(self):
         self.clear_query()
+        self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.ex_window = None
         self.label.clear()
         self.result = None
@@ -186,68 +188,37 @@ class MainWindow(QtWidgets.QMainWindow):
             for action in self.menuClan.actions():
                 action.setChecked(False)
 
-
-    def graduationClear(self):
-        pass
-
-
     def graduationClicked(self, action):
-        if self.first:
-            self.query += f' p.Graduation = "{action.text()}"'
-            self.first = False
-        elif 'Graduation' in self.query:
-            self.query += f' OR p.Graduation = "{action.text()}" '
+        val = self.clicked['Graduation']
+        if action.text() in val:
+            val.remove(action.text())
         else:
-            self.query += f' AND p.Graduation = "{action.text()}" '
-        print('Graduation: ', action.text())
+            val.append(action.text())
+        self.clicked['Graduation'] = val
 
-    def educationClear(self):
-        pass
     def educationClicked(self, action):
-        if self.first:
-            self.query += f' (p.Education CONTAINS "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
-            self.first = False
-        elif 'Education' in self.query:
-            self.query += f' OR p.Education CONTAINS "{action.text()}" '
+        val = self.clicked['Education']
+        if action.text() in val:
+            val.remove(action.text())
         else:
-            self.query += f' AND (p.Education CONTAINS "{action.text()}" OR p.FieldOfEducation CONTAINS "{action.text()}")'
-        print('Eduation: ', action.text())
-
-    def hobbyClear(self):
-        for i in self.menuHobby:
-            if i.isChecked():
-                i.setChecked(False)
+            val.append(action.text())
+        self.clicked['Education'] = val
 
     def hobbyClicked(self, action):
-        if self.first:
-            self.query += f' p.Hobby = "{action.text()}" '
-            self.first = False
-        elif 'Hobby' in self.query:
-            self.query += f' OR p.Hobby = "{action.text()}" '
+        val = self.clicked['Hobby']
+        if action.text() in val:
+            val.remove(action.text())
         else:
-            self.query += f' AND p.Hobby = "{action.text()}" '
-        print('Hobby: ', action.text())
-
-    def clanClear(self):
-        for i in self.menuClan:
-            if i.isChecked():
-                i.setChecked(False)
+            val.append(action.text())
+        self.clicked['Hobby'] = val
 
     def clanClicked(self, action):
-        if self.first:
-            self.query += f' p.Clan = "{action.text()}" '
-            self.first = False
-        elif action.text() in self.query:
-            self.query = self.query.replace(f'p.Clan = "{action.text()}"', '')
-            self.query = ' '.join(self.query.split()[:-1])
-            if len(self.query.strip().split()) == 3:
-                self.first = True
+        val = self.clicked['Clan']
+        if action.text() in val:
+            val.remove(action.text())
         else:
-            if 'Clan' in self.query:
-                self.query += f' OR p.Clan = "{action.text()}" '
-            else:
-                self.query += f' AND p.Clan = "{action.text()}" '
-        print('Clan: ', action.text())
+            val.append(action.text())
+        self.clicked['Clan'] = val
 
     def open_info_ev(self):
         self.label.hide()
@@ -264,13 +235,37 @@ class MainWindow(QtWidgets.QMainWindow):
         greeting = Greeting(self)
         if greeting.exec_():
             pass
-        if login == '':
-            exit(0)
+        # if login == '':
+        #     exit(0)
         self.querylbl.setText(f'Logged in as {login}')
         self.show()
 
+    def make_query(self):
+        self.query = 'MATCH (p:Person) WHERE'
+        self.first = True
+        for key, value in self.clicked.items():
+            if len(value) > 0:
+                if not self.first:
+                    self.query += 'AND'
+                if key == 'Education':
+                    if len(value) == 1:
+                        self.query += f' "{value[0]}" IN p.{key} '
+                    else:
+                        self.query += ' ('
+                        for i in value:
+                            self.query += f'"{i}" in p.{key} OR '
+                        self.query = self.query[:-3] + ') '
+                else:
+                    self.query += f" p.{key} IN {value} "
+                self.first = False
+
     def show_results(self): # make dynamic resize???
+        self.close_info_ev()
+        self.make_query()
         print(self.query)
+        if self.query == 'MATCH (p:Person) WHERE':
+            self.label.setText('Вы отравили пустой запрос. Пожалуйста, выберите признаки')
+            return ''
         self.points = []
         w, h = self.width(), self.height()
         self.shortnames = []
@@ -380,17 +375,17 @@ class MainWindow(QtWidgets.QMainWindow):
             print('mouse:', mx, my)
             for i in range(self.number):
                 cx, cy = self.points[i]
-                if ((mx - cx) ** 2 + (my - cy) ** 2) <= 50**2:
+                if math.hypot(mx - cx, my - cy) <= 50:
                     print('figure: ', cx, cy)
                     break
-            if cx == cy == -100:
-                return ''
-            if self.ex_window is not None:
-                self.ex_window.close()
-            res = self.result[i]['p']
-            self.ex_window = PersonInfo(res, self)
-            self.ex_window.show()
-            print('sssjfnngn', i, 'fff08f',  self.result[i]['p'].get('Name'))
+                cx = cy = -100
+            if cx != -100 and cy != -100:
+                if self.ex_window is not None:
+                    self.ex_window.close()
+                res = self.result[i]['p']
+                self.ex_window = PersonInfo(res, self)
+                self.ex_window.show()
+                print('sssjfnngn', i, 'fff08f',  self.result[i]['p'].get('Name'))
 
 
 def change_surname(surname):
