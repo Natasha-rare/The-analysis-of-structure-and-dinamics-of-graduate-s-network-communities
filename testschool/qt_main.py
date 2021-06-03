@@ -17,7 +17,7 @@ copies_count = 0
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
               "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
               "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
-    "Иван": "Иван", "Никита": "Никита", "Артём": "Артём",
+    "Иван": "Иван", "Никита": "Ник", "Артём": "Артём",
     "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
     "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
     "Владимир": "Вова", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
@@ -134,6 +134,8 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi('Study project.ui', self)
         self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.number = 0
+        self.name_search = False
+        self.nameClicked(None, False)
         self.Names = []
         self.ex_window = None
         self.label.hide()
@@ -147,6 +149,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.menuHobby.triggered.connect(self.hobbyClicked)
         self.menuClan.triggered.connect(self.clanClicked)
         self.menuGraduation.triggered.connect(self.graduationClicked)
+        self.menuName.triggered.connect(self.nameClicked)
 
         self.info.clicked.connect(self.open_info_ev)
         self.search.clicked.connect(self.show_results)
@@ -154,46 +157,62 @@ class MainWindow(QtWidgets.QMainWindow):
         self.reload.clicked.connect(self.show_results)
         self.share.clicked.connect(self.share_csv)
 
+    def nameClicked(self, action, flag=True):
+        self.name_search = flag
+        self.n_lbl.setVisible(flag)
+        self.s_lbl.setVisible(flag)
+        self.p_lbl.setVisible(flag)
+        self.name.setVisible(flag)
+        self.surname.setVisible(flag)
+        self.patronym.setVisible(flag)
 
     def share_csv(self):
-        global copies_count
-        lyceum_surname = [person['p'].get('Lyceum_surname') for person in self.result]
-        current_surname = [person['p'].get('Current_surname') for person in self.result]
-        f_n = [person['p'].get('First_name') for person in self.result]
-        patronym = [person['p'].get('patronym') for person in self.result]
-        fb_name = [person['p'].get('Fb_name') for person in self.result]
-        vk_name = [person['p'].get('Vk_name') for person in self.result]
-        linkedin_n = [person['p'].get('LinkedIn_name') for person in self.result]
-        inst_name = [person['p'].get('Inst_name') for person in self.result]
-        tg = [person['p'].get('Telegam') for person in self.result]
-        phone = [person['p'].get('Phone') for person in self.result]
-        mail = [person['p'].get('Email') for person in self.result]
-        group = [person['p'].get('Group') for person in self.result]
-        grad = [person['p'].get('Graduation') for person in self.result]
-        project = [person['p'].get('Project') for person in self.result]
-        clan = [person['p'].get('CLan') for person in self.result]
-        education = [person['p'].get('Education') for person in self.result]
-        f_edu = [person['p'].get('FieldOfEducation') for person in self.result]
-        occup = [person['p'].get('Occupation') for person in self.result]
-        pos = [person['p'].get('Position') for person in self.result]
-        hobby = [person['p'].get('Hobby') for person in self.result]
-        country = [person['p'].get('Country') for person in self.result]
+        if self.query != "MATCH (p:Person) WHERE":
+            global copies_count
+            lyceum_surname = [person['p'].get('Lyceum_surname') for person in self.result]
+            current_surname = [person['p'].get('Current_surname') for person in self.result]
+            f_n = [person['p'].get('First_name') for person in self.result]
+            patronym = [person['p'].get('patronym') for person in self.result]
+            fb_name = [person['p'].get('Fb_name') for person in self.result]
+            vk_name = [person['p'].get('Vk_name') for person in self.result]
+            linkedin_n = [person['p'].get('LinkedIn_name') for person in self.result]
+            inst_name = [person['p'].get('Inst_name') for person in self.result]
+            tg = [person['p'].get('Telegam') for person in self.result]
+            phone = [person['p'].get('Phone') for person in self.result]
+            mail = [person['p'].get('Email') for person in self.result]
+            group = [person['p'].get('Group') for person in self.result]
+            grad = [person['p'].get('Graduation') for person in self.result]
+            project = [person['p'].get('Project') for person in self.result]
+            clan = [person['p'].get('CLan') for person in self.result]
+            education = [person['p'].get('Education') for person in self.result]
+            f_edu = [person['p'].get('FieldOfEducation') for person in self.result]
+            occup = [person['p'].get('Occupation') for person in self.result]
+            pos = [person['p'].get('Position') for person in self.result]
+            hobby = [person['p'].get('Hobby') for person in self.result]
+            country = [person['p'].get('Country') for person in self.result]
 
-        df = pd.DataFrame(list(zip(self.Names, lyceum_surname, current_surname, f_n, patronym,
-                                   fb_name, vk_name, linkedin_n, inst_name, tg, phone, mail, group,
-                                   grad, project, clan, education, f_edu, occup, pos, hobby, country)),
-                          columns=['ФИО', 'Фамилия в лицее', 'Фамилия сейчас', 'Имя', 'Отчество',
-                                   'Facebook', 'ВКонтакте', 'LinkedIn', 'Instagram', 'Telegram', 'Телефон', 'Email',
-                                   'Группа', 'Год выпуска', 'Проект', 'Племя', 'ВУЗ', 'Факультет', 'Место работы',
-                                   'Должность', 'Хобби', 'Страна'])
-        name = QFileDialog.getSaveFileName(self, caption='Save session as .csv',
-                                           directory=f'{os.path.expanduser("~/Desktop")}/neo4j_result{copies_count}.csv',
-                                           filter='*.csv')
-        if name[0] != '':
-            df.to_csv(name[0], encoding='utf-8-sig')
-            copies_count += 1
+            df = pd.DataFrame(list(zip(self.Names, lyceum_surname, current_surname, f_n, patronym,
+                                       fb_name, vk_name, linkedin_n, inst_name, tg, phone, mail, group,
+                                       grad, project, clan, education, f_edu, occup, pos, hobby, country)),
+                              columns=['ФИО', 'Фамилия в лицее', 'Фамилия сейчас', 'Имя', 'Отчество',
+                                       'Facebook', 'ВКонтакте', 'LinkedIn', 'Instagram', 'Telegram', 'Телефон', 'Email',
+                                       'Группа', 'Год выпуска', 'Проект', 'Племя', 'ВУЗ', 'Факультет', 'Место работы',
+                                       'Должность', 'Хобби', 'Страна'])
+            name = QFileDialog.getSaveFileName(self, caption='Save session as .csv',
+                                               directory=f'{os.path.expanduser("~/Desktop")}/neo4j_result{copies_count}.csv',
+                                               filter='*.csv')
+            if name[0] != '':
+                df.to_csv(name[0], encoding='utf-8-sig')
+                copies_count += 1
+        else:
+            error_dialog = QMessageBox.critical(
+                self, 'Error', 'Выберите признаки!',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                print('окееееей')
 
     def clear_all(self):
+        self.name_search = False
         self.clear_query()
         self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.ex_window = None
@@ -284,25 +303,36 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show()
 
     def make_query(self):
-        self.query = 'MATCH (p:Person) WHERE'
-        self.first = True
-        for key, value in self.clicked.items():
-            if len(value) > 0:
-                if not self.first:
-                    self.query += 'AND'
-                if key == 'Education':
-                    if len(value) == 1:
-                        self.query += f' "{value[0]}" IN p.{key} '
+        if not self.name_search:
+            self.query = 'MATCH (p:Person) WHERE'
+            self.first = True
+            for key, value in self.clicked.items():
+                if len(value) > 0:
+                    if not self.first:
+                        self.query += 'AND'
+                    if key == 'Education':
+                        if len(value) == 1:
+                            self.query += f' "{value[0]}" IN p.{key} '
+                        else:
+                            self.query += ' ('
+                            for i in value:
+                                self.query += f'"{i}" in p.{key} OR '
+                            self.query = self.query[:-3] + ') '
                     else:
-                        self.query += ' ('
-                        for i in value:
-                            self.query += f'"{i}" in p.{key} OR '
-                        self.query = self.query[:-3] + ') '
-                else:
-                    self.query += f" p.{key} IN {value} "
-                self.first = False
+                        self.query += f" p.{key} IN {value} "
+                    self.first = False
+        else:
+            parts = []
+            self.query = 'MATCH (a:Person)-[r]-(p:Person) WHERE '
+            if self.name.text() != "":
+                parts.append(f' a.Name CONTAINS "{self.name.text().strip()}"')
+            if self.surname.text() != "":
+                parts.append(f' a.Name CONTAINS "{self.surname.text().strip()}"')
+            if self.patronym.text() != "":
+                parts.append(f' a.Name CONTAINS "{self.patronym.text().strip()}"')
+            self.query += ' AND '.join(parts)
 
-    def show_results(self): # make dynamic resize???
+    def show_results(self):  # make dynamic resize???
         self.close_info_ev()
         self.make_query()
         print(self.query)

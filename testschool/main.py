@@ -13,12 +13,12 @@ user = "neo4j"
 password = "12345"
 app = App(url, user, password)
 
-app.find_firstname()
-exit(0)
-
-workbook = load_workbook(filename="C:\\Users\\nattt\\project\\Материалы для НА апрель 2021\\Сырье для базы\\Регистрация выпускников (Ответы).xlsx")
-sheet = workbook.worksheets[0]
-print(sheet.title)
+# app.find_firstname()
+# exit(0)
+#
+# workbook = load_workbook(filename="C:\\Users\\nattt\\project\\Материалы для НА апрель 2021\\Для базы_200321 (2).xlsx")
+# sheet = workbook.worksheets[0]
+# print(sheet.title)
 
 # neo2orkbook = load_workbook(filename="C:\\Users\\nattt\\Downloads\\export.xlsx")
 # neosheet = neo2orkbook.worksheets[0]
@@ -32,19 +32,36 @@ Countries = {}
 # for row in country_book.iter_rows(min_row=4, max_row=country_book.max_row - 1, values_only=True):
 #     Countries[row[3]] = row[1]
 
-
-for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row, values_only=True):
-    withpatr = False
-    name = row[1].strip() + " " + row[2].strip() + ' '
-    if row[3] is not None:
-        name += row[3]
-        withpatr = True
-    name = name.strip()
-    if app.find_person(name, withpatr):
-        name = app.find_person(name, withpatr)
-        print(name)
-        app.add_phone(name, row[7])
-        app.add_email(name, row[6])
-
+#
+# for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row, values_only=True):
+#     withpatr = True
+#     name = row[0]
+#     #            .strip() + " " + row[2].strip() + ' '
+#     # if row[3] is not None:
+#     #     name += row[3]
+#     #     withpatr = True
+#     name = name.strip()
+#     if app.find_person(name, True):
+#         name = app.find_person(name, withpatr)
+#         app.add_education(row[0], row[6])
+#         app.add_extra_education(row[0], row[7])
+#         app.add_clan(row[0], row[9])
+#         app.add_clan(row[0], row[9])
+name_bad = input("Name bad: ")
+name_good = input("Name good: ")
+id = input("Fb_id_bad: ")
+# query1 = f'MATCH (a:Person)-[:FB_FRIENDS]->(p:Person) WHERE a.Name="{name_bad}" and a.Fb_id = "{id}"'
+query1 = f'MATCH (a:Person)<-[:FB_FRIENDS]-(p:Person) WHERE a.Name="{name_bad}" and a.Fb_id = "{id}"'
+my_results = app.return_results(query1)
+results = [person['p'].get('Name') for person in my_results]
+query1 = f'MATCH (a:Person), (b:Person) WHERE a.Name="{name_good}" '
+for i in results:
+    if i[0] == '2' or i[0] == '1':
+        id = my_results[results.index(i)]['p']['Fb_id']
+        query = query1 + f'AND b.Name = "{i}" AND b.Fb_id = "{id}"'
+    else:
+        query = query1 + f'AND b.Name = "{i}"'
+    #res2 = app.create_connection(query, 'fb', 'to')
+    res2 = app.create_connection(query, 'fb', 'from')
 app.close()
-workbook.close()
+# workbook.close()
