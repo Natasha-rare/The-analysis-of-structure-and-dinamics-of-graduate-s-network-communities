@@ -308,8 +308,10 @@ class MainWindow(QtWidgets.QMainWindow):
         if not self.name_search:
             self.query = 'MATCH (p:Person) WHERE'
             self.first = True
+            self.querylbl.setText('')
             for key, value in self.clicked.items():
                 if len(value) > 0:
+                    self.querylbl.setText(self.querylbl.text() + f'{key}= {", ".join(value)} ')
                     if not self.first:
                         self.query += 'AND'
                     if key == 'Education':
@@ -323,6 +325,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     else:
                         self.query += f" p.{key} IN {value} "
                     self.first = False
+
         else:
             parts = []
             self.query = 'MATCH (p:Person) WHERE '
@@ -333,6 +336,7 @@ class MainWindow(QtWidgets.QMainWindow):
             if self.patronym.text() != "":
                 parts.append(f' p.Name CONTAINS "{self.patronym.text().strip()}"')
             self.query += ' AND '.join(parts)
+            self.querylbl.setText(f'{self.name.text().strip()} {self.surname.text().strip()} {self.patronym.text().strip()}')
 
     def show_results_one(self, name=""):
         person = self.result
@@ -396,7 +400,13 @@ class MainWindow(QtWidgets.QMainWindow):
                 return ''
         self.number = len(self.result)
         self.Names = [person['p'].get('Name') for person in self.result]
-        print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
+        print('results count = ', len(self.result), self.result[0]['p'].get('First_name'))
+        if len(self.result) > 200:
+            error_dialog = QMessageBox.warning(
+                self, 'Большой запрос', 'К сожалению, ваш запрос слишком большой. Уменьшите круг поиска',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                return ''
         self.label.resize(self.width(), self.height())
         pxmp = QtGui.QPixmap(1400, 570).scaled(w, h)
         pxmp.fill(Qt.transparent)
@@ -426,7 +436,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def append_points(self, w, h):
         protect = 0
         while True:
-            x, y = randrange(50, w - 100), randrange(40, h - 130)
+            x, y = randrange(50, w - 100), randrange(40, h - 160)
             r = 40
             overlapping = False
             for i in self.points:
@@ -439,7 +449,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 return 1
             protect += 1
             if protect > 10000:
-                return 0
+                return self.append_points(w + 20, h + 20)
 
 
     def draw_circles(self, painter, myColor=None, start=0, stop=-10):

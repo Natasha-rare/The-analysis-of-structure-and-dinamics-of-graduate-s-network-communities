@@ -67,6 +67,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Выбор признаков&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Вверху вы можете увидеть меню с полями &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Graduation&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (год выпуска), &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Education&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (место обучения — университет и/или факультет), &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Hobby&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (увлечение выпускника) и &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Clan&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; (направление жизненного пути выпускника). Используя разные комбинации значений этих полей, вы увидете на экране результат — граф с выпускниками, имеющими признаки, которые вы выбрали.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Также вы можете найти информацию о выпускнике по его ФИО. Для этого надо нажать на вкладку &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Name &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;и ввести данные. Если вы знаете только имя и отчество или только имя и фамилию — ничего страшного! Приложение отобразит всех выпускников с введенными Вами данными и вы выберете интересующего Вас выпускника. Также вы можете кликнуть на выпускника правой кнопкой мыши и на экране отобразятся все его связи с другими выпускниками. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#616161;&quot;&gt;(функция доступна только при поиске выпускников по ФИО)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Меню с кнопками&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;На правой стороне экрана вы можете увидеть несколько кнопок. &lt;/span&gt;&lt;/p&gt;
@@ -194,6 +195,9 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -366,8 +370,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>0</x>
       <y>40</y>
-      <width>1401</width>
-      <height>871</height>
+      <width>1451</width>
+      <height>911</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -392,10 +396,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>260</x>
       <y>50</y>
-      <width>631</width>
-      <height>371</height>
+      <width>951</width>
+      <height>601</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="Name_input_layout">
@@ -408,9 +412,15 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>100</width>
            <height>60</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>Имя:</string>
@@ -425,7 +435,13 @@ p, li { white-space: pre-wrap; }
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>60</height>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>750</width>
+           <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -444,9 +460,15 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="minimumSize">
           <size>
-           <width>80</width>
+           <width>100</width>
            <height>60</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>Фамилия:</string>
@@ -461,7 +483,13 @@ p, li { white-space: pre-wrap; }
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>60</height>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>750</width>
+           <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -480,15 +508,21 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>60</height>
+           <width>140</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>80</width>
+           <width>1677777</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>Отчество (по желанию):</string>
@@ -506,7 +540,13 @@ p, li { white-space: pre-wrap; }
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>60</height>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>750</width>
+           <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
