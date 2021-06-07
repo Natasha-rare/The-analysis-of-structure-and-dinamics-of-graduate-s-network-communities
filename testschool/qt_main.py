@@ -588,15 +588,17 @@ class PersonInfo(QtWidgets.QMainWindow):
     def save_results(self):
         self.ability_toggle(False)
         neo4j_app.add_linkedin(self.data.get('Name'), self.linkedin_name.text())
-        neo4j_app.add_clan(self.data.get('Name'), self.clan.text())
-        neo4j_app.add_position(self.data.get('Name'), self.position.text())
-        neo4j_app.add_occupation(self.data.get('Name'), self.occupation.text())
+        neo4j_app.add_clan(self.data.get('Name'), self.clan.currentText())
+        neo4j_app.add_position(self.data.get('Name'), self.position.toPlainText())
+        neo4j_app.add_occupation(self.data.get('Name'), self.occupation.toPlainText())
         neo4j_app.add_extra_education(self.data.get('Name'), self.field_of_education.text())
         neo4j_app.add_field(self.data.get('Name'), 'phone', self.phone.text())
-        neo4j_app.add_field(self.data.get('Name'), 'hobby', self.hobby.current_text())
+        neo4j_app.add_field(self.data.get('Name'), 'hobby', self.hobby.currentText())
         neo4j_app.add_field(self.data.get('Name'), 'email', self.email.text())
-        neo4j_app.add_field(self.data.get('Name'), 'tg', self.telegram.text())
+        neo4j_app.add_field(self.data.get('Name'), 'tg', self.telegram_name.text())
         neo4j_app.add_field(self.data.get('Name'), 'inst_name', self.instagram_name.text())
+        neo4j_app.add_field(self.data.get('Name'), 'group', self.group.text())
+        neo4j_app.add_field(self.data.get('Name'), 'grad', self.graduation.text())
 
     def load_data(self):
         if is_admin:

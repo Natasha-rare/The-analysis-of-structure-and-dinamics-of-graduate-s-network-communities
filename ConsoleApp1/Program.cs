@@ -26,8 +26,16 @@ namespace ConsoleApp1
         {
             db a = new db("12345");
             a.connect();
-            
-            a.Inst_Add();
+            /*for (int i =1993; i<=2020; i++)
+            {
+                a.from_vk_group(i.ToString());
+            }*/
+            //a.vk_friends_match();
+            /*string id = Console.ReadLine();*/
+            //a.add_from_fb_group();
+            friends_searcher fr = new friends_searcher("100002584620210", a.Client);
+            fr.Friends_Searh_two();
+            //a.Inst_Add();
             //a.add_from_inst_group();
             Console.WriteLine("Working");
         }
@@ -486,6 +494,11 @@ namespace ConsoleApp1
                 full_list = new Dictionary<string, string>();
 
             }
+
+            public GraphClient Client
+            {
+                get { return this.client; }
+            }
             public void connect()
             {
                 try
@@ -690,6 +703,10 @@ namespace ConsoleApp1
                         tmp.get_from_group();
                         x.Vk_id = tmp.Id;
                         x.Vk_name = tmp.Vk_name;
+                        if (tmp.Id != "0")
+                        {
+                            Console.WriteLine("Woe");
+                        }
                         client.Cypher.Match("(per:Person)")
                               .Where((Person per) => per.Name == x.Name).Set("per.Vk_name = {Vk_name}").WithParam("Vk_name", x.Vk_name).ExecuteWithoutResultsAsync()
                               .Wait();
@@ -704,8 +721,22 @@ namespace ConsoleApp1
             public void fb_friends_match()
             {
                 var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                foreach (Person x in people)
+                int start = 0;
+                List<Person> my_list = people.ToList();
+                foreach (Person i in my_list)
                 {
+                    if (i.Fb_name != "Mikhail Kryu")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        start = my_list.IndexOf(i);
+                    }
+                }
+                for (int f = start; f < my_list.Count(); f++)
+                {
+                    Person x = my_list[f];
                     if (x.Fb_id != "0")
                     {
                         friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
@@ -1036,6 +1067,7 @@ namespace ConsoleApp1
                                          client.Cypher.Create("(per:Person {person})").WithParam("person", person).ExecuteWithoutResults();*/
                                         Console.WriteLine("-" + name2);
                                         Console.WriteLine("new was created");
+                                        continue;
                                     }
 
                                     /*var people1 = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_id == id).Return(per => per.As<Person>()).Results;
@@ -1174,7 +1206,9 @@ namespace ConsoleApp1
                 {
                     string login = "natasha_ea5@mail.ru";
                     string password = "bykvah-3vyxfe-kutmYw";
-                    driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver_win32");
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddArguments("--disable-notifications");
+                    driver = new ChromeDriver(@"C:\Users\nattt\Downloads\chromedriver", options);
                     driver.Navigate().GoToUrl("https://www.facebook.com/");
                     driver.FindElement(By.Id("email")).SendKeys(login);
                     driver.FindElement(By.Id("pass")).SendKeys(password);
@@ -1224,29 +1258,58 @@ namespace ConsoleApp1
                 {
                     // Thread.Sleep(10);
                     driver.Navigate().GoToUrl(URL_friends);
-                    page_Source = driver.PageSource;
-                    var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
-                    foreach (Person x in people)
-                    {
-                        if ((page_Source.Contains(x.Fb_name)) && (x.Fb_id != id) && (x.Fb_name != "0"))
+                var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
+                List<string> names = new List<string>();
+                foreach (Person x in people)
+                {
+                    names.Add(x.Fb_name);
+                }
+                var elements = driver.FindElements(By.CssSelector("div.j83agx80.btwxx1t3.lhclo0ds.i1fnvgqd"));
+                    var index = elements[0];
+                    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                    js.ExecuteScript("arguments[0].scrollIntoView();", index);
+                    var student = index.FindElements(By.ClassName("buofh1pr"));
+                int count = 0;
+                do
+                {
+                        for (int i = count; i < student.Count(); i += 1)
                         {
+                            var t = student[i].FindElements(By.TagName("a"));
                             try
                             {
-                                var query = client.Cypher
-                .Match("(friend1:Person)", "(friend2:Person)")
-                .Where((Person friend1) => friend1.Fb_id == id)
-                .AndWhere((Person friend2) => friend2.Fb_id == x.Fb_id)
-                .CreateUnique("(friend1)-[:FB_FRIENDS]->(friend2)");
-                                query.ExecuteWithoutResults();
-                                Console.WriteLine("cool");
+                                var student1 = student[i].FindElements(By.TagName("a"))[0];
+                            
+                                string link = student1.GetAttribute("href");
+                                var m = student1.FindElement(By.ClassName("d2edcug0"));
+                                string name = m.GetAttribute("innerHTML");
+                                string id = Convert.ToString(link.Split('/')[link.Split('/').Count() - 1]);
+                                if (name == null) continue;
+                                Console.WriteLine(name);
+                                if (names.Contains(name))
+                                {
+                                    try
+                                    {
+                                        var query = client.Cypher
+                        .Match("(friend1:Person)", "(friend2:Person)")
+                        .Where((Person friend1) => friend1.Fb_id == this.id)
+                        .AndWhere((Person friend2) => friend2.Fb_id == id)
+                        .CreateUnique("(friend1)-[:FB_FRIENDS]->(friend2)");
+                                        query.ExecuteWithoutResults();
+                                        Console.WriteLine("cool");
+                                    }
+                                    catch (Exception error)
+                                    {
+                                        Console.WriteLine(error);
+                                    }
+                                }
                             }
-                            catch (Exception error)
-                            {
-                                Console.WriteLine(error);
-                            }
+                            catch (Exception e)
+                            { Console.WriteLine(e); continue; }
                         }
-                    }
-
+                        count = student.Count() - 1;
+                        js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                        student = index.FindElements(By.ClassName("buofh1pr"));
+                    } while (student != null);
                 }
                 public void Friends_Search_Excel()
                 {
