@@ -126,8 +126,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>12</x>
       <y>-2</y>
-      <width>1391</width>
-      <height>38</height>
+      <width>1451</width>
+      <height>41</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -177,33 +177,12 @@ p, li { white-space: pre-wrap; }
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="querylbl">
-       <property name="minimumSize">
+      <widget class="QTextBrowser" name="querylbl">
+       <property name="maximumSize">
         <size>
-         <width>365</width>
-         <height>34</height>
+         <width>480</width>
+         <height>16777215</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: white;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -635,122 +614,11 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>Education</string>
     </property>
-    <widget class="QMenu" name="menu">
-     <property name="title">
-      <string>МГТУ</string>
-     </property>
-     <widget class="QMenu" name="menu_5">
-      <property name="title">
-       <string>МГТУ им. Баумана</string>
-      </property>
-      <addaction name="action_137"/>
-      <addaction name="action_138"/>
-      <addaction name="action_139"/>
-      <addaction name="action_140"/>
-      <addaction name="action_141"/>
-      <addaction name="action_142"/>
-      <addaction name="action_143"/>
-      <addaction name="action_144"/>
-      <addaction name="action_145"/>
-      <addaction name="action_146"/>
-      <addaction name="action_147"/>
-     </widget>
-     <widget class="QMenu" name="menu_6">
-      <property name="title">
-       <string>МГТУ им. А. Н. Косыгина</string>
-      </property>
-      <addaction name="action_148"/>
-      <addaction name="action_149"/>
-      <addaction name="action_150"/>
-     </widget>
-     <addaction name="menu_5"/>
-     <addaction name="menu_6"/>
-    </widget>
-    <widget class="QMenu" name="menu_2">
-     <property name="title">
-      <string>МГУ</string>
-     </property>
-     <addaction name="action_101"/>
-     <addaction name="action_96"/>
-     <addaction name="action_105"/>
-     <addaction name="action_92"/>
-     <addaction name="action_93"/>
-     <addaction name="action_111"/>
-     <addaction name="action_107"/>
-     <addaction name="action_112"/>
-     <addaction name="action_104"/>
-     <addaction name="action_94"/>
-     <addaction name="action_97"/>
-     <addaction name="action_100"/>
-     <addaction name="action_108"/>
-     <addaction name="action_109"/>
-     <addaction name="action_106"/>
-     <addaction name="action_99"/>
-     <addaction name="action_110"/>
-     <addaction name="action_103"/>
-     <addaction name="action_95"/>
-     <addaction name="action_113"/>
-     <addaction name="action_98"/>
-     <addaction name="action_102"/>
-    </widget>
-    <widget class="QMenu" name="menu_3">
-     <property name="title">
-      <string>НИУ ВШЭ</string>
-     </property>
-     <widget class="QMenu" name="menu_4">
-      <property name="title">
-       <string>ФКН</string>
-      </property>
-      <addaction name="action_132"/>
-      <addaction name="action_133"/>
-      <addaction name="action_134"/>
-     </widget>
-     <addaction name="action_114"/>
-     <addaction name="action_115"/>
-     <addaction name="action_116"/>
-     <addaction name="action_117"/>
-     <addaction name="action_118"/>
-     <addaction name="action_119"/>
-     <addaction name="action_120"/>
-     <addaction name="action_121"/>
-     <addaction name="action_122"/>
-     <addaction name="action_123"/>
-     <addaction name="action_124"/>
-     <addaction name="action_125"/>
-     <addaction name="action_127"/>
-     <addaction name="action_128"/>
-     <addaction name="action_130"/>
-     <addaction name="menu_4"/>
-     <addaction name="action_135"/>
-     <addaction name="action_136"/>
-    </widget>
-    <widget class="QMenu" name="menu_7">
-     <property name="title">
-      <string>МИРЭА</string>
-     </property>
-     <addaction name="action_151"/>
-     <addaction name="action_152"/>
-     <addaction name="action_153"/>
-     <addaction name="action_154"/>
-     <addaction name="action_155"/>
-     <addaction name="action_156"/>
-     <addaction name="action_157"/>
-     <addaction name="action_158"/>
-    </widget>
-    <widget class="QMenu" name="menu_8">
-     <property name="title">
-      <string>РГУНГ</string>
-     </property>
-     <addaction name="action_159"/>
-     <addaction name="action_160"/>
-     <addaction name="action_161"/>
-     <addaction name="action_162"/>
-    </widget>
-    <addaction name="menu_2"/>
-    <addaction name="menu_3"/>
-    <addaction name="menu"/>
-    <addaction name="menu_7"/>
-    <addaction name="menu_8"/>
+    <addaction name="action_22"/>
+    <addaction name="action_26"/>
+    <addaction name="action_27"/>
+    <addaction name="action_31"/>
+    <addaction name="action_46"/>
     <addaction name="action_24"/>
     <addaction name="action_48"/>
     <addaction name="action_45"/>
@@ -2287,6 +2155,31 @@ p, li { white-space: pre-wrap; }
   <action name="action_13">
    <property name="text">
     <string>Ввод ФИО</string>
+   </property>
+  </action>
+  <action name="action_22">
+   <property name="text">
+    <string>МГУ</string>
+   </property>
+  </action>
+  <action name="action_26">
+   <property name="text">
+    <string>НИУ ВШЭ</string>
+   </property>
+  </action>
+  <action name="action_27">
+   <property name="text">
+    <string>МГТУ</string>
+   </property>
+  </action>
+  <action name="action_31">
+   <property name="text">
+    <string>МИРЭА</string>
+   </property>
+  </action>
+  <action name="action_46">
+   <property name="text">
+    <string>РГУНГ</string>
    </property>
   </action>
  </widget>

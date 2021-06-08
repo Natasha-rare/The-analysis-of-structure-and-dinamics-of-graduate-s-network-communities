@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog
 
 is_admin = False
 login = ''
-copies_count = 0
+copies_count = 1
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
               "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
               "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
@@ -158,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.share.clicked.connect(self.share_csv)
 
     def nameClicked(self, action, flag=True):
+        self.label.clear()
         if flag:
             self.name_search = True
         self.n_lbl.setVisible(flag)
@@ -213,9 +214,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 print('окееееей')
 
     def clear_all(self):
-        self.number=0
+        self.number = 0
         self.name_search = False
         self.clear_query()
+        self.querylbl.setText('')
         self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.ex_window = None
         self.label.clear()
@@ -233,16 +235,6 @@ class MainWindow(QtWidgets.QMainWindow):
             for action in self.menu2011_2020.actions():
                 action.setChecked(False)
         if 'Education' in self.query:
-            for action in self.menu_2.actions():
-                action.setChecked(False)
-            for action in self.menu_3.actions():
-                action.setChecked(False)
-            for action in self.menu.actions():
-                action.setChecked(False)
-            for action in self.menu_7.actions():
-                action.setChecked(False)
-            for action in self.menu_8.actions():
-                action.setChecked(False)
             for action in self.menuEducation.actions():
                 action.setChecked(False)
         if 'Hobby' in self.query:
@@ -311,7 +303,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.querylbl.setText('')
             for key, value in self.clicked.items():
                 if len(value) > 0:
-                    self.querylbl.setText(self.querylbl.text() + f'{key}= {", ".join(value)} ')
+                    self.querylbl.setText(self.querylbl.toPlainText() + f'{key}= {", ".join(value)} ')
                     if not self.first:
                         self.query += 'AND'
                     if key == 'Education':
@@ -407,10 +399,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
                 return ''
-        self.label.resize(self.width(), self.height())
+
         pxmp = QtGui.QPixmap(1400, 570).scaled(w, h)
         pxmp.fill(Qt.transparent)
         self.label.setPixmap(pxmp)
+        self.label.resize(self.width(), self.height())
 
         painter = QPainter(self.label.pixmap())
         painter.begin(self)
@@ -437,7 +430,7 @@ class MainWindow(QtWidgets.QMainWindow):
         protect = 0
         while True:
             x, y = randrange(50, w - 100), randrange(40, h - 160)
-            r = 40
+            r = 42
             overlapping = False
             for i in self.points:
                 ox, oy = i[0], i[1]
@@ -449,6 +442,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 return 1
             protect += 1
             if protect > 10000:
+                # self.label.resize(self.width() + 20, self.height() + 20)
                 return self.append_points(w + 20, h + 20)
 
 
