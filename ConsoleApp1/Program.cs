@@ -26,15 +26,16 @@ namespace ConsoleApp1
         {
             db a = new db("12345");
             a.connect();
+            a.add_list("FB");
             /*for (int i =1993; i<=2020; i++)
             {
                 a.from_vk_group(i.ToString());
             }*/
             //a.vk_friends_match();
-            /*string id = Console.ReadLine();*/
+
             //a.add_from_fb_group();
-            friends_searcher fr = new friends_searcher("100002584620210", a.Client);
-            fr.Friends_Searh_two();
+            friends_searcher fr = new friends_searcher("id", a.Client);
+            fr.Friends_Searh_two(a.Full_list);
             //a.Inst_Add();
             //a.add_from_inst_group();
             Console.WriteLine("Working");
@@ -488,6 +489,10 @@ namespace ConsoleApp1
             GraphClient client;
             Dictionary<string, string> full_list;
             string currentWindow;
+            public Dictionary<string, string> Full_list
+            {
+                get { return this.full_list; }
+            }
             public db(string password)
             {
                 client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "12345");
@@ -740,7 +745,7 @@ namespace ConsoleApp1
                     if (x.Fb_id != "0")
                     {
                         friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
-                        a.Friends_Searh_two();
+                        a.Friends_Searh_two(full_list);
                     }
                 }
             }
@@ -863,7 +868,7 @@ namespace ConsoleApp1
                         client.Cypher.Match("(per:Person)")
         .Where((Person per) => per.Name == x.Name).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResultsAsync();
                         friends_searcher a = new friends_searcher(x.Fb_id.ToString(), client);
-                        a.Friends_Searh_two();
+                        a.Friends_Searh_two(full_list);
                         add_work(x);
 
                     }
@@ -1080,7 +1085,7 @@ namespace ConsoleApp1
                                 }
                             }
                             friends_searcher fr = new friends_searcher(id, client);
-                            fr.Friends_Searh_two();
+                            fr.Friends_Searh_two(full_list);
                             //separate_names();
                         }
                         catch (Exception e)
@@ -1254,10 +1259,10 @@ namespace ConsoleApp1
                     driver.FindElement(By.Name("login")).Click();
                 driver.Navigate().GoToUrl("https://www.facebook.com/");
             }
-                public void Friends_Searh_two()
+                public void Friends_Searh_two(Dictionary<string, string> full_list)
                 {
-                    // Thread.Sleep(10);
-                    driver.Navigate().GoToUrl(URL_friends);
+                // Thread.Sleep(10);
+                driver.Navigate().GoToUrl(URL_friends);
                 var people = client.Cypher.Match("(per:Person)").Where((Person per) => per.Fb_name != "0").Return(per => per.As<Person>()).Results;
                 List<string> names = new List<string>();
                 foreach (Person x in people)
@@ -1278,13 +1283,37 @@ namespace ConsoleApp1
                             try
                             {
                                 var student1 = student[i].FindElements(By.TagName("a"))[0];
-                            
                                 string link = student1.GetAttribute("href");
                                 var m = student1.FindElement(By.ClassName("d2edcug0"));
                                 string name = m.GetAttribute("innerHTML");
-                                string id = Convert.ToString(link.Split('/')[link.Split('/').Count() - 1]);
+                            bool l = student[i].FindElement(By.ClassName("aahdfvyu")).GetAttribute("innerHTML").Contains("1 mutual friend");
+                            string id = "";
+                            if (link.Contains("=") && link.Contains("php"))  id = Convert.ToString(link.Split('=')[link.Split('=').Count() - 1]);
+                            else
+                                 id = Convert.ToString(link.Split('/')[link.Split('/').Count() - 1]);
                                 if (name == null) continue;
-                                Console.WriteLine(name);
+                                //Console.WriteLine(name);
+                                if (!names.Contains(name) && student[i].FindElement(By.ClassName("aahdfvyu")).GetAttribute("innerHTML").Contains("1 mutual friend"))
+                                {
+                                    string name2 = Change_of_View.change(name);
+                                    name2 = Change_of_View.reverse(name2);
+                                    if (full_list.ContainsKey(name2) || full_list.ContainsValue(name2))
+                                    {
+                                        string p_name = full_list[name2];
+                                        //Console.WriteLine(full_list[name2]);
+                                        var person = client.Cypher.Match("(per:Person)")
+                                        .Where((Person per) => per.Name == p_name).Return(per => per.As<Person>()).Results;
+
+                                        client.Cypher.Match("(per:Person)")
+                                        .Where((Person per) => per.Name == p_name)
+                                        .Set("per.Fb_name = {name}").WithParam("name", name).ExecuteWithoutResults();
+                                        client.Cypher.Match("(per:Person)")
+                .Where((Person per) => per.Name == p_name).Set("per.Fb_id = {id}").WithParam("id", id).ExecuteWithoutResults();
+
+                                        Console.WriteLine("+ " + id + " " + name);
+                                        names.Add(name);
+                                    }
+                                }
                                 if (names.Contains(name))
                                 {
                                     try
@@ -1295,12 +1324,13 @@ namespace ConsoleApp1
                         .AndWhere((Person friend2) => friend2.Fb_id == id)
                         .CreateUnique("(friend1)-[:FB_FRIENDS]->(friend2)");
                                         query.ExecuteWithoutResults();
-                                        Console.WriteLine("cool");
+                                        //Console.WriteLine("cool");
                                     }
                                     catch (Exception error)
                                     {
                                         Console.WriteLine(error);
                                     }
+
                                 }
                             }
                             catch (Exception e)
