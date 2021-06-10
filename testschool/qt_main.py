@@ -154,8 +154,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.info.clicked.connect(self.open_info_ev)
         self.search.clicked.connect(self.show_results)
         self.clear.clicked.connect(self.clear_all)
-        self.reload.clicked.connect(self.show_results)
+        self.reload.clicked.connect(self.reload_results)
         self.share.clicked.connect(self.share_csv)
+
+    def reload_results(self):
+        old_query = self.query
+        self.make_query()
+        if self.query == old_query:
+            return ''
+        else:
+            self.show_results()
 
     def nameClicked(self, action, flag=True):
         self.label.clear()
@@ -362,6 +370,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.result = person[:] + self.result[:]
         self.number = len(self.result)
+        if self.number > 200:
+            error_dialog = QMessageBox.warning(
+                self, 'Большой запрос', 'К сожалению, ваш запрос слишком большой. Уменьшите круг поиска',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                return ''
         self.draw_lines(painter)
         self.draw_circles(painter, QColor(170, 255, 255), len(person))
         self.draw_circles(painter, QColor(255, 170, 255), 0, len(person))
@@ -583,9 +597,11 @@ class PersonInfo(QtWidgets.QMainWindow):
         self.ability_toggle(False)
         neo4j_app.add_linkedin(self.data.get('Name'), self.linkedin_name.text())
         neo4j_app.add_clan(self.data.get('Name'), self.clan.currentText())
-        neo4j_app.add_position(self.data.get('Name'), self.position.toPlainText())
-        neo4j_app.add_occupation(self.data.get('Name'), self.occupation.toPlainText())
-        neo4j_app.add_extra_education(self.data.get('Name'), self.field_of_education.text())
+        d = self.position.toPlainText().split(", ")
+        neo4j_app.add_position(self.data.get('Name'), self.position.toPlainText().split(", "), new=True)
+        neo4j_app.add_occupation(self.data.get('Name'), self.occupation.toPlainText().split(", "), new=True)
+        neo4j_app.add_education(self.data.get('Name'), self.education.toPlainText().split(", "), new=True)
+        neo4j_app.add_extra_education(self.data.get('Name'), self.field_of_education.text().split(", "), new=True)
         neo4j_app.add_field(self.data.get('Name'), 'phone', self.phone.text())
         neo4j_app.add_field(self.data.get('Name'), 'hobby', self.hobby.currentText())
         neo4j_app.add_field(self.data.get('Name'), 'email', self.email.text())

@@ -104,9 +104,9 @@ class App:
         result = tx.run(query, name=name, clan=clan)
         return result
 
-    def add_extra_education(self, name, education):
+    def add_extra_education(self, name, education, new=False):
         with self.driver.session() as session:
-            result = session.read_transaction(self.add_add_extra_education, name, education)
+            result = session.read_transaction(self.add_add_extra_education, name, education, new)
             # print(result)
 
     @staticmethod
@@ -139,7 +139,7 @@ class App:
     # hobby, inst_name, telegram, phone, email
     def add_field(self, name, field_name, field_value):
         with self.driver.session() as session:
-            result = session.read_transaction(self.add_hobby_to_person, name, field_name, field_value)
+            result = session.read_transaction(self.add_field_to_person, name, field_name, field_value)
 
     @staticmethod
     def add_field_to_person(tx, name, field_name, field_value):
@@ -159,6 +159,12 @@ class App:
         elif field_name == 'email':
             query = "MATCH (p:Person) WHERE p.Name = $name SET p.Email = $email"
             result = tx.run(query, name=name, email=field_value)
+        elif field_name == "group":
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Group = $group"
+            result = tx.run(query, name=name, group=field_value)
+        elif field_name == "grad":
+            query = "MATCH (p:Person) WHERE p.Name = $name SET p.Graduation = $graduation"
+            result = tx.run(query, name=name, graduation=field_value)
         return result
 
     def add_hobby(self, name, hobby):
@@ -191,9 +197,9 @@ class App:
         result = tx.run(query, name=name, email=email)
         return result
 
-    def add_education(self, name, education):
+    def add_education(self, name, education, new=False):
         with self.driver.session() as session:
-            result = session.read_transaction(self.add_education_to_person, name, education)
+            result = session.read_transaction(self.add_education_to_person, name, education, new)
             # print(result)
 
     @staticmethod
@@ -239,9 +245,9 @@ class App:
         result = tx.run(query, name=name, linkedin_name=linkedin_name, country=country)
         return result
 
-    def add_occupation(self, name, occupation):
+    def add_occupation(self, name, occupation, new=False):
         with self.driver.session() as session:
-            result = session.read_transaction(self.add_occupation_to_person, name, occupation)
+            result = session.read_transaction(self.add_occupation_to_person, name, occupation, new)
             # print(result)
 
     @staticmethod
@@ -278,9 +284,9 @@ class App:
         result = tx.run(query, name=name, occupation=prev_occupation)
         return result
 
-    def add_position(self, name, position):
+    def add_position(self, name, position, new=False):
         with self.driver.session() as session:
-            result = session.read_transaction(self.add_position_to_person, name, position)
+            result = session.read_transaction(self.add_position_to_person, name, position, new)
             # print(result)
 
     @staticmethod
@@ -326,6 +332,25 @@ class App:
         result = tx.run(query)
         return [record["FirstName"] for record in result]
 
+    def create_connection(self, query, type, direction):
+        with self.driver.session() as session:
+            result = session.read_transaction(self.create_new_connection, query, type, direction)
+
+    @staticmethod
+    def create_new_connection(tx, query, type, d):
+        if type == 'fb':
+            if d=="to":
+                query += ' MERGE (a)-[:FB_FRIENDS]->(b)'
+            else:
+                query += ' MERGE (a)<-[:FB_FRIENDS]-(b)'
+        elif type == 'vk':
+            if d == "to":
+                query += ' MERGE (a)-[:VK_FRIENDS]->(b)'
+            else:
+                query += ' MERGE (a)<-[:VK_FRIENDS]-(b)'
+        result = tx.run(query)
+        return result
+
     def find_person(self, person_name, withpatr):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_person, person_name, withpatr)
@@ -338,12 +363,12 @@ class App:
         if not withpatr:
             sur = person_name.split()[0]
             na = person_name.split()[-1]
-            query = "MATCH (p:Person) WHERE p.Current_surname=$surname AND p.First_name=$name RETURN p.Name AS Name"
+            query = "MATCH (p:Person) WHERE p.Lyceum_surname=$surname AND p.First_name=$name RETURN p.Name AS Name"
             result = tx.run(query, surname=sur, name=na)
             return [record["Name"] for record in result]
         query = (
             "MATCH (p:Person) "
-            "WHERE p.Name = $person_name "
+            "WHERE p.Name CONTAINS $person_name "
             "RETURN p.Name AS Name"
         )
         result = tx.run(query, person_name=person_name)
