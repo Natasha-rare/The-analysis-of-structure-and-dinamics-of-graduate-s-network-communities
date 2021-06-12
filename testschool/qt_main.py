@@ -299,8 +299,8 @@ class MainWindow(QtWidgets.QMainWindow):
         greeting = Greeting(self)
         if greeting.exec_():
             pass
-        # if login == '':
-        #     exit(0)
+        if login == '':
+            exit(0)
         self.querylbl.setText(f'Logged in as {login}')
         self.show()
 
