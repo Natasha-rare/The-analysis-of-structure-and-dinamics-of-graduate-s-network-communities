@@ -9,7 +9,7 @@ from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPen
 
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
-from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog, QScrollArea
 
 is_admin = False
 login = ''
@@ -135,15 +135,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.number = 0
         self.name_search = False
-        self.nameClicked(None, False)
+        # self.nameClicked(None, False)
         self.Names = []
         self.ex_window = None
-        self.label.hide()
+        # self.label.hide()
         self.result = None
         self.points = []
         self.first = True
         self.query = 'MATCH (p:Person) WHERE'
-        self.close_info.clicked.connect(self.close_info_ev)
+        # self.close_info.clicked.connect(self.close_info_ev)
         self.open_greeting()
         self.menuEducation.triggered.connect(self.educationClicked)
         self.menuHobby.triggered.connect(self.hobbyClicked)
@@ -165,16 +165,11 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             self.show_results()
 
-    def nameClicked(self, action, flag=True):
-        self.label.clear()
-        if flag:
-            self.name_search = True
-        self.n_lbl.setVisible(flag)
-        self.s_lbl.setVisible(flag)
-        self.p_lbl.setVisible(flag)
-        self.name.setVisible(flag)
-        self.surname.setVisible(flag)
-        self.patronym.setVisible(flag)
+    def nameClicked(self):
+        fio = NameInput(self)
+        result = fio.exec()
+
+
 
     def share_csv(self):
         if self.query != "MATCH (p:Person) WHERE":
@@ -285,22 +280,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clicked['Clan'] = val
 
     def open_info_ev(self):
-        self.label.hide()
-        self.close_info.show()
-        self.info_txt.setVisible(True)
+        info = Info(self)
+        info.show()
+        # self.label.hide()
+        # self.close_info.show()
+        # self.info_txt.setVisible(True)
 
-    def close_info_ev(self):
-        self.label.show()
-        self.close_info.hide()
-        self.info_txt.setVisible(False)
+    # def close_info_ev(self):
+    #     self.label.show()
+    #     self.close_info.hide()
+    #     self.info_txt.setVisible(False)
 
     def open_greeting(self):
         self.hide()
         greeting = Greeting(self)
         if greeting.exec_():
             pass
-        if login == '':
-            exit(0)
+        # if login == '':
+        #     exit(0)
         self.querylbl.setText(f'Logged in as {login}')
         self.show()
 
@@ -329,26 +326,32 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             parts = []
             self.query = 'MATCH (p:Person) WHERE '
-            if self.name.text() != "":
-                parts.append(f' p.Name CONTAINS "{self.name.text().strip()}"')
-            if self.surname.text() != "":
-                parts.append(f' p.Name CONTAINS "{self.surname.text().strip()}"')
-            if self.patronym.text() != "":
-                parts.append(f' p.Name CONTAINS "{self.patronym.text().strip()}"')
+            if self.name != "":
+                parts.append(f' p.First_name CONTAINS "{self.name.strip()}"')
+            if self.surname != "":
+                parts.append(f' (p.Current_surname CONTAINS "{self.surname.strip()}"  OR  p.Lyceum_surname CONTAINS "{self.surname.strip()}")')
+            if self.patronym != "":
+                parts.append(f' p.patronym CONTAINS "{self.patronym.strip()}"')
             self.query += ' AND '.join(parts)
-            self.querylbl.setText(f'{self.name.text().strip()} {self.surname.text().strip()} {self.patronym.text().strip()}')
+            self.querylbl.setText(f'{self.name} {self.surname} {self.patronym}')
 
     def show_results_one(self, name=""):
         person = self.result
         self.result = neo4j_app.return_results(self.query)
+        if len(self.result) == 0:
+            self.result = person
+            print('lonelyyy')
+            return ''
         self.number = len(self.result)
 
         w, h = self.width(), self.height()
         self.Names = [per['p'].get('Name') for per in self.result]
         self.Names.append(name)
+        print(self.query)
+
         print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
         self.label.resize(self.width(), self.height())
-        pxmp = QtGui.QPixmap(1400, 570).scaled(w, h)
+        pxmp = QtGui.QPixmap(w - 20, h - 10).scaled(w, h)
         pxmp.fill(Qt.transparent)
         self.label.setPixmap(pxmp)
 
@@ -362,11 +365,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 continue
             res = self.append_points(w, h)
             print('res', res)
-            # x, y = randrange(190, w - 200), randrange(80, h - 200)
-            # self.points.append((x, y))
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                    f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
-        # self.result.insert(0, person)
 
         self.result = person[:] + self.result[:]
         self.number = len(self.result)
@@ -377,13 +377,12 @@ class MainWindow(QtWidgets.QMainWindow):
             if error_dialog == QMessageBox.Ok:
                 return ''
         self.draw_lines(painter)
-        self.draw_circles(painter, QColor(170, 255, 255), len(person))
-        self.draw_circles(painter, QColor(255, 170, 255), 0, len(person))
-        # self.draw_circles(painter, QColor(170, 255, 255))
-        # self.result.extend(person)
+        self.draw_circles(painter, myColor=QColor(170, 255, 255), start=len(person))
+        self.draw_circles(painter, myColor=QColor(255, 170, 255), start=0, stop=len(person))
+
 
     def show_results(self):  # make dynamic resize???
-        self.close_info_ev()
+        # self.close_info_ev()
         print(self.query, self.name_search)
         self.make_query()
         print(self.query)
@@ -393,7 +392,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
                 return ''
-        self.nameClicked(None, False)
+        # self.nameClicked(None, False)
         self.points = []
         w, h = self.width(), self.height()
         self.shortnames = []
@@ -414,10 +413,9 @@ class MainWindow(QtWidgets.QMainWindow):
             if error_dialog == QMessageBox.Ok:
                 return ''
 
-        pxmp = QtGui.QPixmap(1400, 570).scaled(w, h)
+        pxmp = QtGui.QPixmap(w, h).scaled(w, h)
         pxmp.fill(Qt.transparent)
         self.label.setPixmap(pxmp)
-        self.label.resize(self.width(), self.height())
 
         painter = QPainter(self.label.pixmap())
         painter.begin(self)
@@ -443,7 +441,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def append_points(self, w, h):
         protect = 0
         while True:
-            x, y = randrange(50, w - 100), randrange(40, h - 160)
+            x, y = randrange(20, w - 125), randrange(20, h - 145)
             r = 42
             overlapping = False
             for i in self.points:
@@ -460,7 +458,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 return self.append_points(w + 20, h + 20)
 
 
-    def draw_circles(self, painter, myColor=None, start=0, stop=-10):
+    def draw_circles(self, painter, radius=45, myColor=None, start=0, stop=-10):
         painter.setPen(QPen(QColor(0, 0, 0), 0))
         if myColor is not None:
             painter.setBrush(QBrush(myColor))
@@ -469,7 +467,7 @@ class MainWindow(QtWidgets.QMainWindow):
             x, y = self.points[i]
             if x == y == -10: continue
             txt = self.shortnames[i]
-            painter.drawEllipse(x, y, 90, 90)
+            painter.drawEllipse(x, y, radius * 2, radius * 2)
             painter.setFont(QFont('Times', 8))
             painter.drawText(x + 15, y + 15, 60, 60, 0, txt)
 
@@ -530,6 +528,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.number > 0:
             cx, cy = -100, -100
             mx, my = event.x() - 57, event.y() - 134
+            # mx, my = event.x() - 57, event.y() - 134
             print('mouse:', mx, my)
             for i in range(self.number):
                 cx, cy = self.points[i]
@@ -666,6 +665,36 @@ class PersonInfo(QtWidgets.QMainWindow):
         if self.data.get('Country') is not None and self.data.get('Country') != '':
             self.country.setText(self.data.get('Country'))
 
+
+class Info(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        uic.loadUi('info.ui', self)
+        self.parent = parent
+
+class NameInput(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        uic.loadUi('name input.ui', self)
+        self.input_done = False
+        self.parent = parent
+        self.ok.clicked.connect(self.ok_clicked)
+        self.cancel.clicked.connect(self.close)
+
+    def ok_clicked(self):
+        if self.name.text().strip() != '' or self.surname.text().strip() != '' or self.patronym.text().strip() != '':
+            self.input_done = True
+            self.parent.name_search = True
+            self.parent.name = self.name.text()
+            self.parent.surname = self.surname.text()
+            self.parent.patronym = self.patronym.text()
+            self.parent.show_results()
+        else:
+            error_dialog = QMessageBox.critical(
+                self, 'Error', 'Заполните все обязательные поля',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                pass
 
 class Greeting(QtWidgets.QDialog):
     def __init__(self, parent=None):
