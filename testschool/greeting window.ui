@@ -32,7 +32,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Greeting</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -132,7 +132,7 @@
        <enum>QFrame::Raised</enum>
       </property>
       <property name="text">
-       <string>Для начала войдите или зарегестрируйтесь</string>
+       <string>Для начала войдите или зарегистрируйтесь</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -172,7 +172,7 @@
     <string notr="true">background-color: rgb(254, 208, 152)</string>
    </property>
    <property name="text">
-    <string>Зарегестрироваться</string>
+    <string>Зарегистрироваться</string>
    </property>
   </widget>
   <widget class="QPushButton" name="login_btn">

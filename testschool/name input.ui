@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Name input</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -174,7 +174,7 @@
             <enum>QLineEdit::Normal</enum>
            </property>
            <property name="placeholderText">
-            <string>name</string>
+            <string>Name</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>true</bool>
@@ -227,7 +227,7 @@
             <enum>QLineEdit::Normal</enum>
            </property>
            <property name="placeholderText">
-            <string>patronym</string>
+            <string>Patronym</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>true</bool>

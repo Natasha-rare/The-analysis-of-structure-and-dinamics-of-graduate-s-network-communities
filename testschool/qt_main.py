@@ -2,77 +2,94 @@ import math
 import os
 import sys
 import pandas as pd
-from sysconfig import get_path
 from random import randrange
-from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPen
 
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
-from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog, QScrollArea
+from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog
 
 is_admin = False
 login = ''
+# число копий экспорта
 copies_count = 1
+# словарь сокращений
 ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
-              "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима", 
+              "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима",
               "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
-    "Иван": "Иван", "Никита": "Ник", "Артём": "Артём",
-    "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
-    "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
-    "Владимир": "Вова", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
-    "Евгений": "Женя", "Роман": "Рома", "Даниил": "Даня", "Игорь": "Игорь",
-    "Егор": "Егор", "Олег": "Олег", "Петр": "Петр",
-    "Василий": "Вася", "Георгий": "Гоша", "Виктор": "Витя",
-    "Григор": "Гриша", "Станислав": "Стас", "Арсений": "Сеня",
-    "Борис": "Боря", "Леонид": "Лёня", "Вадим": "Вадим", "Глеб": "Глеб",
-    "Юрий": "Юра", "Федор": "Федя", "Матвей": "Матвей",
-    "Владислав": "Влад", "Тимофей": "Тима", "Вячеслав": "Слава",
-    "Филипп": "Филя", "Степан": "Степа", "Всеволод": "Сева",
-    "Анатолий": "Толя", "Виталий": "Витя", "Ярослав": "Яра",
-    "Тимур": "Тимур", "Яков": "Яша", "Марк": "Марк", "Руслан": "Руся",
-    "Семен": "Сема", "Екатерина": "Катя", "Анна": "Аня",
-    "Анастасия": "Настя", "Дария": "Даша", "Мария": "Маша",
-    "Елена": "Лена", "Ольга": "Оля", "Наталия": "Ната", "Наталья": "Ната",
-    "Татьяна": "Таня", "Елизавета": "Лиза",
-    "Александра": "Саня", "Юлия": "Юля",
-    "Евгения": "Женя", "Ирина": "Ира",
-    "София": "Соня", "Полина": "Поля", "Ксения": "Ксю",
-    "Светлана": "Света", "Марина": "Марина", "Виктория": "Вика",
-    "Надежда": "Надя", "Варвара": "Варя", "Маргарита": "Рита", "Алина": "Лина",
-    "Людмила": "Люда", "Вероника": "Ника", "Яна": "Яна",
-    "Нина": "Нина", "Лариса": "Лариса", "Алёна": "Алёна",
-    "Вера": "Вера", "Алиса": "Алиса", "Диана": "Диана",
-    "Кристина": "Кристи", "Любовь": "Люба", "Галина": "Галя",
-    "Оксана": "Оксана", "Алла": "Алла", "Алеся": "Алеся",
-    "Алехандро": "Саша", "Альберт": "Алик", "Альбина": "Альб",
-    "Амина": "Амина", "Ана": "Ана", "Ангелина": "Геля", "Анфиса": "Анфиса", "Арам": "Арам", "Арина": "Арина", "Аркадий": "Аркаша",
-    "Арман": "Арман", "Армен": "Армен", "Арсен": "Арсен",
-    "Артур": "Артур", "Ася": "Ася", "Ахмед": "Ахмед",
-    "Ашот": "Ашот", "Богдан": "Богдан", "Валентин": "Валя",
-    "Валентина": "Валя", "Валерий": "Валера", "Валерия": "Лера",
-    "Валерьян": "Валера", "Василиса": "Вася", "Вениамин": "Веня", "Весна": "Весна", "Виолетта": "Вита", "Гагик": "Гагик", "Гаджимурад": "Гаджи", "Гарик": "Гарик", "Гарри": "Гарри", "Геннадий": "Гена",
-    "Герман": "Герман", "Глафира": "Глаша", "Гулру": "Гулру", "Гульнара": "Гуля",
-    "Давид": "Давид", "Далия": "Далия", "Дамир": "Дамир", "Дарьюш": "Дарьюш",
-    "Демид": "Демид", "Демьян": "Демьян", "Джамиля": "Джамиля", "Диляра": "Диляра", "Дина": "Дина", "Ева": "Ева",
-    "Евфросиния": "Фрося", "Захар": "Захар", "Зоя": "Зоя", "Игнатий": "Игнат", "Илай": "Илай", "Илона": "Илона", "Ильдар": "Ильдар",
-    "Инесса": "Инесса", "Инна": "Инна", "Иннокентий": "Кеша", "Иоанн": "Иоанн", "Иосиф": "Иосиф", "Камилла": "Камила", "Карина": "Карина",
-    "Кевин": "Кевин", "Кира": "Кира", "Кызы": "Кызы", "Лаврентий": "Лаврик", "Лада": "Лада", "Лаура": "Лаура", "Лев": "Лев", "Левон": "Левон", "Лейля": "Лейля", "Лидия": "Лида", "Лилия": "Лилия",
-    "Линара": "Линара", "Линда": "Линда", "Лука": "Лука", "Мадина": "Мадина",
-    "Майя": "Майя", "Марат": "Марат", "Марианна": "Марья", "Марьяна": "Марья",
-    "Матин": "Матин", "Мелисса": "Мелиса", "Мерген": "Мерген", "Мередкули": "Меред", "Метревели": "Метре", "Микаэл": "Микаэл",
-    "Назар": "Назар", "Наргиза": "Нарги", "Нелли": "Нелли", "Ника": "Ника", "Николь": "Николь", "Олеся": "Олеся", "Регина": "Регина", "Ренат": "Ренат",
-    "Рината": "Рина", "Роберт": "Роб", "Родион": "Родион", "Ростислав": "Ростик", "Рубен": "Рубен", "Рувин": "Рувин", "Рустам": "Рустам", "Сабина": "Саби", "Саман": "Саман",
-    "Саня": "Саня", "Святослав": "Свят", "Серафима": "Сима", "Сослан": "Сослан", "Сусанна": "Сана", "Сяоган": "Сяоган", "Таисия": "Тася", "Тамара": "Тома", "Тамерлан": "Тамер", "Теймур": "Теймур", "Тигран": "Тигран", "Ульяна": "Уля",
-    "Фаик": "Фаик", "Фатима": "Фатима", "Шамиль": "Шамиль", "Шенне": "Шенне", "Эвелина": "Лина", "Эдуард": "Эдик", "Элизабет": "Элиза",
-    "Элина": "Элина", "Элла": "Элла", "Эльвира": "Эля", "Эмиль": "Эмиль",
-    "Эммануил": "Эмма", "Юлий": "Юлий", "Юнна": "Юнна", "Юсиф": "Юсиф",
-    "Ян": "Ян", "Ярослава": "Яра", "Яфа": "Яфа",  "Аглая": "Аглая", "Алена": "Алена", "Софья": "Софья",
-    "Дмитриан": "Дима" , "Аннели": "Аня", "Данило": "Даня", "Агнеса": "Агнеса", "Семён": "Семен", "Арсентий": "Сеня", "Артемий": "Артем", "Мэтти": "Мэт", "Фёдор": "Федя", "Игнасио": "Игнас", "Данила": "Даня", "Пётр": "Пётр",
-    "Агата": "Агата", "Сото": "Сото", "Моника": "Мони", "Азамат": "Азамат", "Айна": "Айна", "Адиль": "Адиль", "Аджай": "Аджай",
-    "Нино": "Нино", "Динара": "Дина", "Даниял": "Даня"}
+              "Иван": "Иван", "Никита": "Ник", "Артём": "Артём",
+              "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
+              "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
+              "Владимир": "Вова", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
+              "Евгений": "Женя", "Роман": "Рома", "Даниил": "Даня", "Игорь": "Игорь",
+              "Егор": "Егор", "Олег": "Олег", "Петр": "Петр",
+              "Василий": "Вася", "Георгий": "Гоша", "Виктор": "Витя",
+              "Григор": "Гриша", "Станислав": "Стас", "Арсений": "Сеня",
+              "Борис": "Боря", "Леонид": "Лёня", "Вадим": "Вадим", "Глеб": "Глеб",
+              "Юрий": "Юра", "Федор": "Федя", "Матвей": "Матвей",
+              "Владислав": "Влад", "Тимофей": "Тима", "Вячеслав": "Слава",
+              "Филипп": "Филя", "Степан": "Степа", "Всеволод": "Сева",
+              "Анатолий": "Толя", "Виталий": "Витя", "Ярослав": "Яра",
+              "Тимур": "Тимур", "Яков": "Яша", "Марк": "Марк", "Руслан": "Руся",
+              "Семен": "Сема", "Екатерина": "Катя", "Анна": "Аня",
+              "Анастасия": "Настя", "Дария": "Даша", "Мария": "Маша",
+              "Елена": "Лена", "Ольга": "Оля", "Наталия": "Ната", "Наталья": "Ната",
+              "Татьяна": "Таня", "Елизавета": "Лиза",
+              "Александра": "Саша", "Юлия": "Юля",
+              "Евгения": "Женя", "Ирина": "Ира",
+              "София": "Соня", "Полина": "Поля", "Ксения": "Ксю",
+              "Светлана": "Света", "Марина": "Марина", "Виктория": "Вика",
+              "Надежда": "Надя", "Варвара": "Варя", "Маргарита": "Рита", "Алина": "Лина",
+              "Людмила": "Люда", "Вероника": "Ника", "Яна": "Яна",
+              "Нина": "Нина", "Лариса": "Лариса", "Алёна": "Алёна",
+              "Вера": "Вера", "Алиса": "Алиса", "Диана": "Диана",
+              "Кристина": "Кристи", "Любовь": "Люба", "Галина": "Галя",
+              "Оксана": "Оксана", "Алла": "Алла", "Алеся": "Алеся",
+              "Алехандро": "Саша", "Альберт": "Алик", "Альбина": "Альб",
+              "Амина": "Амина", "Ана": "Ана", "Ангелина": "Геля", "Анфиса": "Анфиса", "Арам": "Арам", "Арина": "Арина",
+              "Аркадий": "Аркаша",
+              "Арман": "Арман", "Армен": "Армен", "Арсен": "Арсен",
+              "Артур": "Артур", "Ася": "Ася", "Ахмед": "Ахмед",
+              "Ашот": "Ашот", "Богдан": "Богдан", "Валентин": "Валя",
+              "Валентина": "Валя", "Валерий": "Валера", "Валерия": "Лера",
+              "Валерьян": "Валера", "Василиса": "Вася", "Вениамин": "Веня", "Весна": "Весна", "Виолетта": "Вита",
+              "Гагик": "Гагик", "Гаджимурад": "Гаджи", "Гарик": "Гарик", "Гарри": "Гарри", "Геннадий": "Гена",
+              "Герман": "Герман", "Глафира": "Глаша", "Гулру": "Гулру", "Гульнара": "Гуля",
+              "Давид": "Давид", "Далия": "Далия", "Дамир": "Дамир", "Дарьюш": "Дарьюш",
+              "Демид": "Демид", "Демьян": "Демьян", "Джамиля": "Джамиля", "Диляра": "Диляра", "Дина": "Дина",
+              "Ева": "Ева",
+              "Евфросиния": "Фрося", "Захар": "Захар", "Зоя": "Зоя", "Игнатий": "Игнат", "Илай": "Илай",
+              "Илона": "Илона", "Ильдар": "Ильдар",
+              "Инесса": "Инесса", "Инна": "Инна", "Иннокентий": "Кеша", "Иоанн": "Иоанн", "Иосиф": "Иосиф",
+              "Камилла": "Камила", "Карина": "Карина",
+              "Кевин": "Кевин", "Кира": "Кира", "Кызы": "Кызы", "Лаврентий": "Лаврик", "Лада": "Лада", "Лаура": "Лаура",
+              "Лев": "Лев", "Левон": "Левон", "Лейля": "Лейля", "Лидия": "Лида", "Лилия": "Лилия",
+              "Линара": "Линара", "Линда": "Линда", "Лука": "Лука", "Мадина": "Мадина",
+              "Майя": "Майя", "Марат": "Марат", "Марианна": "Марья", "Марьяна": "Марья",
+              "Матин": "Матин", "Мелисса": "Мелиса", "Мерген": "Мерген", "Мередкули": "Меред", "Метревели": "Метре",
+              "Микаэл": "Микаэл",
+              "Назар": "Назар", "Наргиза": "Нарги", "Нелли": "Нелли", "Ника": "Ника", "Николь": "Николь",
+              "Олеся": "Олеся", "Регина": "Регина", "Ренат": "Ренат",
+              "Рината": "Рина", "Роберт": "Роб", "Родион": "Родион", "Ростислав": "Ростик", "Рубен": "Рубен",
+              "Рувин": "Рувин", "Рустам": "Рустам", "Сабина": "Саби", "Саман": "Саман",
+              "Саня": "Саня", "Святослав": "Свят", "Серафима": "Сима", "Сослан": "Сослан", "Сусанна": "Сана",
+              "Сяоган": "Сяоган", "Таисия": "Тася", "Тамара": "Тома", "Тамерлан": "Тамер", "Теймур": "Теймур",
+              "Тигран": "Тигран", "Ульяна": "Уля",
+              "Фаик": "Фаик", "Фатима": "Фатима", "Шамиль": "Шамиль", "Шенне": "Шенне", "Эвелина": "Лина",
+              "Эдуард": "Эдик", "Элизабет": "Элиза",
+              "Элина": "Элина", "Элла": "Элла", "Эльвира": "Эля", "Эмиль": "Эмиль",
+              "Эммануил": "Эмма", "Юлий": "Юлий", "Юнна": "Юнна", "Юсиф": "Юсиф",
+              "Ян": "Ян", "Ярослава": "Яра", "Яфа": "Яфа", "Аглая": "Аглая", "Алена": "Алена", "Софья": "Софья",
+              "Дмитриан": "Дима", "Аннели": "Аня", "Данило": "Даня", "Агнеса": "Агнеса", "Семён": "Семен",
+              "Арсентий": "Сеня", "Артемий": "Артем", "Мэтти": "Мэт", "Фёдор": "Федя", "Игнасио": "Игнас",
+              "Данила": "Даня", "Пётр": "Пётр",
+              "Агата": "Агата", "Сото": "Сото", "Моника": "Мони", "Азамат": "Азамат", "Айна": "Айна", "Адиль": "Адиль",
+              "Аджай": "Аджай",
+              "Нино": "Нино", "Динара": "Дина", "Даниял": "Даня"}
 
 
+# Регистрация
 class Register(QtWidgets.QDialog):
     def __init__(self):
         super(Register, self).__init__()
@@ -104,6 +121,7 @@ class Register(QtWidgets.QDialog):
             self.close()
 
 
+# Логин
 class Login(QtWidgets.QDialog):
     def __init__(self):
         super(Login, self).__init__()
@@ -135,28 +153,29 @@ class MainWindow(QtWidgets.QMainWindow):
         self.clicked = {'Graduation': [], 'Hobby': [], 'Education': [], 'Clan': []}
         self.number = 0
         self.name_search = False
-        # self.nameClicked(None, False)
         self.Names = []
         self.ex_window = None
-        # self.label.hide()
         self.result = None
         self.points = []
         self.first = True
         self.query = 'MATCH (p:Person) WHERE'
-        # self.close_info.clicked.connect(self.close_info_ev)
-        self.open_greeting()
+        self.open_greeting()  # открытие окна входа
+
+        # подключение выпадающего меню
         self.menuEducation.triggered.connect(self.educationClicked)
         self.menuHobby.triggered.connect(self.hobbyClicked)
         self.menuClan.triggered.connect(self.clanClicked)
         self.menuGraduation.triggered.connect(self.graduationClicked)
         self.menuName.triggered.connect(self.nameClicked)
 
+        # подключение кнопок инфо/ поиск/ почистить/ перезагрузка / поделиться
         self.info.clicked.connect(self.open_info_ev)
         self.search.clicked.connect(self.show_results)
         self.clear.clicked.connect(self.clear_all)
         self.reload.clicked.connect(self.reload_results)
         self.share.clicked.connect(self.share_csv)
 
+    # перезагрузка результатов
     def reload_results(self):
         old_query = self.query
         self.make_query()
@@ -165,12 +184,12 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             self.show_results()
 
+    # ввод ФИО
     def nameClicked(self):
         fio = NameInput(self)
         result = fio.exec()
 
-
-
+    # экспорт результатов в .csv формате
     def share_csv(self):
         if self.query != "MATCH (p:Person) WHERE":
             global copies_count
@@ -216,6 +235,7 @@ class MainWindow(QtWidgets.QMainWindow):
             if error_dialog == QMessageBox.Ok:
                 print('окееееей')
 
+    # сброс всез результатов
     def clear_all(self):
         self.number = 0
         self.name_search = False
@@ -229,6 +249,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.first = True
         self.query = 'MATCH (p:Person) WHERE'
 
+    # сброс меню
     def clear_query(self):
         if 'Graduation' in self.query:
             for action in self.menu1993_2000.actions():
@@ -247,6 +268,7 @@ class MainWindow(QtWidgets.QMainWindow):
             for action in self.menuClan.actions():
                 action.setChecked(False)
 
+    # выбор года выпуска
     def graduationClicked(self, action):
         val = self.clicked['Graduation']
         if action.text() in val:
@@ -255,6 +277,7 @@ class MainWindow(QtWidgets.QMainWindow):
             val.append(action.text())
         self.clicked['Graduation'] = val
 
+    # выбор ВУЗа
     def educationClicked(self, action):
         val = self.clicked['Education']
         if action.text() in val:
@@ -263,6 +286,7 @@ class MainWindow(QtWidgets.QMainWindow):
             val.append(action.text())
         self.clicked['Education'] = val
 
+    # выбор хобби
     def hobbyClicked(self, action):
         val = self.clicked['Hobby']
         if action.text() in val:
@@ -271,6 +295,7 @@ class MainWindow(QtWidgets.QMainWindow):
             val.append(action.text())
         self.clicked['Hobby'] = val
 
+    # выбор направления жизненного пути
     def clanClicked(self, action):
         val = self.clicked['Clan']
         if action.text() in val:
@@ -279,28 +304,24 @@ class MainWindow(QtWidgets.QMainWindow):
             val.append(action.text())
         self.clicked['Clan'] = val
 
+    # открытие окна с информацией
     def open_info_ev(self):
         info = Info(self)
         info.show()
-        # self.label.hide()
-        # self.close_info.show()
-        # self.info_txt.setVisible(True)
 
-    # def close_info_ev(self):
-    #     self.label.show()
-    #     self.close_info.hide()
-    #     self.info_txt.setVisible(False)
-
+    # открытие окна приветствия (ввод логина/ пароля)
     def open_greeting(self):
         self.hide()
         greeting = Greeting(self)
         if greeting.exec_():
             pass
-        # if login == '':
-        #     exit(0)
+        if login == '':
+            exit(0)
         self.querylbl.setText(f'Logged in as {login}')
         self.show()
+        self.open_info_ev()
 
+    # формирование запроса
     def make_query(self):
         if not self.name_search:
             self.query = 'MATCH (p:Person) WHERE'
@@ -329,19 +350,25 @@ class MainWindow(QtWidgets.QMainWindow):
             if self.name != "":
                 parts.append(f' p.First_name CONTAINS "{self.name.strip()}"')
             if self.surname != "":
-                parts.append(f' (p.Current_surname CONTAINS "{self.surname.strip()}"  OR  p.Lyceum_surname CONTAINS "{self.surname.strip()}")')
+                parts.append(
+                    f' (p.Current_surname CONTAINS "{self.surname.strip()}"  OR  p.Lyceum_surname CONTAINS "{self.surname.strip()}")')
             if self.patronym != "":
                 parts.append(f' p.patronym CONTAINS "{self.patronym.strip()}"')
             self.query += ' AND '.join(parts)
             self.querylbl.setText(f'{self.name} {self.surname} {self.patronym}')
 
+    # отображение друзей человека (при поиске по ФИО)
     def show_results_one(self, name=""):
         person = self.result
         self.result = neo4j_app.return_results(self.query)
         if len(self.result) == 0:
             self.result = person
-            print('lonelyyy')
-            return ''
+            error_dialog = QMessageBox.warning(
+                self, 'Нет друзей', 'К сожалению, мы не нашли друзей данного выпускника. Измените запрос',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                return ''
+
         self.number = len(self.result)
 
         w, h = self.width(), self.height()
@@ -351,7 +378,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
         self.label.resize(self.width(), self.height())
-        pxmp = QtGui.QPixmap(w - 20, h - 10).scaled(w, h)
+        pxmp = QtGui.QPixmap(w - 20, h - 50).scaled(w, h)
         pxmp.fill(Qt.transparent)
         self.label.setPixmap(pxmp)
 
@@ -380,8 +407,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.draw_circles(painter, myColor=QColor(170, 255, 255), start=len(person))
         self.draw_circles(painter, myColor=QColor(255, 170, 255), start=0, stop=len(person))
 
-
-    def show_results(self):  # make dynamic resize???
+    # отображение результатов
+    def show_results(self):
         # self.close_info_ev()
         print(self.query, self.name_search)
         self.make_query()
@@ -430,14 +457,14 @@ class MainWindow(QtWidgets.QMainWindow):
             # x, y = randrange(190, w - 200), randrange(80, h - 200)
             # self.points.append((x, y))
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
-                                             f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
+                                   f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
         self.draw_lines_fb(painter)
         self.draw_lines_vk(painter)
         self.draw_circles(painter)
         painter.end()
         print(len(self.points))
 
-
+    # добавление точек, проверка на расстояние (точки добавляются без наложения)
     def append_points(self, w, h):
         protect = 0
         while True:
@@ -457,12 +484,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 # self.label.resize(self.width() + 20, self.height() + 20)
                 return self.append_points(w + 20, h + 20)
 
-
+    # отрисовка выпускников
     def draw_circles(self, painter, radius=45, myColor=None, start=0, stop=-10):
         painter.setPen(QPen(QColor(0, 0, 0), 0))
         if myColor is not None:
             painter.setBrush(QBrush(myColor))
-        if stop==-10: stop=self.number
+        if stop == -10: stop = self.number
         for i in range(start, stop):
             x, y = self.points[i]
             if x == y == -10: continue
@@ -471,6 +498,7 @@ class MainWindow(QtWidgets.QMainWindow):
             painter.setFont(QFont('Times', 8))
             painter.drawText(x + 15, y + 15, 60, 60, 0, txt)
 
+    # отрисовка связей, функция при поиске по ФИО
     def draw_lines(self, painter):
         painter.setPen(QPen(QColor(255, 165, 0), 3))
         for i in range(self.number):
@@ -487,14 +515,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
             print(len(res))
 
+    # отрисовка связей ВК
     def draw_lines_vk(self, painter):
         painter.setPen(QPen(QColor(255, 0, 0), 3))
         name = ''
         new_query = 'MATCH (p1:Person)-[r:VK_FRIENDS]->(p:Person) WHERE p1.Name = "{}" AND (' \
-                        + ' '.join(self.query.split()[3:]) + ')'
+                    + ' '.join(self.query.split()[3:]) + ')'
         for i in range(self.number):
             ix, iy = self.points[i]
-            if ix==iy==-10: continue
+            if ix == iy == -10: continue
             name = self.result[i]['p'].get('Name')
             _query = new_query.format(name)
             res = neo4j_app.return_results(_query)
@@ -504,6 +533,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 rx, ry = self.points[index]
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
 
+    # отрисовка связей Facebook
     def draw_lines_fb(self, painter):
         painter.setPen(QPen(QColor(0, 0, 255), 3))
         name = ''
@@ -524,6 +554,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
             print(len(res))
 
+    # обработка клика
     def mousePressEvent(self, event):
         if self.number > 0:
             cx, cy = -100, -100
@@ -536,39 +567,43 @@ class MainWindow(QtWidgets.QMainWindow):
                     print('figure: ', cx, cy)
                     break
                 cx = cy = -100
-            if cx != -100 and cy != -100:
+            if cx != -100 and cy != -100:  # если на месте клика находится выпускник, то показываем информацию о нем...
                 if event.buttons() == Qt.LeftButton:
                     if self.ex_window is not None:
                         self.ex_window.close()
                     res = self.result[i]['p']
                     self.ex_window = PersonInfo(res, self)
                     self.ex_window.show()
-                    print('sssjfnngn', i, 'fff08f',  self.result[i]['p'].get('Name'))
-                elif event.buttons() == Qt.RightButton and self.name_search:
+                    print('sssjfnngn', i, 'fff08f', self.result[i]['p'].get('Name'))
+                elif event.buttons() == Qt.RightButton and self.name_search:  # ...либо выводим всех его друзей
                     print('hhgvu', self.name_search)
                     name = self.result[i]['p'].get('Name')
                     self.query = f'MATCH (a:Person)-[r]-(p:Person) WHERE a.Name="{name}"'
                     self.show_results_one(name)
 
 
+# алгоритм изменения фамилии
 def change_surname(surname):
     vowels = 'уеыаоэяиюё'
     s = surname[0] + ''.join([i for i in surname[1:] if i not in vowels])
     return s[:min(4, len(s))]
 
+
+# Отображение информации о выпускнике
 class PersonInfo(QtWidgets.QMainWindow):
     def __init__(self, data, parent=None):
         global login
         super().__init__(parent)
-        uic.loadUi('Person_Info3.ui', self)
+        uic.loadUi('Person_Info.ui', self)
         print('hello')
         self.ability_toggle(False)
         self.parent = parent
         self.data = data
-        self.save_btn.clicked.connect(self.save_results) #change?? toggle only buttons?
-        self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))
+        self.save_btn.clicked.connect(self.save_results)  # сохранение изменений
+        self.edit_btn.clicked.connect(lambda: self.ability_toggle(True))  # создание изменений
         self.load_data()
 
+    # редактирование информации (флаг/ переключатель)
     def ability_toggle(self, flag=False):
         self.lyceum_surname.setEnabled(flag)
         self.current_surname.setEnabled(flag)
@@ -583,15 +618,12 @@ class PersonInfo(QtWidgets.QMainWindow):
         self.email.setEnabled(flag)
         self.group.setEnabled(flag)
         self.graduation.setEnabled(flag)
-        # self.project.setEnabled(flag)
         self.clan.setEnabled(flag)
-        # self.education.setEnabled(flag)
         self.field_of_education.setEnabled(flag)
-        # self.occupation.setEnabled(flag)
-        # self.position.setEnabled(flag)
         self.hobby.setEnabled(flag)
         self.country.setEnabled(flag)
 
+    # сохранение введенных изменений
     def save_results(self):
         self.ability_toggle(False)
         neo4j_app.add_linkedin(self.data.get('Name'), self.linkedin_name.text())
@@ -609,6 +641,7 @@ class PersonInfo(QtWidgets.QMainWindow):
         neo4j_app.add_field(self.data.get('Name'), 'group', self.group.text())
         neo4j_app.add_field(self.data.get('Name'), 'grad', self.graduation.text())
 
+    # загрузка информации о выпускнике из базы данных
     def load_data(self):
         if is_admin:
             self.save_btn.setEnabled(True)
@@ -648,30 +681,40 @@ class PersonInfo(QtWidgets.QMainWindow):
         if self.data.get('Education') is not None and len(self.data.get('Education')) > 0:
             self.education.clear()
             self.education.appendPlainText(
-                ', '.join(self.data.get('Education')) if isinstance(self.data.get('Education'), list) else self.data.get(
+                ', '.join(self.data.get('Education')) if isinstance(self.data.get('Education'),
+                                                                    list) else self.data.get(
                     'Education'))
         if self.data.get('Occupation') is not None and len(self.data.get('Occupation')) > 0:
             self.occupation.clear()
-            self.occupation.appendPlainText(', '.join(self.data.get('Occupation')) if isinstance(self.data.get('Occupation'), list) else self.data.get('Occupation'))
+            self.occupation.appendPlainText(
+                ', '.join(self.data.get('Occupation')) if isinstance(self.data.get('Occupation'),
+                                                                     list) else self.data.get('Occupation'))
         if self.data.get('Position') is not None and self.data.get('Position') != '':
             self.position.clear()
-            self.position.appendPlainText(', '.join(self.data.get('Position')) if isinstance(self.data.get('Position'), list) else self.data.get('Position'))
+            self.position.appendPlainText(
+                ', '.join(self.data.get('Position')) if isinstance(self.data.get('Position'), list) else self.data.get(
+                    'Position'))
         if self.data.get('FieldOfEducation') is not None and self.data.get('FieldOfEducation') != '':
             print('edu', isinstance(self.data.get('FieldOfEducation'), list))
             print(self.data.get('FieldOfEducation'))
-            self.field_of_education.setText(', '.join(self.data.get('FieldOfEducation')) if isinstance(self.data.get('FieldOfEducation'), list) else self.data.get('FieldOfEducation'))
+            self.field_of_education.setText(
+                ', '.join(self.data.get('FieldOfEducation')) if isinstance(self.data.get('FieldOfEducation'),
+                                                                           list) else self.data.get('FieldOfEducation'))
         if self.data.get('Hobby') is not None and self.data.get('Hobby') != '':
             self.hobby.setCurrentText(self.data.get('Hobby'))
         if self.data.get('Country') is not None and self.data.get('Country') != '':
             self.country.setText(self.data.get('Country'))
 
 
+# отображение окна информации
 class Info(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         uic.loadUi('info.ui', self)
         self.parent = parent
 
+
+# ввод ФИО
 class NameInput(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -696,6 +739,8 @@ class NameInput(QtWidgets.QDialog):
             if error_dialog == QMessageBox.Ok:
                 pass
 
+
+# окно приветствия с логином/ регистрацией
 class Greeting(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -704,17 +749,16 @@ class Greeting(QtWidgets.QDialog):
         self.login_btn.clicked.connect(self.login)
         self.register_btn.clicked.connect(self.register)
 
-
     def login(self):
         global is_admin
         login_form = Login()
         result = login_form.exec()
         if login_form.logged_in:
+            # проверка на админа
             if login_form.login.text() == 'admin' and \
-                login_form.password.text() == 'admin':
+                    login_form.password.text() == 'admin':
                 is_admin = True
             self.close()
-
 
     def register(self):
         registration = Register()
@@ -722,9 +766,11 @@ class Greeting(QtWidgets.QDialog):
         if registration.registered:
             self.close()
 
+
 neo4j_app = None
 
 
+# соединение с базой данныз
 def connect():
     global neo4j_app
     scheme = "bolt"
@@ -735,11 +781,12 @@ def connect():
     password = "12345"
     return App(url, user, password)
 
+
 try:
-    neo4j_app = connect()
+    neo4j_app = connect()  # подсоединение к базе данных
     app = QApplication(sys.argv)
-    ex = MainWindow()
+    ex = MainWindow()  # открытие главного виджета
     ex.show()
     sys.exit(app.exec_())
-except Exception as e:
-    print(e)
+except Exception as exception:
+    print(exception)
