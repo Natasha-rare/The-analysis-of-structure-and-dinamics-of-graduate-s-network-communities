@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Info</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTextBrowser" name="info_txt">
+     <property name="minimumSize">
+      <size>
+       <width>760</width>
+       <height>540</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.875pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:14pt; color:#0000ff;&quot;&gt;Terms of use&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;We are glad to see you here&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600; font-style:italic;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Our application provides information about graduates of our Lyceum, who are grouped together by attrributes that you select. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Attributes selection&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;At the top of the page you can see a menu with fields &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;Graduation &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#8a8a8a;&quot;&gt;(the year of graduaction)&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#505050;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic; color:#000000;&quot;&gt;Education&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#8a8a8a;&quot;&gt; (the university)&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic; color:#000000;&quot;&gt;Hobby&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#8a8a8a;&quot;&gt;(person's hobby)&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt; and &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic; color:#000000;&quot;&gt;Clan&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#8a8a8a;&quot;&gt;(the person's sphere of action)&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt;. Using different combinations of these fields you can see the result on the screen &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;— graph with graduates, having attributes, that you've chosen.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;You can also find information about person using his first name and second name. For this, you just have to select field Name and enter data. It you don't know the complete name of graduate, that's all right — just enter what you know and then select a person, that you've been looking for.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Also you can find all friends of selected person by clicking on him using right mouse button. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#8a8a8a;&quot;&gt;(this fuction is available only while using graduates by name)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;Menu with buttons&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;On the right side of the screen you can see several buttons.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; ℹ - &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;information&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - by clicking this button you will see this information window&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 🔎- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;search&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - by clicking this button you will see the graph with graduates, who have selected atrtibutes &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; ❌- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;close&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - button that cleaning the result. All parametrs will be descarded too.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 🔄 - &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;upgrade&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - the button that upgrades the result if you have changed some attributes.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; 📤- &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-style:italic;&quot;&gt;share&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; - you can export graph, that is displayed on the screen, in the csv format.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; font-weight:600;&quot;&gt;The order of actions while using the app:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;1. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;Thoughtfully read this instruction&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;2.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Select attributes that interest you and that will be used in forming graph&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;3.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; Click the &amp;quot;search&amp;quot; button&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;4. &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;In the text field at the top of the page read the query and make sure, that the selected parametrs were right&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;4.1 &lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;If there are errors in the wuery, you can reset it by clicking the button &amp;quot;close&amp;quot;, or change some parametrs and click the button &amp;quot;upgrade&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;. If you click on the graduates, you will see more information about them&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;6.&lt;/span&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt; If you can save the result at the end of viewijg, you can just click the button &amp;quot;share&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#0000ff;&quot;&gt;WISH, YOU WOULD ENJOY THE USE!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:12pt; font-weight:600; color:#fc0107;&quot;&gt;Attention!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#fc0107;&quot;&gt;This application was created exclusively in educational purposes. Data diffusion is restricted by the low.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont'; font-size:11pt; color:#000000;&quot;&gt;*All information about students is available only in Russian&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
