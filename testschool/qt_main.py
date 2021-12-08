@@ -99,25 +99,23 @@ class Register(QtWidgets.QDialog):
         self.cancel.clicked.connect(self.close)
 
     def accept(self):
-        print('llalllala')
         if self.name.text() == '' or self.surname.text() == '' or \
                 self.login.text() == '' or self.password.text() == '' or self.pass_repeat.text() == '':
             error_dialog = QMessageBox.critical(
                 self, 'Error', 'Заполните все обязательные поля',
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
-                print('ssd')
+                pass
         elif self.password.text() != self.pass_repeat.text():
             error_dialog = QMessageBox.critical(
                 self, 'Error', 'Пароли должны совпадать!!!',
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
-                print('ssd')
+                pass
         else:
             global login
             login = self.login.text()
             self.registered = True
-            print('maok')
             self.close()
 
 
@@ -131,17 +129,15 @@ class Login(QtWidgets.QDialog):
         self.logged_in = False
 
     def click(self):
-        print('hola')
         if self.login.text() == '' or self.password.text() == '':
             error_dialog = QMessageBox.critical(
                 self, 'Error', 'Заполните все обязательные поля',
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
-                print('keee')
+                pass
         else:
             global login
             login = self.login.text()
-            print(login)
             self.logged_in = True
             self.close()
 
@@ -233,7 +229,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self, 'Error', 'Выберите признаки!',
                 buttons=QMessageBox.Ok)
             if error_dialog == QMessageBox.Ok:
-                print('окееееей')
+                pass
 
     # сброс всез результатов
     def clear_all(self):
@@ -374,9 +370,7 @@ class MainWindow(QtWidgets.QMainWindow):
         w, h = self.width(), self.height()
         self.Names = [per['p'].get('Name') for per in self.result]
         self.Names.append(name)
-        print(self.query)
 
-        print('reults count = ', len(self.result), self.result[0]['p'].get('First_name'))
         self.label.resize(self.width(), self.height())
         pxmp = QtGui.QPixmap(w - 20, h - 50).scaled(w, h)
         pxmp.fill(Qt.transparent)
@@ -391,13 +385,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.shortnames.append("")
                 continue
             res = self.append_points(w, h)
-            print('res', res)
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                    f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
 
         self.result = person[:] + self.result[:]
         self.number = len(self.result)
-        if self.number > 200:
+        text = self.querylbl.toPlainText()
+        self.querylbl.setText(f"Results: {self.number} \n {text}")
+        if self.number > 155:
             error_dialog = QMessageBox.warning(
                 self, 'Большой запрос', 'К сожалению, ваш запрос слишком большой. Уменьшите круг поиска',
                 buttons=QMessageBox.Ok)
@@ -409,10 +404,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # отображение результатов
     def show_results(self):
-        # self.close_info_ev()
-        print(self.query, self.name_search)
         self.make_query()
-        print(self.query)
         if self.query == 'MATCH (p:Person) WHERE':
             error_dialog = QMessageBox.critical(
                 self, 'Пустой запрос', 'Выберите признаки!',
@@ -424,6 +416,8 @@ class MainWindow(QtWidgets.QMainWindow):
         w, h = self.width(), self.height()
         self.shortnames = []
         self.result = neo4j_app.return_results(self.query)
+        text = self.querylbl.toPlainText()
+        self.querylbl.setText(f"Results: {len(self.result)} \n {text}")
         if len(self.result) == 0:
             error_dialog = QMessageBox.warning(
                 self, 'Ничего не найдено', 'К сожалению, мы ничего не нашли.\n Попробуйте другой запрос',
@@ -432,8 +426,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 return ''
         self.number = len(self.result)
         self.Names = [person['p'].get('Name') for person in self.result]
-        print('results count = ', len(self.result), self.result[0]['p'].get('First_name'))
-        if len(self.result) > 200:
+        if len(self.result) > 155:
             error_dialog = QMessageBox.warning(
                 self, 'Большой запрос', 'К сожалению, ваш запрос слишком большой. Уменьшите круг поиска',
                 buttons=QMessageBox.Ok)
@@ -453,16 +446,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.shortnames.append("")
                 continue
             res = self.append_points(w, h)
-            print('res', res)
-            # x, y = randrange(190, w - 200), randrange(80, h - 200)
-            # self.points.append((x, y))
             self.shortnames.append(f'{ShortNames[self.result[i]["p"].get("First_name")]}\n'
                                    f'{change_surname(self.result[i]["p"].get("Current_surname"))}')
         self.draw_lines_fb(painter)
         self.draw_lines_vk(painter)
         self.draw_circles(painter)
         painter.end()
-        print(len(self.points))
 
     # добавление точек, проверка на расстояние (точки добавляются без наложения)
     def append_points(self, w, h):
@@ -509,11 +498,9 @@ class MainWindow(QtWidgets.QMainWindow):
             res = neo4j_app.return_results(_query)
             for r in res:
                 index = self.Names.index(r['p'].get('Name'))
-                print(index)
                 rx, ry = self.points[index]
                 if rx == ry == -10: continue
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
-            print(len(res))
 
     # отрисовка связей ВК
     def draw_lines_vk(self, painter):
@@ -529,7 +516,6 @@ class MainWindow(QtWidgets.QMainWindow):
             res = neo4j_app.return_results(_query)
             for r in res:
                 index = self.Names.index(r['p'].get('Name'))
-                print(index)
                 rx, ry = self.points[index]
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
 
@@ -548,11 +534,9 @@ class MainWindow(QtWidgets.QMainWindow):
             res = neo4j_app.return_results(_query)
             for r in res:
                 index = self.Names.index(r['p'].get('Name'))
-                print(index)
                 rx, ry = self.points[index]
                 if rx == ry == -10: continue
                 painter.drawLine(ix + 50, iy + 50, rx + 50, ry + 50)
-            print(len(res))
 
     # обработка клика
     def mousePressEvent(self, event):
@@ -560,11 +544,9 @@ class MainWindow(QtWidgets.QMainWindow):
             cx, cy = -100, -100
             mx, my = event.x() - 57, event.y() - 134
             # mx, my = event.x() - 57, event.y() - 134
-            print('mouse:', mx, my)
             for i in range(self.number):
                 cx, cy = self.points[i]
                 if math.hypot(mx - cx, my - cy) <= 50:
-                    print('figure: ', cx, cy)
                     break
                 cx = cy = -100
             if cx != -100 and cy != -100:  # если на месте клика находится выпускник, то показываем информацию о нем...
@@ -574,9 +556,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     res = self.result[i]['p']
                     self.ex_window = PersonInfo(res, self)
                     self.ex_window.show()
-                    print('sssjfnngn', i, 'fff08f', self.result[i]['p'].get('Name'))
                 elif event.buttons() == Qt.RightButton and self.name_search:  # ...либо выводим всех его друзей
-                    print('hhgvu', self.name_search)
                     name = self.result[i]['p'].get('Name')
                     self.query = f'MATCH (a:Person)-[r]-(p:Person) WHERE a.Name="{name}"'
                     self.show_results_one(name)
@@ -595,7 +575,6 @@ class PersonInfo(QtWidgets.QMainWindow):
         global login
         super().__init__(parent)
         uic.loadUi('Person_Info.ui', self)
-        print('hello')
         self.ability_toggle(False)
         self.parent = parent
         self.data = data
@@ -646,7 +625,6 @@ class PersonInfo(QtWidgets.QMainWindow):
         if is_admin:
             self.save_btn.setEnabled(True)
             self.edit_btn.setEnabled(True)
-        print(self.data.get('Name'))
         if self.data.get('Lyceum_surname') is not None and self.data.get('Lyceum_surname') != '':
             self.lyceum_surname.setText(self.data.get('Lyceum_surname'))
         if self.data.get('Current_surname') is not None and self.data.get('Current_surname') != '':
@@ -695,8 +673,6 @@ class PersonInfo(QtWidgets.QMainWindow):
                 ', '.join(self.data.get('Position')) if isinstance(self.data.get('Position'), list) else self.data.get(
                     'Position'))
         if self.data.get('FieldOfEducation') is not None and self.data.get('FieldOfEducation') != '':
-            print('edu', isinstance(self.data.get('FieldOfEducation'), list))
-            print(self.data.get('FieldOfEducation'))
             self.field_of_education.setText(
                 ', '.join(self.data.get('FieldOfEducation')) if isinstance(self.data.get('FieldOfEducation'),
                                                                            list) else self.data.get('FieldOfEducation'))
