@@ -5,13 +5,17 @@ Clans = {"Разработка ПО": "IT", "Финансы и страхова�
          "Образование": "Education", "ИТ-консалтинг": "IT-consulting", "Исследования": "Research", None: ""}
 Countries = {}
 
-
+"""
+Каждая функция имеет 2 версии:
+1) функция с переданными параметрами извне
+2) функция связи с базой данных
+Каждая функция имеет звучное название
+"""
 class App:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
 
     def close(self):
-        # Don't forget to close the driver connection when you are finished with it
         self.driver.close()
 
     def create_person(self, name, group, education, graduation, exta_education, position, occupation, clan, notes,
@@ -107,7 +111,6 @@ class App:
     def add_extra_education(self, name, education, new=False):
         with self.driver.session() as session:
             result = session.read_transaction(self.add_add_extra_education, name, education, new)
-            # print(result)
 
     @staticmethod
     def add_add_extra_education(tx, name, education, new=False):
@@ -320,10 +323,6 @@ class App:
         with self.driver.session() as session:
             result = session.read_transaction(self._find_firstnames)
             for record in result:
-                try:
-                    if record not in names:
-                        print(record)
-                except:
                     print(record)
 
     @staticmethod

@@ -9,138 +9,13 @@ from PyQt5.QtGui import QPainter, QBrush, QColor, QFont, QPen
 from app import App
 from PyQt5 import QtWidgets, uic, QtGui
 from PyQt5.QtWidgets import QApplication, QMessageBox, QFileDialog
-
+from name_info import NameInput, Info
+from shortNames import ShortNames
 is_admin = False
 login = ''
 # число копий экспорта
 copies_count = 1
 # словарь сокращений
-ShortNames = {"Александр": "Саша", "Артем": "Артем", "Григорий": "Гоша", "Дарья": "Даша",
-              "Дмитрий": "Митя", "Антонина": "Тоня", "Димитрий": "Дима",
-              "Алексей": "Леша", "Сергей": "Серж", "Андрей": "Андрей", "Михаил": "Миша",
-              "Иван": "Иван", "Никита": "Ник", "Артём": "Артём",
-              "Максим": "Макс", "Илья": "Илья", "Антон": "Антон",
-              "Павел": "Паша", "Николай": "Коля", "Кирилл": "Киря",
-              "Владимир": "Вова", "Володя": "Вова", "Константин": "Костя", "Денис": "Денис",
-              "Евгений": "Женя", "Роман": "Рома", "Даниил": "Даня", "Игорь": "Игорь",
-              "Егор": "Егор", "Олег": "Олег", "Петр": "Петр",
-              "Василий": "Вася", "Георгий": "Гоша", "Виктор": "Витя",
-              "Григор": "Гриша", "Станислав": "Стас", "Арсений": "Сеня",
-              "Борис": "Боря", "Леонид": "Лёня", "Вадим": "Вадим", "Глеб": "Глеб",
-              "Юрий": "Юра", "Федор": "Федя", "Матвей": "Матвей",
-              "Владислав": "Влад", "Тимофей": "Тима", "Вячеслав": "Слава",
-              "Филипп": "Филя", "Степан": "Степа", "Всеволод": "Сева",
-              "Анатолий": "Толя", "Виталий": "Витя", "Ярослав": "Яра",
-              "Тимур": "Тимур", "Яков": "Яша", "Марк": "Марк", "Руслан": "Руся",
-              "Семен": "Сема", "Екатерина": "Катя", "Анна": "Аня",
-              "Анастасия": "Настя", "Дария": "Даша", "Мария": "Маша",
-              "Елена": "Лена", "Ольга": "Оля", "Наталия": "Ната", "Наталья": "Ната",
-              "Татьяна": "Таня", "Елизавета": "Лиза",
-              "Александра": "Саша", "Юлия": "Юля",
-              "Евгения": "Женя", "Ирина": "Ира",
-              "София": "Соня", "Полина": "Поля", "Ксения": "Ксю",
-              "Светлана": "Света", "Марина": "Марина", "Виктория": "Вика",
-              "Надежда": "Надя", "Варвара": "Варя", "Маргарита": "Рита", "Алина": "Лина",
-              "Людмила": "Люда", "Вероника": "Ника", "Яна": "Яна",
-              "Нина": "Нина", "Лариса": "Лариса", "Алёна": "Алёна",
-              "Вера": "Вера", "Алиса": "Алиса", "Диана": "Диана",
-              "Кристина": "Кристи", "Любовь": "Люба", "Галина": "Галя",
-              "Оксана": "Оксана", "Алла": "Алла", "Алеся": "Алеся",
-              "Алехандро": "Саша", "Альберт": "Алик", "Альбина": "Альб",
-              "Амина": "Амина", "Ана": "Ана", "Ангелина": "Геля", "Анфиса": "Анфиса", "Арам": "Арам", "Арина": "Арина",
-              "Аркадий": "Аркаша",
-              "Арман": "Арман", "Армен": "Армен", "Арсен": "Арсен",
-              "Артур": "Артур", "Ася": "Ася", "Ахмед": "Ахмед",
-              "Ашот": "Ашот", "Богдан": "Богдан", "Валентин": "Валя",
-              "Валентина": "Валя", "Валерий": "Валера", "Валерия": "Лера",
-              "Валерьян": "Валера", "Василиса": "Вася", "Вениамин": "Веня", "Весна": "Весна", "Виолетта": "Вита",
-              "Гагик": "Гагик", "Гаджимурад": "Гаджи", "Гарик": "Гарик", "Гарри": "Гарри", "Геннадий": "Гена",
-              "Герман": "Герман", "Глафира": "Глаша", "Гулру": "Гулру", "Гульнара": "Гуля",
-              "Давид": "Давид", "Далия": "Далия", "Дамир": "Дамир", "Дарьюш": "Дарьюш",
-              "Демид": "Демид", "Демьян": "Демьян", "Джамиля": "Джамиля", "Диляра": "Диляра", "Дина": "Дина",
-              "Ева": "Ева",
-              "Евфросиния": "Фрося", "Захар": "Захар", "Зоя": "Зоя", "Игнатий": "Игнат", "Илай": "Илай",
-              "Илона": "Илона", "Ильдар": "Ильдар",
-              "Инесса": "Инесса", "Инна": "Инна", "Иннокентий": "Кеша", "Иоанн": "Иоанн", "Иосиф": "Иосиф",
-              "Камилла": "Камила", "Карина": "Карина",
-              "Кевин": "Кевин", "Кира": "Кира", "Кызы": "Кызы", "Лаврентий": "Лаврик", "Лада": "Лада", "Лаура": "Лаура",
-              "Лев": "Лев", "Левон": "Левон", "Лейля": "Лейля", "Лидия": "Лида", "Лилия": "Лилия",
-              "Линара": "Линара", "Линда": "Линда", "Лука": "Лука", "Мадина": "Мадина",
-              "Майя": "Майя", "Марат": "Марат", "Марианна": "Марья", "Марьяна": "Марья",
-              "Матин": "Матин", "Мелисса": "Мелиса", "Мерген": "Мерген", "Мередкули": "Меред", "Метревели": "Метре",
-              "Микаэл": "Микаэл",
-              "Назар": "Назар", "Наргиза": "Нарги", "Нелли": "Нелли", "Ника": "Ника", "Николь": "Николь",
-              "Олеся": "Олеся", "Регина": "Регина", "Ренат": "Ренат",
-              "Рината": "Рина", "Роберт": "Роб", "Родион": "Родион", "Ростислав": "Ростик", "Рубен": "Рубен",
-              "Рувин": "Рувин", "Рустам": "Рустам", "Сабина": "Саби", "Саман": "Саман",
-              "Саня": "Саня", "Святослав": "Свят", "Серафима": "Сима", "Сослан": "Сослан", "Сусанна": "Сана",
-              "Сяоган": "Сяоган", "Таисия": "Тася", "Тамара": "Тома", "Тамерлан": "Тамер", "Теймур": "Теймур",
-              "Тигран": "Тигран", "Ульяна": "Уля",
-              "Фаик": "Фаик", "Фатима": "Фатима", "Шамиль": "Шамиль", "Шенне": "Шенне", "Эвелина": "Лина",
-              "Эдуард": "Эдик", "Элизабет": "Элиза",
-              "Элина": "Элина", "Элла": "Элла", "Эльвира": "Эля", "Эмиль": "Эмиль",
-              "Эммануил": "Эмма", "Юлий": "Юлий", "Юнна": "Юнна", "Юсиф": "Юсиф",
-              "Ян": "Ян", "Ярослава": "Яра", "Яфа": "Яфа", "Аглая": "Аглая", "Алена": "Алена", "Софья": "Софья",
-              "Дмитриан": "Дима", "Аннели": "Аня", "Данило": "Даня", "Агнеса": "Агнеса", "Семён": "Семен",
-              "Арсентий": "Сеня", "Артемий": "Артем", "Мэтти": "Мэт", "Фёдор": "Федя", "Игнасио": "Игнас",
-              "Данила": "Даня", "Пётр": "Пётр",
-              "Агата": "Агата", "Сото": "Сото", "Моника": "Мони", "Азамат": "Азамат", "Айна": "Айна", "Адиль": "Адиль",
-              "Аджай": "Аджай",
-              "Нино": "Нино", "Динара": "Дина", "Даниял": "Даня"}
-
-
-# Регистрация
-class Register(QtWidgets.QDialog):
-    def __init__(self):
-        super(Register, self).__init__()
-        uic.loadUi('register_form.ui', self)
-        self.registered = False
-        self.ok.clicked.connect(self.accept)
-        self.cancel.clicked.connect(self.close)
-
-    def accept(self):
-        if self.name.text() == '' or self.surname.text() == '' or \
-                self.login.text() == '' or self.password.text() == '' or self.pass_repeat.text() == '':
-            error_dialog = QMessageBox.critical(
-                self, 'Error', 'Заполните все обязательные поля',
-                buttons=QMessageBox.Ok)
-            if error_dialog == QMessageBox.Ok:
-                pass
-        elif self.password.text() != self.pass_repeat.text():
-            error_dialog = QMessageBox.critical(
-                self, 'Error', 'Пароли должны совпадать!!!',
-                buttons=QMessageBox.Ok)
-            if error_dialog == QMessageBox.Ok:
-                pass
-        else:
-            global login
-            login = self.login.text()
-            self.registered = True
-            self.close()
-
-
-# Логин
-class Login(QtWidgets.QDialog):
-    def __init__(self):
-        super(Login, self).__init__()
-        uic.loadUi('login_form.ui', self)
-        self.ok.clicked.connect(self.click)
-        self.cancel.clicked.connect(self.close)
-        self.logged_in = False
-
-    def click(self):
-        if self.login.text() == '' or self.password.text() == '':
-            error_dialog = QMessageBox.critical(
-                self, 'Error', 'Заполните все обязательные поля',
-                buttons=QMessageBox.Ok)
-            if error_dialog == QMessageBox.Ok:
-                pass
-        else:
-            global login
-            login = self.login.text()
-            self.logged_in = True
-            self.close()
-
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
@@ -176,6 +51,7 @@ class MainWindow(QtWidgets.QMainWindow):
         old_query = self.query
         self.make_query()
         if self.query == old_query:
+            self.querylbl.setText(f"Results: {len(self.result)} {self.querylbl.toPlainText}")
             return ''
         else:
             self.show_results()
@@ -679,44 +555,9 @@ class PersonInfo(QtWidgets.QMainWindow):
         if self.data.get('Hobby') is not None and self.data.get('Hobby') != '':
             self.hobby.setCurrentText(self.data.get('Hobby'))
         if self.data.get('Country') is not None and self.data.get('Country') != '':
-            self.country.setText(self.data.get('Country'))
+            self.country.setText(self.data.get('Country'))\
 
 
-# отображение окна информации
-class Info(QtWidgets.QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        uic.loadUi('info.ui', self)
-        self.parent = parent
-
-
-# ввод ФИО
-class NameInput(QtWidgets.QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        uic.loadUi('name input.ui', self)
-        self.input_done = False
-        self.parent = parent
-        self.ok.clicked.connect(self.ok_clicked)
-        self.cancel.clicked.connect(self.close)
-
-    def ok_clicked(self):
-        if self.name.text().strip() != '' or self.surname.text().strip() != '' or self.patronym.text().strip() != '':
-            self.input_done = True
-            self.parent.name_search = True
-            self.parent.name = self.name.text()
-            self.parent.surname = self.surname.text()
-            self.parent.patronym = self.patronym.text()
-            self.parent.show_results()
-        else:
-            error_dialog = QMessageBox.critical(
-                self, 'Error', 'Заполните все обязательные поля',
-                buttons=QMessageBox.Ok)
-            if error_dialog == QMessageBox.Ok:
-                pass
-
-
-# окно приветствия с логином/ регистрацией
 class Greeting(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -742,6 +583,54 @@ class Greeting(QtWidgets.QDialog):
         if registration.registered:
             self.close()
 
+class Login(QtWidgets.QDialog):
+    def __init__(self):
+        super(Login, self).__init__()
+        uic.loadUi('login_form.ui', self)
+        self.ok.clicked.connect(self.click)
+        self.cancel.clicked.connect(self.close)
+        self.logged_in = False
+
+    def click(self):
+        if self.login.text() == '' or self.password.text() == '':
+            error_dialog = QMessageBox.critical(
+                self, 'Error', 'Заполните все обязательные поля',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                pass
+        else:
+            global login
+            login = self.login.text()
+            self.logged_in = True
+            self.close()
+
+class Register(QtWidgets.QDialog):
+    def __init__(self):
+        super(Register, self).__init__()
+        uic.loadUi('register_form.ui', self)
+        self.registered = False
+        self.ok.clicked.connect(self.accept)
+        self.cancel.clicked.connect(self.close)
+
+    def accept(self):
+        if self.name.text() == '' or self.surname.text() == '' or \
+                self.login.text() == '' or self.password.text() == '' or self.pass_repeat.text() == '':
+            error_dialog = QMessageBox.critical(
+                self, 'Error', 'Заполните все обязательные поля',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                pass
+        elif self.password.text() != self.pass_repeat.text():
+            error_dialog = QMessageBox.critical(
+                self, 'Error', 'Пароли должны совпадать!!!',
+                buttons=QMessageBox.Ok)
+            if error_dialog == QMessageBox.Ok:
+                pass
+        else:
+            global login
+            login = self.login.text()
+            self.registered = True
+            self.close()
 
 neo4j_app = None
 
