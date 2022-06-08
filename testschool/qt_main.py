@@ -642,8 +642,8 @@ def connect():
     host_name = "localhost"
     port = 7687
     url = "{scheme}://{host_name}:{port}".format(scheme=scheme, host_name=host_name, port=port)
-    user = "neo4j"
-    password = "12345"
+    user = "USERNAME"
+    password = "PASSWORD"
     return App(url, user, password)
 
 
